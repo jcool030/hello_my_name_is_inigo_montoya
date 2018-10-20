@@ -41,32 +41,32 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
 
 
 
-//        adminBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                accountType = 0;
-//
-//            }
-//        });
-//
-//        userBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v)  {
-//
-//                accountType = 1;
-//
-//            }
-//        });
-//
-//        contractorBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v)  {
-//
-//                accountType = 2;
-//
-//            }
-//        });
+        adminBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                accountType = 0;
+
+            }
+        });
+
+        userBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)  {
+
+                accountType = 1;
+
+            }
+        });
+
+        contractorBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)  {
+
+                accountType = 2;
+
+            }
+        });
 
         signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
