@@ -75,10 +75,6 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
                 String username = nameSignup.getText().toString();
                 String password =  nameSignup.getText().toString();
 
-                public void onToggle(new View.OnClickListener);{
-
-                }
-
                 if (accountType == 0){
 
                     new Admin( username, password );
