@@ -9,7 +9,6 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
 
     ToggleButton adminBtn, userBtn, contractorBtn;
     Button signupBtn;
-    int accountType;
     EditText nameSignup, passwordSignup;
 
 
@@ -40,34 +39,6 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
 
 
 
-
-        adminBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                accountType = 0;
-
-            }
-        });
-
-        userBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)  {
-
-                accountType = 1;
-
-            }
-        });
-
-        contractorBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)  {
-
-                accountType = 2;
-
-            }
-        });
-
         signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)  {
@@ -75,19 +46,7 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
                 String username = nameSignup.getText().toString();
                 String password =  nameSignup.getText().toString();
 
-                if (accountType == 0){
 
-                    new Admin( username, password );
-
-                }else if (accountType == 1){
-
-                    new User( username, password );
-
-                }else if (accountType == 2){
-
-                    new Contractor( username, password );
-
-                }
             }
         });
 
