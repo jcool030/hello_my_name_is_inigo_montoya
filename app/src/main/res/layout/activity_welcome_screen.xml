@@ -57,34 +57,39 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:orientation="horizontal" />
-
+            android:orientation="horizontal" >
 
             <ToggleButton
                 android:id="@+id/adminBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:checked="true"
                 android:text="ToggleButton"
                 android:textOff="Admin"
                 android:textOn="Admin" />
 
             <ToggleButton
-                android:id="@+id/userBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ToggleButton"
-                android:textOff="User"
-                android:textOn="User" />
-
-            <ToggleButton
                 android:id="@+id/contractorBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:checked="false"
                 android:text="ToggleButton"
                 android:textOff="Contractor"
                 android:textOn="Contractor" />
+
+            <ToggleButton
+                    android:id="@+id/userBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ToggleButton"
+                    android:textOff="User"
+                android:textOn="User" />
+
+        </RadioGroup>
+
 
     </LinearLayout>
 
