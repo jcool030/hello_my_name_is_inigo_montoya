@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.seg2105app.deliverable1.activities">
+    package="com.seg2105app.delieverable1.activities">
 
     <application
         android:allowBackup="true"
@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.seg2105app.delieverable1.activities.SignUpScreenActivity"/>
+        <activity android:name="com.seg2105app.delieverable1.activities.HomeOwnerWelcome"></activity>
     </application>
 
 </manifest>

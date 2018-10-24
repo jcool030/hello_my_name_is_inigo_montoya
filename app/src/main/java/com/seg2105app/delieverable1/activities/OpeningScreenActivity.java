@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.seg2105app.deliverable1.activities.R;
+//import com.seg2105app.delieverable1.activities.R;
 
 public class OpeningScreenActivity extends AppCompatActivity{
     EditText username;
