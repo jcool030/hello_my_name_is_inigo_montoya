@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WelcomeScreen">
+    tools:context="com.seg2105app.delieverable1.activities.SignUpScreenActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Create Account"
+            android:text="@string/create_account"
             android:textSize="36sp"
             app:layout_constraintBottom_toTopOf="@+id/loginbutton"
             app:layout_constraintEnd_toEndOf="parent"
@@ -138,6 +138,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:clickable="true"
             android:text="Sign Up"
             tools:layout_editor_absoluteX="147dp"
             tools:layout_editor_absoluteY="435dp" />

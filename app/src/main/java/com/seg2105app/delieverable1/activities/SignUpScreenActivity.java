@@ -1,11 +1,14 @@
-package com.example.dmitrykutin.delieverable1;
+package com.seg2105app.delieverable1.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
-public class WelcomeScreen extends AppCompatActivity implements View.OnClickListener {
+import com.seg2105app.deliverable1.activities.R;
+import com.seg2105app.delieverable1.users.*;
+
+public class SignUpScreenActivity extends AppCompatActivity implements View.OnClickListener {
 
     ToggleButton adminBtn, userBtn, contractorBtn;
     Button signupBtn;
@@ -15,7 +18,7 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome_screen);
+        setContentView(R.layout.activity_signup_screen);
 
         adminBtn = findViewById(R.id.adminBtn);
         userBtn = findViewById(R.id.userBtn);
@@ -30,7 +33,7 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
         signupBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String username = nameSignup.getText().toString();
-                String password = nameSignup.getText().toString();
+                String password = passwordSignup.getText().toString();
 
                 int id = toggleGroup.getCheckedRadioButtonId();
 
@@ -39,15 +42,15 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
                 }else{
                     if (adminBtn.isChecked()){
 
-                        new Admin ( username, password);
+                        new Administrator ( username, password);
 
                     }else if (contractorBtn.isChecked()){
 
-                        new Contractor ( username, password);
+                        new ServiceProvider ( username, password);
 
                     }else if (userBtn.isChecked()){
 
-                        new User ( username, password);
+                        new HomeOwner ( username, password);
 
                     }
                 }

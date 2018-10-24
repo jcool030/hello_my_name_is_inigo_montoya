@@ -1,4 +1,4 @@
-package com.seg2105app.users;
+package com.seg2105app.delieverable1.users;
 
 public class ServiceProvider extends User {
 
