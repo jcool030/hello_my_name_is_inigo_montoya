@@ -67,7 +67,7 @@
                 android:checked="true"
                 android:text="ToggleButton"
                 android:textOff="Admin"
-                android:textOn="Admin" />
+                android:textOn="Admin"/>
 
             <ToggleButton
                 android:id="@+id/contractorBtn"
@@ -117,8 +117,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
+            android:hint="Username"
             android:inputType="textPersonName"
-            android:text="Name"
             tools:layout_editor_absoluteX="84dp"
             tools:layout_editor_absoluteY="284dp" />
 
@@ -128,6 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
+            android:hint="Password"
             android:inputType="textPassword"
             tools:layout_editor_absoluteX="84dp"
             tools:layout_editor_absoluteY="365dp" />
