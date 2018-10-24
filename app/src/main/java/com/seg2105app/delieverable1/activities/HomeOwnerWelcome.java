@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import com.seg2105app.deliverable1.activities.R;
 
 public class HomeOwnerWelcome extends AppCompatActivity {
 

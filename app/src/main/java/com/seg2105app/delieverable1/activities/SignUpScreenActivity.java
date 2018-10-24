@@ -19,6 +19,7 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_screen);
+
         adminBtn = findViewById(R.id.adminBtn);
         userBtn = findViewById(R.id.userBtn);
         contractorBtn = findViewById(R.id.contractorBtn);
@@ -83,6 +84,13 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
             Toast toast = Toast.makeText(getApplicationContext(), "No user type selected", Toast.LENGTH_SHORT);
             toast.show();
         }
+    }
+
+    public void onClick(View v) {
+
+
+
+
     }
 }
 
