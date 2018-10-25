@@ -52,33 +52,33 @@ public class OpeningScreenActivity extends AppCompatActivity{
             boolean validLoginCredentials = false;
             //Iterator<User> iter = users.iterator();
             //User firstUser = users.getFirst();
-            int currentIndex = 0;
-            while (users.hasNext(currentIndex)){
-                User currentUser = users.getNext(currentIndex);
+
+            while (users.hasNext()){
+                User currentUser = users.getNext();
                 if (currentUser.getUsername().equals(username.getText().toString().trim())){
                     if (currentUser.getPassword().equals(password.getText().toString().trim())){
                         validLoginCredentials = true;
                         //finds which welcome screen to go to
-                        if(currentUser.getType().equals("Admin")){
-//                            Intent intent = new Intent(this, AdminWelcome.class);
-//                            intent.putExtra("username", currentUser.getUsername());
-//                            startActivity(intent);
+                        if(currentUser instanceof Administrator){
+                            Intent intent = new Intent(this, AdminWelcome.class);
+                             intent.putExtra("username", currentUser.getUsername());
+                           startActivity(intent);
+                           return;
                         }
-                        else if(currentUser.getType().equals("ServiceProvider")){
+                        else if(currentUser instanceof ServiceProvider){
                             Intent intent = new Intent(this, ServiceProviderWelcome.class);
                             intent.putExtra("username", currentUser.getUsername());
                             startActivity(intent);
+                            return;
                         }
-                        else if(currentUser.getType().equals("HomeOwner")){
+                        else if(currentUser instanceof HomeOwner){
                             Intent intent = new Intent(this, HomeOwnerWelcome.class);
                             intent.putExtra("username", currentUser.getUsername());
                             startActivity(intent);
+                            return;
                         }
                         break;
                     }
-                }
-                else{
-                    currentIndex++;
                 }
             }
 
@@ -93,8 +93,7 @@ public class OpeningScreenActivity extends AppCompatActivity{
     }
 
     public void onNewUserClick(View view){
-        Intent newUserIntent = new Intent(this, SignUpScreenActivity.class);
-        newUserIntent.putExtra("userList", users);
+        Intent newUserIntent = new Intent(OpeningScreenActivity.this, SignUpScreenActivity.class);
         startActivity(newUserIntent);
     }
 

@@ -8,37 +8,26 @@ import com.seg2105app.delieverable1.database.DatabaseHandler;
 import com.seg2105app.delieverable1.activities.R;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class UserList implements Serializable { //extends ArrayAdapter<User> {
-//    private Activity context;
-//    List<User> users;
-//
-//    public UserList(Activity context, List<User> users) {
-//        super(context, R.layout.activity_opening_screen, users);
-//        this.context = context;
-//        this.users = users;
-//    }
-    private LinkedList<User> users;
+public class UserList implements Serializable {
+    private static LinkedList<User> users;
+    private Iterator<User> iterator;
 
     public UserList(){
+
         users = new LinkedList<User>();
+        iterator = users.iterator();
     }
 
-    public User getNext(int currentIndex) {
-        User next = users.get(currentIndex + 1);
-        return next;
+    public User getNext() {
+        return iterator.next();
     }
 
-    public boolean hasNext(int currentIndex){
-        try{
-            users.get(currentIndex+1);
-        }
-        catch(IndexOutOfBoundsException e){
-            return false;
-        }
-        return true;
+    public boolean hasNext(){
+        return iterator.hasNext();
     }
 
     public User getFirst(){
@@ -48,4 +37,6 @@ public class UserList implements Serializable { //extends ArrayAdapter<User> {
     public void add(User toAdd){
         users.add(toAdd);
     }
+
+
 }

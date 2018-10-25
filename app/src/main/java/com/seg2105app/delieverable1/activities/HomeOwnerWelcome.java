@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 //import com.seg2105app.delieverable1.activities.R;
+import com.seg2105app.delieverable1.activities.R;
 
 public class HomeOwnerWelcome extends AppCompatActivity implements View.OnClickListener {
 

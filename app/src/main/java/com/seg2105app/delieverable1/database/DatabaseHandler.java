@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.content.Context;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,7 +18,7 @@ import com.seg2105app.delieverable1.users.*;
 
 import java.util.List;
 
-public class DatabaseHandler {
+public class DatabaseHandler extends SQLiteOpenHelper{
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "userInfoDB.db";
     public static final String TABLE_USERS = "users";
@@ -28,8 +30,13 @@ public class DatabaseHandler {
 
     DatabaseReference databaseUsers;
 
+    @RequiresApi(api = Build.VERSION_CODES.P)
+    public DatabaseHandler(Context context) {
+        super(context, DATABASE_NAME, DATABASE_VERSION, null);
+    }
 
-    private void onCreate(SQLiteDatabase db){
+    @Override
+    public void onCreate(SQLiteDatabase db){
         String CREATE_PRODUCTS_TABLE = "CREATE TABLE " + TABLE_USERS + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_USERNAME
                 + " TEXT," + COLUMN_PASSWORD + " TEXT," + COLUMN_FIRST_NAME + " TEXT,"
@@ -48,5 +55,6 @@ public class DatabaseHandler {
         String id = databaseUsers.push().getKey();
         databaseUsers.child(id).setValue(user);
     }
+
 
 }
