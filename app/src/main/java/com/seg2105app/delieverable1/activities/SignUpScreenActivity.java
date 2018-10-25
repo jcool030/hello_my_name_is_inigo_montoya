@@ -85,6 +85,7 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
 
             new HomeOwner ( username, password);
             Intent intent = new Intent(this, HomeOwnerWelcome.class);
+            intent.putExtra("username", username);
             startActivity(intent);
         }
         else {
@@ -93,11 +94,5 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
-    public void onClick(View v) {
-
-
-
-
-    }
 }
 

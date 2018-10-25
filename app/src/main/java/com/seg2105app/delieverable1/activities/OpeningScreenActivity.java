@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.seg2105app.delieverable1.database.DatabaseHandler;
 import com.seg2105app.delieverable1.users.*;
@@ -23,7 +24,7 @@ public class OpeningScreenActivity extends AppCompatActivity{
     EditText username;
     EditText password;
 
-    DatabaseReference userDB;
+    DatabaseReference userDB = FirebaseDatabase.getInstance().getReference();
     List<User> users;
 
     @Override
@@ -52,7 +53,7 @@ public class OpeningScreenActivity extends AppCompatActivity{
             for (Iterator<User> iter = users.iterator(); iter.hasNext();){
                 User currentUser = iter.next();
                 if (currentUser.getUsername().equals(username.getText().toString().trim())){
-                    if (currentUser.getPassword().equals(username.getText().toString().trim())){
+                    if (currentUser.getPassword().equals(password.getText().toString().trim())){
                         validLoginCredentials = true;
                     }
                 }
