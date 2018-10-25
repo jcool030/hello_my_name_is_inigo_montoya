@@ -5,12 +5,14 @@ public abstract class User {
     private String password;
     private String firstName;
     private String lastName;
+    private String type;
 
-    public User(String username, String password, String firstName, String lastName){
+    public User(String username, String password, String firstName, String lastName, String type){
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.type = type;
     }
 
     public String getUsername(){
@@ -21,5 +23,5 @@ public abstract class User {
         return password;
     }
 
-
+    public String getType(){ return type; }
 }

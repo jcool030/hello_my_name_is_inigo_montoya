@@ -27,7 +27,7 @@
             android:layout_weight="1"
             android:text="@string/create_account"
             android:textSize="36sp"
-            app:layout_constraintBottom_toTopOf="@+id/loginbutton"
+            app:layout_constraintBottom_toTopOf="@+id/log_in_bttn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
@@ -121,7 +121,26 @@
             android:inputType="textPersonName"
             tools:layout_editor_absoluteX="84dp"
             tools:layout_editor_absoluteY="284dp" />
-
+        <EditText
+            android:id="@+id/firstNameSignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="First Name"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="84dp"
+            tools:layout_editor_absoluteY="365dp"/>
+        <EditText
+            android:id="@+id/lastNameSignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Last Name"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="84dp"
+            tools:layout_editor_absoluteY="365dp"/>
         <EditText
             android:id="@+id/passwordSignup"
             android:layout_width="match_parent"

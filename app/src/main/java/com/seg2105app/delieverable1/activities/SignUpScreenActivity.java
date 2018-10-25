@@ -12,21 +12,24 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
 
     ToggleButton adminBtn, userBtn, contractorBtn;
     Button signupBtn;
-    EditText nameSignup, passwordSignup;
+    EditText nameSignup, passwordSignup, firstNameSignup, lastNameSignup;
     RadioGroup toggleGroup;
     boolean adminSelected, userSelected, contractorSelected;
+    UserList users;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_screen);
-
+        users = (UserList) getIntent().getSerializableExtra("userList");
         adminBtn = findViewById(R.id.adminBtn);
         userBtn = findViewById(R.id.userBtn);
         contractorBtn = findViewById(R.id.contractorBtn);
         signupBtn = findViewById(R.id.signupBtn);
 
         nameSignup = findViewById(R.id.nameSignup);
-        passwordSignup = findViewById((R.id.passwordSignup));
+        passwordSignup = findViewById(R.id.passwordSignup);
+        firstNameSignup = findViewById(R.id.firstNameSignup);
+        lastNameSignup = findViewById(R.id.lastNameSignup);
 
         toggleGroup = findViewById(R.id.toggleGroup);
 
@@ -65,14 +68,18 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         String username = nameSignup.getText().toString();
         String password = passwordSignup.getText().toString();
+        String firstName = firstNameSignup.getText().toString();
+        String lastName = lastNameSignup.getText().toString();
 
-        if (adminSelected){
+        if (adminSelected && !contractorSelected && !userSelected){ //Admin selected
 
-            new Administrator ( username, password);
+            Administrator admin = new Administrator (username, password, firstName, lastName, "Admin");
+            users.add(admin);
 
-        }else if (contractorSelected){
+        }else if (contractorSelected && !adminSelected && !userSelected){ //ServiceProvider selected
 
-            new ServiceProvider ( username, password);
+            ServiceProvider contractor = new ServiceProvider (username, password, firstName, lastName, "ServiceProvider");
+            users.add(contractor);
             //Creating a return intent to pass info to the service provider page
             Intent returnIntent = new Intent();
             //Adding stuff to the return intent
@@ -81,15 +88,16 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
             //Finish this activity to save memory
             finish();
 
-        }else if (userSelected){
+        }else if (userSelected && !adminSelected && !contractorSelected){ //HomeOwner selected
 
-            new HomeOwner ( username, password);
+            HomeOwner homeOwner = new HomeOwner (username, password, firstName, lastName, "HomeOwner");
+            users.add(homeOwner);
             Intent intent = new Intent(this, HomeOwnerWelcome.class);
             intent.putExtra("username", username);
             startActivity(intent);
         }
         else {
-            Toast toast = Toast.makeText(getApplicationContext(), "No user type selected", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), "Invalid user type selection", Toast.LENGTH_SHORT);
             toast.show();
         }
     }
