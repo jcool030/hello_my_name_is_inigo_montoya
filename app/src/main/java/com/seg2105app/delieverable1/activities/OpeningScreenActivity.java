@@ -52,7 +52,7 @@ public class OpeningScreenActivity extends AppCompatActivity{
             boolean validLoginCredentials = false;
             //Iterator<User> iter = users.iterator();
             //User firstUser = users.getFirst();
-            int currentIndex = 0;
+            int currentIndex = -1;
             while (users.hasNext(currentIndex)){
                 User currentUser = users.getNext(currentIndex);
                 if (currentUser.getUsername().equals(username.getText().toString().trim())){
