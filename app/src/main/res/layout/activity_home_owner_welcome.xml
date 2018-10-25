@@ -11,11 +11,11 @@
         android:id="@+id/linearLayout"
         android:layout_width="252dp"
         android:layout_height="49dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,11 +27,30 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="Welcome username you are signed in as a Home Owner" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="252dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
         <Button
             android:id="@+id/signoutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Sign Out"/>
+            android:layout_weight="1"
+            android:clickable="true"
+            android:text="Sign Out"
+            tools:layout_editor_absoluteX="147dp"
+            tools:layout_editor_absoluteY="435dp" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
