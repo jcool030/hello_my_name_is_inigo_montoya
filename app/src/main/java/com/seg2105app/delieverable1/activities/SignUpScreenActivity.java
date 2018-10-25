@@ -73,6 +73,13 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
         }else if (contractorSelected){
 
             new ServiceProvider ( username, password);
+            //Creating a return intent to pass info to the service provider page
+            Intent returnIntent = new Intent();
+            //Adding stuff to the return intent
+            returnIntent.putExtra("usernameData", username);
+            setResult(RESULT_OK, returnIntent);
+            //Finish this activity to save memory
+            finish();
 
         }else if (userSelected){
 

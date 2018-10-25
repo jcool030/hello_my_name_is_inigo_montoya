@@ -14,7 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.seg2105app.delieverable1.database.DatabaseHandler;
 import com.seg2105app.delieverable1.users.*;
-import com.seg2105app.deliverable1.activities.R;
+import com.seg2105app.delieverable1.activities.R;
 
 import java.util.Iterator;
 import java.util.List;
