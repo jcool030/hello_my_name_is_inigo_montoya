@@ -17,8 +17,10 @@ public class UserList implements Serializable {
     private Iterator<User> iterator;
 
     public UserList(){
-
-        this.users = new LinkedList<User>();
+    if (users == null)
+    {
+        users = new LinkedList<User>();
+    }
         this.iterator = users.iterator();
     }
 
