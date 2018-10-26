@@ -20,7 +20,7 @@ public class AdminWelcome extends AppCompatActivity implements View.OnClickListe
         Bundle bundle = getIntent().getExtras();
         String user = bundle.getString("username");
         TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText("Welcome, " + user + " you are logged in as a Home Owner.");
+        textView.setText("Welcome, " + user + " you are logged in as Admin.");
 
         signoutButton.setOnClickListener(this);
     }
