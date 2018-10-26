@@ -19,6 +19,7 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
     EditText nameSignup, passwordSignup, firstNameSignup, lastNameSignup;
     RadioGroup toggleGroup;
     boolean adminSelected, userSelected, contractorSelected;
+    static boolean adminAlreadyExists;
 
     UserList users = new UserList();
 
@@ -27,6 +28,8 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_screen);
         //users = (UserList) getIntent().getSerializableExtra("userList");
+        adminSelected = true; //default to have this be red, matching the default visual
+                                //this way, you won't have to double click admin to create the first account
         adminBtn = findViewById(R.id.adminBtn);
         userBtn = findViewById(R.id.userBtn);
         contractorBtn = findViewById(R.id.contractorBtn);
@@ -109,20 +112,27 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
         else {
             if (adminSelected && !contractorSelected && !userSelected) { //Admin selected
 
-                Administrator admin = new Administrator(username, password, firstName, lastName, "Admin");
-                users.add(admin);
-
+                if(adminAlreadyExists)
+                {
+                    Toast adminAlreadyExists = Toast.makeText(SignUpScreenActivity.this, "An Admin account already exists.", Toast.LENGTH_LONG);
+                    adminAlreadyExists.show();
+                }
+                else
+                    {
+                        Administrator admin = new Administrator(username, password, firstName, lastName, "Admin");
+                        users.add(admin);
+                        adminAlreadyExists = true;//after making the first one, it stores it permanently to prevent creating another
+                    }
             } else if (contractorSelected && !adminSelected && !userSelected) { //ServiceProvider selected
 
                 ServiceProvider contractor = new ServiceProvider(username, password, firstName, lastName, "ServiceProvider");
                 users.add(contractor);
 
-
             } else if (userSelected && !adminSelected && !contractorSelected) { //HomeOwner selected
 
                 HomeOwner homeOwner = new HomeOwner(username, password, firstName, lastName, "HomeOwner");
                 users.add(homeOwner);
-                finish();
+
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "Invalid user type selection", Toast.LENGTH_SHORT);
                 toast.show();
@@ -132,7 +142,6 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
             startActivity(returnIntent);
         }
     }
-
 
 }
 
