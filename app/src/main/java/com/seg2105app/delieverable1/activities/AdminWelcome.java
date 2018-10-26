@@ -15,7 +15,7 @@ public class AdminWelcome extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_owner_welcome);
+        setContentView(R.layout.activity_admin_welcome);
         signoutButton = findViewById(R.id.logOutButton);
         Bundle bundle = getIntent().getExtras();
         String user = bundle.getString("username");
