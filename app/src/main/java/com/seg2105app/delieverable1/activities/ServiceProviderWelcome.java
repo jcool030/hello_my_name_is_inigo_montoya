@@ -22,8 +22,14 @@ public class ServiceProviderWelcome extends AppCompatActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_CANCELED) return; //for later
-        String username = data.getStringExtra("usernameData");
+        String username = data.getStringExtra("username");
         TextView eText = findViewById(R.id.usernameText);
         eText.setText("Welcome, "+ username + ". You are logged in as: Service Provider");
+    }
+
+    public void onClickLogOut(View view)
+    {
+        Intent signoutIntent = new Intent(this, OpeningScreenActivity.class);
+        startActivity(signoutIntent);
     }
 }

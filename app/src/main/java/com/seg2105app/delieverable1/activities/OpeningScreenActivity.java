@@ -79,9 +79,19 @@ public class OpeningScreenActivity extends AppCompatActivity{
                         }
                         break;
                     }
+                    else //if username found, no password found (bug testing)
+                    {
+                        Toast toast = Toast.makeText(getApplicationContext(), "Username found, password incorrect", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }
+                else // if no username found
+                {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Username not found", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
             }
-
+                //this below code is obsolete with the toast edits - to be removed later
             if (!validLoginCredentials) {
                 Toast toast = Toast.makeText(getApplicationContext(), "Username or Password are incorrect", Toast.LENGTH_SHORT);
                 toast.show();
