@@ -26,7 +26,7 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_screen);
-        users = (UserList) getIntent().getSerializableExtra("userList");
+        //users = (UserList) getIntent().getSerializableExtra("userList");
         adminBtn = findViewById(R.id.adminBtn);
         userBtn = findViewById(R.id.userBtn);
         contractorBtn = findViewById(R.id.contractorBtn);
@@ -82,15 +82,18 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
         boolean hasFirstName = !TextUtils.isEmpty(firstName);
         boolean hasLastName = !TextUtils.isEmpty(lastName);
 
-        while (users.hasNext()){
+
+        while (users.hasNext()) { //check to see if username is taken
             User checkedUser = users.getNext();
 
-            if (username.equals(checkedUser.getUsername())){
+            if (username.equals(checkedUser.getUsername())) {
                 Toast userAlreadyExists = Toast.makeText(SignUpScreenActivity.this, "Please select another username.", Toast.LENGTH_LONG);
                 userAlreadyExists.show();
                 return;
             }
         }
+
+
         if (adminSelected && !contractorSelected && !userSelected){ //Admin selected
 
             Administrator admin = new Administrator (username, password, firstName, lastName, "Admin");
