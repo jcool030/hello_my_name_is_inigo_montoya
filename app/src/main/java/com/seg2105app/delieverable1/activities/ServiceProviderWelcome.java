@@ -4,31 +4,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import com.seg2105app.delieverable1.activities.R;
 import android.view.View;
-import android.app.Activity;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.ImageView;
-import android.content.Intent;
 
-public class ServiceProviderWelcome extends AppCompatActivity{
+public class ServiceProviderWelcome extends AppCompatActivity implements View.OnClickListener {
+
+    Button signoutButton;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service_provider_welcome);
+        setContentView(R.layout.activity_home_owner_welcome);
+        signoutButton = findViewById(R.id.signoutButton);
+        Bundle bundle = getIntent().getExtras();
+        String user = bundle.getString("username");
+        TextView textView = (TextView) findViewById(R.id.usernameText);
+        textView.setText("Welcome, " + user + " you are logged in as a Service Provider.");
+
+        signoutButton.setOnClickListener(this);
     }
 
-    //This is to make the text greet you by username when you log in
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == RESULT_CANCELED) return; //for later
-        String username = data.getStringExtra("username");
-        TextView eText = findViewById(R.id.usernameText);
-        eText.setText("Welcome, "+ username + ". You are logged in as: Service Provider");
-    }
-
-    public void onClickLogOut(View view)
-    {
+    public void onClick(View v) {
         Intent signoutIntent = new Intent(this, OpeningScreenActivity.class);
         startActivity(signoutIntent);
     }
