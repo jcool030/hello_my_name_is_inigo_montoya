@@ -92,33 +92,45 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
                 return;
             }
         }
-
-
-        if (adminSelected && !contractorSelected && !userSelected){ //Admin selected
-
-            Administrator admin = new Administrator (username, password, firstName, lastName, "Admin");
-            users.add(admin);
-
-        }else if (contractorSelected && !adminSelected && !userSelected){ //ServiceProvider selected
-
-            ServiceProvider contractor = new ServiceProvider (username, password, firstName, lastName, "ServiceProvider");
-            users.add(contractor);
-
-
-
-        }else if (userSelected && !adminSelected && !contractorSelected){ //HomeOwner selected
-
-            HomeOwner homeOwner = new HomeOwner (username, password, firstName, lastName, "HomeOwner");
-            users.add(homeOwner);
-            finish();
+        //verify that user filled out all info
+        if(!hasUsername){
+            Toast noUserName = Toast.makeText(SignUpScreenActivity.this, "Please enter a username.", Toast.LENGTH_LONG);
+            noUserName.show();
+        }else if(!hasFirstName){
+            Toast noFirstName = Toast.makeText(SignUpScreenActivity.this, "Please enter a first name.", Toast.LENGTH_LONG);
+            noFirstName.show();
+        }else if(!hasLastName){
+            Toast noLastName = Toast.makeText(SignUpScreenActivity.this, "Please enter a last name.", Toast.LENGTH_LONG);
+            noLastName.show();
+        }else if(!hasPassword){
+            Toast noPassword = Toast.makeText(SignUpScreenActivity.this, "Please enter a password.", Toast.LENGTH_LONG);
+            noPassword.show();
         }
         else {
-            Toast toast = Toast.makeText(getApplicationContext(), "Invalid user type selection", Toast.LENGTH_SHORT);
-            toast.show();
-            return;
+            if (adminSelected && !contractorSelected && !userSelected) { //Admin selected
+
+                Administrator admin = new Administrator(username, password, firstName, lastName, "Admin");
+                users.add(admin);
+
+            } else if (contractorSelected && !adminSelected && !userSelected) { //ServiceProvider selected
+
+                ServiceProvider contractor = new ServiceProvider(username, password, firstName, lastName, "ServiceProvider");
+                users.add(contractor);
+
+
+            } else if (userSelected && !adminSelected && !contractorSelected) { //HomeOwner selected
+
+                HomeOwner homeOwner = new HomeOwner(username, password, firstName, lastName, "HomeOwner");
+                users.add(homeOwner);
+                finish();
+            } else {
+                Toast toast = Toast.makeText(getApplicationContext(), "Invalid user type selection", Toast.LENGTH_SHORT);
+                toast.show();
+                return;
+            }
+            Intent returnIntent = new Intent(this, OpeningScreenActivity.class);
+            startActivity(returnIntent);
         }
-        Intent returnIntent = new Intent(this, OpeningScreenActivity.class);
-        startActivity(returnIntent);
     }
 
 
