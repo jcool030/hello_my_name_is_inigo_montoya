@@ -23,5 +23,15 @@ public abstract class User {
         return password;
     }
 
-    public String getType(){ return type; }
+    public String getType(){
+        return type;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
 }

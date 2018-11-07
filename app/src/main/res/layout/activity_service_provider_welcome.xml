@@ -13,5 +13,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/usernamewelcomeText" />
+
+        <Button
+            android:id="@+id/signoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickLogOut"
+            android:text="@string/signoutButton" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

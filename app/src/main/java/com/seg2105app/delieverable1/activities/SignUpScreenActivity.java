@@ -8,25 +8,32 @@ import android.view.View;
 import android.widget.*;
 import android.content.Intent;
 //import com.seg2105app.delieverable1.activities.R;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.seg2105app.delieverable1.users.*;
-
-import org.w3c.dom.Text;
 
 public class SignUpScreenActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ToggleButton adminBtn, userBtn, contractorBtn;
-    Button signupBtn;
-    EditText nameSignup, passwordSignup, firstNameSignup, lastNameSignup;
-    RadioGroup toggleGroup;
-    boolean adminSelected, userSelected, contractorSelected;
+    private ToggleButton adminBtn, userBtn, contractorBtn;
+    private Button signupBtn;
+    private EditText nameSignup, passwordSignup, firstNameSignup, lastNameSignup;
+    private RadioGroup toggleGroup;
+    private boolean adminSelected, userSelected, contractorSelected;
+    private static boolean adminAlreadyExists;
 
-    UserList users = new UserList();
+    UserList users;
+
+    DatabaseHandler udbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
         setContentView(R.layout.activity_signup_screen);
-        users = (UserList) getIntent().getSerializableExtra("userList");
+        //users = (UserList) getIntent().getSerializableExtra("userList");
+        adminSelected = true; //default to have this be red, matching the default visual
+                                //this way, you won't have to double click admin to create the first account
         adminBtn = findViewById(R.id.adminBtn);
         userBtn = findViewById(R.id.userBtn);
         contractorBtn = findViewById(R.id.contractorBtn);
@@ -38,6 +45,8 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
         lastNameSignup = findViewById(R.id.lastNameSignup);
 
         toggleGroup = findViewById(R.id.toggleGroup);
+
+        udbHandler = new DatabaseHandler(this);
 
         //check which toggle is selected (maybe change to RadioButtons later to make easier)
         adminBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -68,10 +77,13 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
+        users = UserList.getInstance();
+
         signupBtn.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {
+
         String username = nameSignup.getText().toString().trim();
         String password = passwordSignup.getText().toString().trim();
         String firstName = firstNameSignup.getText().toString().trim();
@@ -82,42 +94,60 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
         boolean hasFirstName = !TextUtils.isEmpty(firstName);
         boolean hasLastName = !TextUtils.isEmpty(lastName);
 
-        while (users.hasNext()){
-            User checkedUser = users.getNext();
-
-            if (username.equals(checkedUser.getUsername())){
-                Toast userAlreadyExists = Toast.makeText(SignUpScreenActivity.this, "Please select another username.", Toast.LENGTH_LONG);
-                userAlreadyExists.show();
-                return;
-            }
-        }
-        if (adminSelected && !contractorSelected && !userSelected){ //Admin selected
-
-            Administrator admin = new Administrator (username, password, firstName, lastName, "Admin");
-            users.add(admin);
-
-        }else if (contractorSelected && !adminSelected && !userSelected){ //ServiceProvider selected
-
-            ServiceProvider contractor = new ServiceProvider (username, password, firstName, lastName, "ServiceProvider");
-            users.add(contractor);
 
 
-
-        }else if (userSelected && !adminSelected && !contractorSelected){ //HomeOwner selected
-
-            HomeOwner homeOwner = new HomeOwner (username, password, firstName, lastName, "HomeOwner");
-            users.add(homeOwner);
-            finish();
+        //verify that user filled out all info
+        if(!hasUsername){
+            Toast noUserName = Toast.makeText(SignUpScreenActivity.this, "Please enter a username.", Toast.LENGTH_LONG);
+            noUserName.show();
+        }else if(!hasFirstName){
+            Toast noFirstName = Toast.makeText(SignUpScreenActivity.this, "Please enter a first name.", Toast.LENGTH_LONG);
+            noFirstName.show();
+        }else if(!hasLastName){
+            Toast noLastName = Toast.makeText(SignUpScreenActivity.this, "Please enter a last name.", Toast.LENGTH_LONG);
+            noLastName.show();
+        }else if(!hasPassword){
+            Toast noPassword = Toast.makeText(SignUpScreenActivity.this, "Please enter a password.", Toast.LENGTH_LONG);
+            noPassword.show();
         }
         else {
-            Toast toast = Toast.makeText(getApplicationContext(), "Invalid user type selection", Toast.LENGTH_SHORT);
-            toast.show();
-            return;
-        }
-        Intent returnIntent = new Intent(this, OpeningScreenActivity.class);
-        startActivity(returnIntent);
-    }
+            UserFactory userFactory = new UserFactory();
 
+            if (adminSelected && !contractorSelected && !userSelected) { //Admin selected
+
+                if(adminAlreadyExists)
+                {
+                    Toast adminAlreadyExists = Toast.makeText(SignUpScreenActivity.this, "An Admin account already exists.", Toast.LENGTH_LONG);
+                    adminAlreadyExists.show();
+                }
+                else
+                    {
+                        Administrator admin = (Administrator)userFactory.getUser(username, password, firstName, lastName, "Administrator");
+                        users.add(admin);
+                        udbHandler.createUserWithUsernameAndPassword(this,admin);
+                        adminAlreadyExists = true;//after making the first one, it stores it permanently to prevent creating another
+                    }
+            } else if (contractorSelected && !adminSelected && !userSelected) { //ServiceProvider selected
+
+                ServiceProvider contractor = (ServiceProvider)userFactory.getUser(username, password, firstName, lastName, "ServiceProvider");
+                users.add(contractor);
+                udbHandler.createUserWithUsernameAndPassword(this,contractor);
+
+            } else if (userSelected && !adminSelected && !contractorSelected) { //HomeOwner selected
+
+                HomeOwner homeOwner = (HomeOwner)userFactory.getUser(username, password, firstName, lastName, "HomeOwner");
+                users.add(homeOwner);
+                udbHandler.createUserWithUsernameAndPassword(this,homeOwner);
+            } else {
+                Toast toast = Toast.makeText(getApplicationContext(), "Invalid user type selection", Toast.LENGTH_SHORT);
+                toast.show();
+                return;
+            }
+            Intent returnIntent = new Intent(this, OpeningScreenActivity.class);
+            startActivity(returnIntent);
+            finish();
+        }
+    }
 
 }
 
