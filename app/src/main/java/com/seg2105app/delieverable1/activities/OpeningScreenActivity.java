@@ -1,6 +1,7 @@
 package com.seg2105app.delieverable1.activities;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,6 +10,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.seg2105app.delieverable1.users.*;
 
 import java.util.ListIterator;
@@ -19,6 +24,7 @@ public class OpeningScreenActivity extends AppCompatActivity{
 
     //DatabaseReference userDB = FirebaseDatabase.getInstance().getReference();
     UserList users = UserList.getInstance();
+    DatabaseHandler udbHandler = new DatabaseHandler(this);
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -41,58 +47,45 @@ public class OpeningScreenActivity extends AppCompatActivity{
             Toast toast = Toast.makeText(getApplicationContext(), "Please enter a password.", Toast.LENGTH_SHORT);
             toast.show();
         }
-        else{
-            boolean validLoginCredentials = false;
+        else {
+            Query query = udbHandler.getReferenceToUserTable();
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    User user = udbHandler.validateUsernameAndPassword(dataSnapshot, username.getText().toString().trim(), password.getText().toString().trim());
 
-            for (ListIterator<User> iterator = users.listIterator(); users.hasNext();){
-                User currentUser = users.getNext();
-                if (currentUser.getUsername().equals(username.getText().toString().trim())){
-                    if (currentUser.getPassword().equals(password.getText().toString().trim())){
-                        validLoginCredentials = true;
-                        //finds which welcome screen to go to
-                        if(currentUser.getType().equals("Administrator")){
-                            Intent intent = new Intent(this, AdminWelcome.class);
-                             intent.putExtra("username", currentUser.getUsername());
-                           startActivity(intent);
-                           finish();
-                           return;
-                        }
-                        else if(currentUser.getType().equals("ServiceProvider")){
-                            Intent intent = new Intent(this, ServiceProviderWelcome.class);
-                            intent.putExtra("username", currentUser.getUsername());
-                            startActivity(intent);
-                            finish();
-                            return;
-                        }
-                        else if(currentUser.getType().equals("HomeOwner")){
-                            Intent intent = new Intent(this, HomeOwnerWelcome.class);
-                            intent.putExtra("username", currentUser.getUsername());
-                            startActivity(intent);
-                            finish();
-                            return;
-                        }
-                        break;
-                    }
-                    else //if username found, no password found (bug testing)
-                    {
-                        Toast toast = Toast.makeText(getApplicationContext(), "Username found, password incorrect", Toast.LENGTH_SHORT);
+                    if (user == null) {
+                        Toast toast = Toast.makeText(getApplicationContext(), "Username or Password are incorrect", Toast.LENGTH_LONG);
                         toast.show();
+
+                        username.setText("");
+                        password.setText("");
+                    } else {
+                        if (user.getType().equals("Administrator")) {
+                            Intent intent = new Intent(OpeningScreenActivity.this, AdminWelcome.class);
+                            intent.putExtra("username", user.getUsername());
+                            startActivity(intent);
+                            finish();
+                        } else if (user.getType().equals("ServiceProvider")) {
+                            Intent intent = new Intent(OpeningScreenActivity.this, ServiceProviderWelcome.class);
+                            intent.putExtra("username", user.getUsername());
+                            startActivity(intent);
+                            finish();
+                        } else if (user.getType().equals("HomeOwner")) {
+                            Intent intent = new Intent(OpeningScreenActivity.this, HomeOwnerWelcome.class);
+                            intent.putExtra("username", user.getUsername());
+                            startActivity(intent);
+                            finish();
+                        }
                     }
                 }
-                else // if no username found
-                {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Username not found", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-            }
-                //this below code is obsolete with the toast edits - to be removed later
-            if (!validLoginCredentials) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Username or Password are incorrect", Toast.LENGTH_LONG);
-                toast.show();
 
-                username.setText("");
-                password.setText("");
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
         }
     }
 
