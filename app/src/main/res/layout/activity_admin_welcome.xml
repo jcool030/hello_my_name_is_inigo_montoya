@@ -18,9 +18,24 @@
             android:text="TextView" />
 
         <Button
+            android:id="@+id/newService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="createServiceClick"
+            android:text="@string/newService" />
+
+        <Button
+            android:id="@+id/getService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="manageServiceClick"
+            android:text="@string/getServices" />
+
+        <Button
             android:id="@+id/logOutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="logoutClick"
             android:text="@string/signoutButton" />
 
     </LinearLayout>

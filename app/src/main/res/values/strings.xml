@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Delieverable 1</string>
+    <string name="app_name">Delieverable1</string>
     <string name="login_text">Log in</string>
     <string name="newuser_text">New User?</string>
     <string name="password">Password</string>
@@ -7,4 +7,6 @@
     <string name="create_account">Create Account</string>
     <string name="usernamewelcomeText">test words to be overwritten</string>
     <string name="signoutButton">Click to sign out</string>
+    <string name="newService">Create New Service</string>
+    <string name="getServices">Manage Services</string>
 </resources>
