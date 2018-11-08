@@ -1,33 +1,21 @@
 package com.seg2105app.delieverable1.users;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+
 import android.content.Context;
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.os.Build;
 import android.provider.BaseColumns;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-import com.seg2105app.delieverable1.activities.OpeningScreenActivity;
-import com.seg2105app.delieverable1.users.*;
 
-import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
 public final class DatabaseHandler{
 
-    private static boolean childExists;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference mRef;
 
@@ -44,6 +32,12 @@ public final class DatabaseHandler{
         private static final String COLUMN_USER_TYPE = "type";
     }
 
+    private static class ServiceEntry implements BaseColumns {
+        public static final String TABLE_SERVICES = "services";
+        public static final String COLUMN_SERVICE_NAME = "name";
+        public static final String COLUMN_SERVICE_RATE = "rate";
+    }
+
     ////////DEFAULT CONSTRUCTOR///////////////////////////////////
     public DatabaseHandler(Context context){
         FirebaseApp.initializeApp(context);
@@ -57,8 +51,20 @@ public final class DatabaseHandler{
         firebaseDatabase.getReference(UserEntry.TABLE_USERS).child(uid).setValue(user);
     }
 
+    public void createService(Service service){
+        String uid = mRef.push().getKey();
+        firebaseDatabase.getReference(ServiceEntry.TABLE_SERVICES).child(uid).setValue(service);
+    }
+
     public Query getReferenceToUserTable(){
         return firebaseDatabase.getReference(UserEntry.TABLE_USERS).orderByChild(UserEntry.COLUMN_USERNAME);
+    }
+
+    public Query getReferenceToServiceTable (){
+        return firebaseDatabase.getReference(ServiceEntry.TABLE_SERVICES).orderByChild(ServiceEntry.COLUMN_SERVICE_NAME);
+    }
+    public Query getReferenceToServiceTable(String orderPath){
+        return firebaseDatabase.getReference(ServiceEntry.TABLE_SERVICES).orderByChild(orderPath);
     }
 
     public boolean valuePresentInDatabase(DataSnapshot snapshot, String value, String columnKey){

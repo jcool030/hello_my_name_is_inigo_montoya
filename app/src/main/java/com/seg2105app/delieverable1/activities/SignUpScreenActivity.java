@@ -61,6 +61,8 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     adminSelected = true;
+                    userBtn.setChecked(false);
+                    contractorBtn.setChecked(false);
                 } else {
                     adminSelected = false;
                 }
@@ -70,6 +72,8 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     userSelected = true;
+                    adminBtn.setChecked(false);
+                    contractorBtn.setChecked(false);
                 } else {
                     userSelected = false;
                 }
@@ -79,6 +83,8 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     contractorSelected = true;
+                    adminBtn.setChecked(false);
+                    userBtn.setChecked(false);
                 } else {
                     contractorSelected = false;
                 }
