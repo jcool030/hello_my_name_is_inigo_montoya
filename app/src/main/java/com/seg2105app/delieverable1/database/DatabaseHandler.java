@@ -1,4 +1,4 @@
-package com.seg2105app.delieverable1.users;
+package com.seg2105app.delieverable1.database;
 
 
 import android.content.Context;
@@ -10,6 +10,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.seg2105app.delieverable1.users.Service;
+import com.seg2105app.delieverable1.users.User;
+import com.seg2105app.delieverable1.users.UserFactory;
+import com.seg2105app.delieverable1.users.UserList;
 
 
 import static android.content.ContentValues.TAG;
@@ -110,6 +114,25 @@ public final class DatabaseHandler{
         }
 
         return null;
+    }
+
+    public void produceListOfElementsFromSnapshot(DataSnapshot snapshot){
+        UserList userList = UserList.getInstance();
+
+        for (DataSnapshot ds: snapshot.getChildren()){
+            String mUsername = ds.child(UserEntry.COLUMN_USERNAME).getValue(String.class);
+            String mPassword = ds.child(UserEntry.COLUMN_PASSWORD).getValue(String.class);
+            String mFirstName = ds.child(UserInfoEntry.COLUMN_FIRST_NAME).getValue(String.class);
+            String mLastName = ds.child(UserInfoEntry.COLUMN_LAST_NAME).getValue(String.class);
+            String mType = ds.child(UserInfoEntry.COLUMN_USER_TYPE).getValue(String.class);
+            UserFactory userFactory = new UserFactory();
+
+            User user = userFactory.getUser(mUsername,mPassword,mFirstName,mLastName,mType);
+
+            if (!userList.contains(user)){
+                userList.add(user);
+            }
+        }
     }
 
 
