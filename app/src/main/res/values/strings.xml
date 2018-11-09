@@ -9,4 +9,6 @@
     <string name="signoutButton">Click to sign out</string>
     <string name="newService">Create New Service</string>
     <string name="getServices">Manage Services</string>
+    <string name="serviceName">Name of Service</string>
+    <string name="hourlyRate">Hourly Rate</string>
 </resources>

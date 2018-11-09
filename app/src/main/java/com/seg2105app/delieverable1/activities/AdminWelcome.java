@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 //A copy of the homeowner welcome screen class
-public class AdminWelcome extends AppCompatActivity implements View.OnClickListener {
+public class AdminWelcome extends AppCompatActivity {
 
     Button signoutButton, createService;
     @Override
@@ -22,22 +22,14 @@ public class AdminWelcome extends AppCompatActivity implements View.OnClickListe
         String user = bundle.getString("username");
         TextView welcomeText = (TextView) findViewById(R.id.welcomeText);
         welcomeText.setText("Welcome, " + user + " you are logged in as Admin.");
-
-        createService.setOnClickListener(this);
-        signoutButton.setOnClickListener(this);
     }
-
-    @Override
-    public void onClick(View v) {
+    public void logoutClick(View v) {
         Intent signoutIntent = new Intent(this, OpeningScreenActivity.class);
         startActivity(signoutIntent);
     }
-    public void logoutClick(View v) {
-//        Intent signoutIntent = new Intent(this, OpeningScreenActivity.class);
-//        startActivity(signoutIntent);
-    }
     public void createServiceClick (View v){
-
+        Intent createServiceIntent = new Intent(this, CreateServiceActivity.class);
+        startActivity(createServiceIntent);
     }
     public void manageServiceClick (View v){
 

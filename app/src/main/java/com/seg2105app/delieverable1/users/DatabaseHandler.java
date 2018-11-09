@@ -86,8 +86,14 @@ public final class DatabaseHandler{
         for (DataSnapshot ds: snapshot.getChildren()) {
             String retrievedUsername = ds.child(UserEntry.COLUMN_USERNAME).getValue(String.class);
             String retrievedPassword = ds.child(UserEntry.COLUMN_PASSWORD).getValue(String.class);
-            Log.d(TAG, "Testing username match: " + retrievedUsername + ", " + username + ", " + retrievedUsername.equalsIgnoreCase(username));
-            Log.d(TAG, "Testing password match: " + retrievedUsername + ", " + username + ", " + retrievedUsername.equals(username));
+            try {
+                Log.d(TAG, "Testing username match: " + retrievedUsername + ", " + username + ", " + retrievedUsername.equalsIgnoreCase(username));
+                Log.d(TAG, "Testing password match: " + retrievedUsername + ", " + username + ", " + retrievedUsername.equals(username));
+
+            }catch (Exception e){
+
+            }
+
 
             if (retrievedUsername.equalsIgnoreCase(username) && retrievedPassword.equals(password)) {
                 String mUsername = ds.child(UserEntry.COLUMN_USERNAME).getValue(String.class);
