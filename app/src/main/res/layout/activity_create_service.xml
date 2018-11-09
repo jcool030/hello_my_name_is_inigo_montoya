@@ -30,7 +30,6 @@
             android:id="@+id/createService"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="createService"
             android:text="Create Service"
             tools:layout_editor_absoluteX="125dp"
             tools:layout_editor_absoluteY="391dp" />

@@ -38,6 +38,11 @@
             android:onClick="logoutClick"
             android:text="@string/signoutButton" />
 
+        <ListView
+            android:id="@+id/userList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
