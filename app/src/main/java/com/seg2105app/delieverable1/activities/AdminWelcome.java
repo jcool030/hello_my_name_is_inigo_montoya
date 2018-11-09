@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.database.Query;
-import com.seg2105app.delieverable1.users.DatabaseHandler;
+import com.seg2105app.delieverable1.database.DatabaseHandler;
 
 //A copy of the homeowner welcome screen class
 public class AdminWelcome extends AppCompatActivity {
