@@ -14,9 +14,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.seg2105app.delieverable1.database.DatabaseHandler;
 import com.seg2105app.delieverable1.users.*;
-
-import java.util.ListIterator;
 
 public class OpeningScreenActivity extends AppCompatActivity{
     EditText username;
