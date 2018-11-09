@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-import com.seg2105app.delieverable1.users.*;
+import com.seg2105app.delieverable1.database.*;
 import com.seg2105app.delieverable1.users.Service;
 
 public class CreateServiceActivity extends AppCompatActivity implements View.OnClickListener {
