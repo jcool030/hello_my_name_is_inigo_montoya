@@ -26,10 +26,10 @@ public final class DatabaseHandler{
         public static final String COLUMN_PASSWORD = "password";
     }
 
-    private static class UserInfoEntry implements BaseColumns {
+    public static class UserInfoEntry implements BaseColumns {
         private static final String COLUMN_FIRST_NAME = "firstname";
         private static final String COLUMN_LAST_NAME = "lastname";
-        private static final String COLUMN_USER_TYPE = "type";
+        public static final String COLUMN_USER_TYPE = "type";
     }
 
     private static class ServiceEntry implements BaseColumns {

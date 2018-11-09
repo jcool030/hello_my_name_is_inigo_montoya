@@ -56,6 +56,7 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
 
         udbHandler = new DatabaseHandler(this);
 
+
         //check which toggle is selected (maybe change to RadioButtons later to make easier)
         adminBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -141,9 +142,10 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
                         UserFactory userFactory = new UserFactory();
                         if (adminSelected && !contractorSelected && !userSelected) { //Admin selected
 
-                            if (adminAlreadyExists) {
+                            if (udbHandler.valuePresentInDatabase(snapshot, "Administrator", DatabaseHandler.UserInfoEntry.COLUMN_USER_TYPE)) {
                                 Toast adminAlreadyExists = Toast.makeText(SignUpScreenActivity.this, "An Admin account already exists.", Toast.LENGTH_LONG);
                                 adminAlreadyExists.show();
+                                return;
                             } else {
                                 Administrator admin = (Administrator) userFactory.getUser(username, password, firstName, lastName, "Administrator");
                                 users.add(admin);

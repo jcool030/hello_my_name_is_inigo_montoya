@@ -1,9 +1,12 @@
 package com.seg2105app.delieverable1.users;
 
+import java.util.List;
+
 public class Service {
 
     private String name;
     private double rate;
+    private List<Service> subservices;
 
     public Service(String serviceName, double hourlyRate){
         this.name = serviceName;
