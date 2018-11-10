@@ -1,6 +1,5 @@
 package com.seg2105app.delieverable1.activities;
 
-import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,10 +12,9 @@ import android.content.Intent;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.seg2105app.delieverable1.database.DatabaseHandler;
 import com.seg2105app.delieverable1.users.*;
 
 import static android.content.ContentValues.TAG;
@@ -55,6 +53,7 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
         toggleGroup = findViewById(R.id.toggleGroup);
 
         udbHandler = new DatabaseHandler(this);
+
 
         //check which toggle is selected (maybe change to RadioButtons later to make easier)
         adminBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -141,9 +140,10 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
                         UserFactory userFactory = new UserFactory();
                         if (adminSelected && !contractorSelected && !userSelected) { //Admin selected
 
-                            if (adminAlreadyExists) {
+                            if (udbHandler.valuePresentInDatabase(snapshot, "Administrator", DatabaseHandler.UserInfoEntry.COLUMN_USER_TYPE)) {
                                 Toast adminAlreadyExists = Toast.makeText(SignUpScreenActivity.this, "An Admin account already exists.", Toast.LENGTH_LONG);
                                 adminAlreadyExists.show();
+                                return;
                             } else {
                                 Administrator admin = (Administrator) userFactory.getUser(username, password, firstName, lastName, "Administrator");
                                 users.add(admin);
