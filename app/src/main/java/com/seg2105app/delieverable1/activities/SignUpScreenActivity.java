@@ -130,7 +130,7 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
                     if (udbHandler.valuePresentInDatabase(snapshot, username, DatabaseHandler.UserEntry.COLUMN_USERNAME)) {
-                        Log.d(TAG, "The user " + username + " already exists");
+                        Log.d(TAG, "The user: " + username + " already exists");
                         nameSignup.setText("");
                         passwordSignup.setText("");
                         firstNameSignup.setText("");

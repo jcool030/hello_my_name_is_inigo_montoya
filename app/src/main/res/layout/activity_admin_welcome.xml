@@ -11,32 +11,41 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/welcomeText"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_height="match_parent"
+            android:layout_weight="9"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/newService"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="createServiceClick"
-            android:text="@string/newService" />
+            <TextView
+                android:id="@+id/welcomeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
 
-        <Button
-            android:id="@+id/getService"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="manageServiceClick"
-            android:text="@string/getServices" />
+            <Button
+                android:id="@+id/logOutButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:onClick="logoutClick"
+                android:text="@string/signoutButton" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/logOutButton"
+        <LinearLayout
+            android:id="@+id/serviceListUi"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="logoutClick"
-            android:text="@string/signoutButton" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteY="511dp">
+
+            <ListView
+                android:id="@+id/serviceList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
     </LinearLayout>
 

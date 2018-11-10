@@ -11,4 +11,9 @@
     <string name="getServices">Manage Services</string>
     <string name="serviceName">Name of Service</string>
     <string name="hourlyRate">Hourly Rate</string>
+    <string name="service_name_hint">Enter the name of the new Service</string>
+    <string name="service_rate_hint">Enter an hourly rate, separated by a period</string>
+    <string name="save_button">Save Changes</string>
+    <string name="cancel_button">Cancel Changes</string>
+    <string name="new_service">Create as New Service</string>
 </resources>

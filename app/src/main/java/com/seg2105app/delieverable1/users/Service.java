@@ -2,8 +2,8 @@ package com.seg2105app.delieverable1.users;
 
 public class Service {
 
-    private String name;
-    private double rate;
+    private String name = "name not yet defined";
+    private double rate = 0.0;
 
     public Service(String serviceName, double hourlyRate){
         this.name = serviceName;
