@@ -27,9 +27,6 @@ public class AdminWelcome extends AppCompatActivity {
         setContentView(R.layout.activity_admin_welcome);
 
         signoutButton = findViewById(R.id.logOutButton);
-        createService = findViewById(R.id.newService);
-
-        userlv = findViewById(R.id.userList);
 
         Bundle bundle = getIntent().getExtras();
         String user = bundle.getString("username");
@@ -70,16 +67,7 @@ public class AdminWelcome extends AppCompatActivity {
     public void logoutClick(View v) {
         Intent signoutIntent = new Intent(this, OpeningScreenActivity.class);
         startActivity(signoutIntent);
-    }
-    public void createServiceClick (View v){
-        Intent createServiceIntent = new Intent(this, CreateServiceActivity.class);
-        startActivity(createServiceIntent);
-    }
-    public void manageServiceClick (View v){
-        Intent manageServiceIntent = new Intent (this, ManageServiceActivity.class);
-        startActivity(manageServiceIntent);
-    }
-
     }//random bug; if you log out then back in repeatedly, it creates several pages of AdminWelcome.
 }
+
 
