@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.widget.EditText;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
-
-import com.seg2105app.delieverable1.database.*;
 
 import com.seg2105app.delieverable1.database.DatabaseHandler;
 import com.seg2105app.delieverable1.users.Service;
@@ -45,6 +43,8 @@ public class CreateServiceActivity extends AppCompatActivity implements View.OnC
 
             }else { //if both fields are filled out, create new service
                 sdbHandler.createService(new Service(serviceName, Double.parseDouble(hourlyRateString))); //if hourlyRate invalid, throws NumberFormatException
+                Toast toast = Toast.makeText(getApplicationContext(), "Service Created Successfully", Toast.LENGTH_LONG);
+                toast.show();
             }
 
         }catch(NumberFormatException e){ //hourly rate input is invalid (can't be parsed as a double)

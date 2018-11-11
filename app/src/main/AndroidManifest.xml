@@ -22,11 +22,11 @@
         </activity>
         <activity android:name=".SignUpScreenActivity" />
         <activity android:name=".HomeOwnerWelcome" />
-        <activity android:name=".AdminWelcome"></activity>
-        <activity android:name=".ServiceProviderWelcome"></activity>
+        <activity android:name=".AdminWelcome"/>
+        <activity android:name=".ServiceProviderWelcome"/>
         <activity android:name=".CreateServiceActivity" />
         <activity android:name=".ManageServiceActivity" />
-
+        <activity android:name=".serviceEditorActivity" />
 
     </application>
 

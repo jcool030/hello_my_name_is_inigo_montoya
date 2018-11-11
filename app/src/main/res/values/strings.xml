@@ -16,4 +16,6 @@
     <string name="save_button">Save Changes</string>
     <string name="cancel_button">Cancel Changes</string>
     <string name="new_service">Create as New Service</string>
+    <string name="createServiceBtn">Create Service</string>
+    <string name="manageServiceBtn">Manage Services</string>
 </resources>

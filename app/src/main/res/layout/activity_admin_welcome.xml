@@ -12,10 +12,11 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/ServicesUI"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="9"
-            android:orientation="horizontal">
+            android:layout_weight="4"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/welcomeText"
@@ -25,26 +26,52 @@
                 android:text="TextView" />
 
             <Button
-                android:id="@+id/logOutButton"
+                android:id="@+id/createService"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="createServiceClick"
+                android:text="@string/createServiceBtn" />
+
+            <Button
+                android:id="@+id/manageService"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:onClick="logoutClick"
-                android:text="@string/signoutButton" />
+                android:onClick="manageServiceClick"
+                android:text="@string/manageServiceBtn" />
+
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/serviceListUi"
+            android:id="@+id/userListUI"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:orientation="vertical"
             tools:layout_editor_absoluteY="511dp">
 
             <ListView
-                android:id="@+id/serviceList"
+                android:id="@+id/userList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LogoutButtonUI"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/logOutButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="logoutClick"
+                android:text="@string/signoutButton" />
+
         </LinearLayout>
 
     </LinearLayout>
