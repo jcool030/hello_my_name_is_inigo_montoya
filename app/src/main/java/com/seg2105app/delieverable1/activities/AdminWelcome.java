@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.firebase.database.Query;
-import com.seg2105app.delieverable1.database.DatabaseHandler;
 
 //A copy of the homeowner welcome screen class
 public class AdminWelcome extends AppCompatActivity {
@@ -29,9 +27,19 @@ public class AdminWelcome extends AppCompatActivity {
         TextView welcomeText = findViewById(R.id.welcomeText);
         welcomeText.setText("Welcome, " + user + "! You are logged in as: Admin.");
 
-        DatabaseHandler udb = new DatabaseHandler(this);
+        userlv = findViewById(R.id.userList);
+        UserManager manager = UserManager.getInstance();//creates instance of userManager if not already exists
 
-        Query query = udb.getReferenceToUserTable();
+        UserArrayAdapter adapter = new UserArrayAdapter(this, manager.getUserList());
+        userlv.setAdapter(adapter);
+//        userlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick (AdapterView < ? > parent,final View view, int position, long id){
+//                Intent launchEditorIntent = new Intent(getApplicationContext(), serviceEditorActivity.class);
+//                launchEditorIntent.putExtra("selectedService", position);
+//                startActivityForResult(launchEditorIntent, 0);//POSITION IS THE PROBLEM
+//            }
+//        });
 
     }//end of onCreate
 
