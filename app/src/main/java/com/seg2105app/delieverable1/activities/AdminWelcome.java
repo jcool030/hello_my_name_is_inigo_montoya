@@ -35,16 +35,7 @@ public class AdminWelcome extends AppCompatActivity {
 
     }//end of onCreate
 
-    //This code is for after a service is modified by serviceEditorActivity
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == RESULT_CANCELED);
-        else
-            {
-            ListView listView = findViewById(R.id.userList);
-//if it doesnt already show the changes, they need to be shown here
-            listView.refreshDrawableState();
-            }
-    }
+
     public void createServiceClick(View v){
         Intent createServiceIntent = new Intent(this, CreateServiceActivity.class);
         startActivity(createServiceIntent);

@@ -18,4 +18,6 @@
     <string name="new_service">Create as New Service</string>
     <string name="createServiceBtn">Create Service</string>
     <string name="manageServiceBtn">Manage Services</string>
+    <string name="deleteButton">Delete this Service</string>
+    <string name="manage_service_title">Services Offered</string>
 </resources>

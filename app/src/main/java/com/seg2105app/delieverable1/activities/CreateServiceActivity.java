@@ -51,6 +51,6 @@ public class CreateServiceActivity extends AppCompatActivity implements View.OnC
             Toast noHourlyRate = Toast.makeText(CreateServiceActivity.this, "Hourly rate input is invalid.", Toast.LENGTH_LONG);
             noHourlyRate.show();
         }
-    }
+    } //missing finish() statement
 
 }

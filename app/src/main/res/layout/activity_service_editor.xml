@@ -20,8 +20,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/service_name_hint"
-                android:inputType="text" />
+                android:hint="@string/serviceName"
+                android:inputType="none" />
 
             <EditText
                 android:id="@+id/editServiceRate"
@@ -49,13 +49,13 @@
                 tools:text="@string/cancel_button" />
 
             <Button
-                android:id="@+id/newServiceButton"
+                android:id="@+id/deleteButton"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/new_service"
-                tools:text="@string/new_service" />
+                android:text="@string/deleteButton"
+                tools:text="@string/deleteButton" />
 
             <Button
                 android:id="@+id/saveButton"

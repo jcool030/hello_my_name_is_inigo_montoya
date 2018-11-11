@@ -15,7 +15,6 @@ public class ManageServiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_services);
 
-
         listView = findViewById(R.id.serviceList);
         serviceManager manager = serviceManager.getInstance();//creates instance of serviceManager if not already exists
 
@@ -26,11 +25,9 @@ public class ManageServiceActivity extends AppCompatActivity {
             public void onItemClick (AdapterView < ? > parent,final View view, int position, long id){
             Intent launchEditorIntent = new Intent(getApplicationContext(), serviceEditorActivity.class);
             launchEditorIntent.putExtra("selectedService", position);
-            startActivityForResult(launchEditorIntent, 0);//POSITION IS THE PROBLEM
+            startActivity(launchEditorIntent);
+            finish();
             }
         });
-
     }
-
-
 }

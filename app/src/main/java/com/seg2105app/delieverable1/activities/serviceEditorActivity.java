@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.seg2105app.delieverable1.users.Service;
@@ -22,7 +21,7 @@ public class serviceEditorActivity extends AppCompatActivity
 
         //gets an intent from the admin welcome screen (the int position of the service you clicked)
         Intent intent = getIntent();
-        int serviceIndex = intent.getIntExtra("selectedService",0); //0 is a "default return value"
+        int serviceIndex = intent.getIntExtra("selectedService",0);
 
         //Getting TextFields to update
         final EditText serviceName = (EditText) findViewById(R.id.editServiceName);
@@ -56,56 +55,35 @@ public class serviceEditorActivity extends AppCompatActivity
                     {
                     currentService.setName(serviceName.getText().toString().trim());
                     currentService.setRate(Double.parseDouble(serviceRate.getText().toString().trim()));
-
-                    Intent returnIntent = new Intent();
-                    setResult(RESULT_OK, returnIntent);
+                    Intent ServiceListIntent = new Intent(getApplicationContext(), ManageServiceActivity.class);
                     finish();
+                    startActivity(ServiceListIntent);
                     }
             }
-        });//end of saveButton
+        });
 
-        //Button to just return to the AdminWelcome screen
+        //Button to just return to the list of services
         Button cancelButton = findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent ServiceListIntent = new Intent(getApplicationContext(), ManageServiceActivity.class);
                 finish();
+                startActivity(ServiceListIntent);
             }
         });
 
-        //Button to create a new service rather than just save changes
-        Button createService = findViewById(R.id.newServiceButton);
-        createService.setOnClickListener(new View.OnClickListener()
+        //Button to delete an existing service
+        Button deleteService = findViewById(R.id.deleteButton);
+        deleteService.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                boolean hasName = !TextUtils.isEmpty(serviceName.getText());
-                boolean hasRate = !TextUtils.isEmpty(serviceRate.getText());
-
-                if (!hasName)
-                {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Please enter a Service Name.", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-                else if (!hasRate)
-                {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Please enter an Hourly Rate.", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-                else
-                    {
-                        serviceManager manager = serviceManager.getInstance();
-                        manager.getServiceList().add(currentService); //even though this is a new manager,
-
-                        Intent returnIntent = new Intent();
-                        setResult(RESULT_OK, returnIntent);
-                        finish();
-                    }
+                //needs to get the service, set it to null, then close the gap in the array list
             }
-        });
+            });
     }
-        //eventually add a delete button maybe, but be sure not to delete the button if its the last one in the arraylist
 }
 
 
