@@ -80,7 +80,10 @@ public class serviceEditorActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                //needs to get the service, set it to null, then close the gap in the array list
+                //STILL NEEDS TO BE REWORKED TO WORK WITH DATABASE
+                Intent ServiceListIntent = new Intent(getApplicationContext(), ManageServiceActivity.class);
+                finish();
+                startActivity(ServiceListIntent);
             }
             });
     }
