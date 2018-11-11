@@ -45,20 +45,29 @@ public class ServiceEditorActivity extends AppCompatActivity
                 boolean hasName = !TextUtils.isEmpty(serviceName.getText());
                 boolean hasRate = !TextUtils.isEmpty(serviceRate.getText());
 
-                if (!hasName) {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Please enter a Service Name.", Toast.LENGTH_SHORT);
-                    toast.show();
-                } else if (!hasRate) {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Please enter an Hourly Rate.", Toast.LENGTH_SHORT);
-                    toast.show();
-                } else
-                    {
-                    currentService.setName(serviceName.getText().toString().trim());
-                    currentService.setRate(Double.parseDouble(serviceRate.getText().toString().trim()));
-                    Intent ServiceListIntent = new Intent(getApplicationContext(), ManageServiceActivity.class);
-                    finish();
-                    startActivity(ServiceListIntent);
+                try
+                {
+                    if (!hasName) {
+                        Toast toast = Toast.makeText(getApplicationContext(), "Please enter a Service Name.", Toast.LENGTH_SHORT);
+                        toast.show();
+                    } else if (!hasRate) {
+                        Toast toast = Toast.makeText(getApplicationContext(), "Please enter an Hourly Rate.", Toast.LENGTH_SHORT);
+                        toast.show();
+                    } else {
+                        currentService.setName(serviceName.getText().toString().trim());
+                        currentService.setRate(Double.parseDouble(serviceRate.getText().toString().trim()));
+                        Intent ServiceListIntent = new Intent(getApplicationContext(), ManageServiceActivity.class);
+                        Toast toast = Toast.makeText(getApplicationContext(), "Service Saved Successfully", Toast.LENGTH_SHORT);
+                        toast.show();
+                        finish();
+                        startActivity(ServiceListIntent);
                     }
+                }
+                catch(NumberFormatException e)
+                {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Hourly rate input is invalid", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         });
 
@@ -68,6 +77,8 @@ public class ServiceEditorActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent ServiceListIntent = new Intent(getApplicationContext(), ManageServiceActivity.class);
+                Toast toast = Toast.makeText(getApplicationContext(), "Changes Cancelled", Toast.LENGTH_SHORT);
+                toast.show();
                 finish();
                 startActivity(ServiceListIntent);
             }
@@ -81,7 +92,11 @@ public class ServiceEditorActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 //STILL NEEDS TO BE REWORKED TO WORK WITH DATABASE
+                //maybe include a different toast for if it fails to delete, since right now it just says it deletes it without checking if it's the last service in the arraylist
+                //in fact, it doesnt even delete it yet
                 Intent ServiceListIntent = new Intent(getApplicationContext(), ManageServiceActivity.class);
+                Toast toast = Toast.makeText(getApplicationContext(), "Service Deleted", Toast.LENGTH_SHORT);
+                toast.show();
                 finish();
                 startActivity(ServiceListIntent);
             }
