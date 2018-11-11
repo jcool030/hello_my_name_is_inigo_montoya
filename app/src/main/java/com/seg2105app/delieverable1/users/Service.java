@@ -5,7 +5,7 @@ public class Service {
 
     private String name = "name not yet defined";
     private double rate = 0.0;
-    private List<Service>subservices;
+    private List<Service> subservices;
 
     public Service(String serviceName, double hourlyRate){
         this.name = serviceName;
