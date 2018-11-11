@@ -10,7 +10,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.seg2105app.delieverable2.services.Service;
+import com.seg2105app.delieverable1.users.Service;
 import com.seg2105app.delieverable1.users.User;
 import com.seg2105app.delieverable1.users.UserFactory;
 import com.seg2105app.delieverable1.users.UserList;
@@ -57,6 +57,11 @@ public final class DatabaseHandler{
 
     public void createService(Service service){
         String uid = mRef.push().getKey();
+        firebaseDatabase.getReference(ServiceEntry.TABLE_SERVICES).child(uid).setValue(service);
+    }
+
+    public void updateService(Service service, String key){
+        String uid = key;
         firebaseDatabase.getReference(ServiceEntry.TABLE_SERVICES).child(uid).setValue(service);
     }
 

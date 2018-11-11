@@ -2,6 +2,7 @@ package com.seg2105app.delieverable1.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,15 +10,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+import com.seg2105app.delieverable1.database.DatabaseHandler;
 import com.seg2105app.delieverable1.users.Service;
 
 public class ServiceEditorActivity extends AppCompatActivity
 {
+    private DatabaseHandler sdbHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_editor);
+        sdbHandler = new DatabaseHandler(this);
 
         //gets an intent from the admin welcome screen (the int position of the service you clicked)
         Intent intent = getIntent();
@@ -54,8 +61,33 @@ public class ServiceEditorActivity extends AppCompatActivity
                         Toast toast = Toast.makeText(getApplicationContext(), "Please enter an Hourly Rate.", Toast.LENGTH_SHORT);
                         toast.show();
                     } else {
-                        currentService.setName(serviceName.getText().toString().trim());
-                        currentService.setRate(Double.parseDouble(serviceRate.getText().toString().trim()));
+                        final String name = serviceName.getText().toString().trim();
+                        final Double rate = Double.parseDouble(serviceRate.getText().toString().trim());
+
+                        sdbHandler.getReferenceToServiceTable().addListenerForSingleValueEvent(new ValueEventListener(){
+
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                String key = "";
+                                for (DataSnapshot ds : dataSnapshot.getChildren()){
+                                    if (ds.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_NAME).getValue(String.class).equals(name)){
+                                        key = ds.getKey();
+                                        break;
+                                    }
+                                }
+                                currentService.setName(name);
+                                currentService.setRate(rate);
+                                sdbHandler.updateService(currentService, key);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+
+
                         Intent ServiceListIntent = new Intent(getApplicationContext(), ManageServiceActivity.class);
                         Toast toast = Toast.makeText(getApplicationContext(), "Service Saved Successfully", Toast.LENGTH_SHORT);
                         toast.show();

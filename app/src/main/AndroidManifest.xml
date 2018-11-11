@@ -26,7 +26,7 @@
         <activity android:name=".ServiceProviderWelcome"/>
         <activity android:name=".CreateServiceActivity" />
         <activity android:name=".ManageServiceActivity" />
-        <activity android:name=".serviceEditorActivity" />
+        <activity android:name=".ServiceEditorActivity" />
 
     </application>
 

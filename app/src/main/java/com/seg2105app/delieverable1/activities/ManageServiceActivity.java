@@ -19,6 +19,7 @@ public class ManageServiceActivity extends AppCompatActivity {
     private ListView listView;
     private ServiceManager manager;
     private DatabaseHandler sdbHandler;
+    private ServiceArrayAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,8 @@ public class ManageServiceActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.serviceList);
         manager = ServiceManager.getInstance();//creates instance of serviceManager if not already exists
+        adapter = new ServiceArrayAdapter(this, manager.getServiceList());
+        listView.setAdapter(adapter);
 
         sdbHandler.getReferenceToServiceTable().addChildEventListener(new ChildEventListener(){
 
@@ -35,13 +38,15 @@ public class ManageServiceActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 String name = dataSnapshot.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_NAME).getValue(String.class);
                 Double rate = dataSnapshot.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_RATE).getValue(Double.class);
-                manager.add(new Service(name, rate));
+
+                adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 String name = dataSnapshot.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_NAME).getValue(String.class);
                 Double rate = dataSnapshot.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_RATE).getValue(Double.class);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -61,8 +66,8 @@ public class ManageServiceActivity extends AppCompatActivity {
         });
 
 
-       ServiceArrayAdapter adapter = new ServiceArrayAdapter(this, manager.getServiceList());
-        listView.setAdapter(adapter);
+
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick (AdapterView < ? > parent,final View view, int position, long id){
