@@ -9,12 +9,12 @@ import android.widget.TextView;
 import com.seg2105app.delieverable1.users.Service;
 import java.util.ArrayList;
 
-public class serviceArrayAdapter extends ArrayAdapter<Service> {
+public class ServiceArrayAdapter extends ArrayAdapter<Service> {
 
     private final Context context;
     private final ArrayList<Service> services;
 
-    public serviceArrayAdapter(Context context, ArrayList<Service> values) {
+    public ServiceArrayAdapter(Context context, ArrayList<Service> values) {
         super(context, R.layout.service_layout, values);
         this.context = context;
         this.services = values;

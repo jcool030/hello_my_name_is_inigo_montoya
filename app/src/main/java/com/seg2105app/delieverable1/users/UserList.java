@@ -14,7 +14,6 @@ import java.util.ListIterator;
 
 public class UserList extends LinkedList<User> implements Serializable {
     private static UserList instance = null;
-    private ListIterator<User> iterator;
 
     private UserList(){
         super();
@@ -26,14 +25,6 @@ public class UserList extends LinkedList<User> implements Serializable {
         }
 
         return instance;
-    }
-
-    public User getNext() {
-        return iterator.next();
-    }
-
-    public boolean hasNext(){
-        return iterator.hasNext();
     }
 
     public ListIterator<User> listIterator(){

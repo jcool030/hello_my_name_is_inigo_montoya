@@ -10,7 +10,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.seg2105app.delieverable1.users.Service;
+import com.seg2105app.delieverable2.services.Service;
 import com.seg2105app.delieverable1.users.User;
 import com.seg2105app.delieverable1.users.UserFactory;
 import com.seg2105app.delieverable1.users.UserList;
@@ -36,7 +36,7 @@ public final class DatabaseHandler{
         public static final String COLUMN_USER_TYPE = "type";
     }
 
-    private static class ServiceEntry implements BaseColumns {
+    public static class ServiceEntry implements BaseColumns {
         public static final String TABLE_SERVICES = "services";
         public static final String COLUMN_SERVICE_NAME = "name";
         public static final String COLUMN_SERVICE_RATE = "rate";
@@ -117,7 +117,7 @@ public final class DatabaseHandler{
     }
 
     public void produceListOfElementsFromSnapshot(DataSnapshot snapshot){
-        UserList userList = UserList.getInstance();
+            UserList userList = UserList.getInstance();
 
         for (DataSnapshot ds: snapshot.getChildren()){
             String mUsername = ds.child(UserEntry.COLUMN_USERNAME).getValue(String.class);

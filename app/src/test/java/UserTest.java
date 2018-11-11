@@ -32,4 +32,6 @@ public class UserTest {
     public void testGetType(){
         assertEquals("HomeOwner", user1.getType());
     }
+
+
 }

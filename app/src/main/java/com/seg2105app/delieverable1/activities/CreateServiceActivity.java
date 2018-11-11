@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.seg2105app.delieverable1.database.DatabaseHandler;
-import com.seg2105app.delieverable1.users.Service;
+import com.seg2105app.delieverable2.services.Service;
 
 public class CreateServiceActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText getHourlyRate, getServiceName;

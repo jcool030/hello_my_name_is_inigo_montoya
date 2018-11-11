@@ -4,13 +4,13 @@ import com.seg2105app.delieverable1.users.Service;
 import java.util.ArrayList;
 
 //class that holds the arraylist
-public class serviceManager {
+public class ServiceManager {
 
-    private static serviceManager instance = null;
+    private static ServiceManager instance = null;
     private ArrayList<Service> serviceList;
 
     //when first created, add a dummy Service that doubles as a button to go to the edit tab
-    protected serviceManager() {
+    protected ServiceManager() {
         //This Exists to defeat instantiation
 
         serviceList = new ArrayList<Service>();
@@ -19,9 +19,9 @@ public class serviceManager {
     }
 
     //This will be called to check if a list already exists
-    public static serviceManager getInstance() {
+    public static ServiceManager getInstance() {
         if (instance == null) {
-            instance = new serviceManager();
+            instance = new ServiceManager();
         }
         return instance;
     }
@@ -35,4 +35,6 @@ public class serviceManager {
     {
         return serviceList.get(index);
     }
+
+    public void add(Service service){serviceList.add(service);}
 }

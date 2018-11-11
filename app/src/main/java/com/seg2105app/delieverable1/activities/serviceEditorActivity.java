@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.seg2105app.delieverable1.users.Service;
 
-public class serviceEditorActivity extends AppCompatActivity
+public class ServiceEditorActivity extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,7 +28,7 @@ public class serviceEditorActivity extends AppCompatActivity
         final EditText serviceRate = (EditText) findViewById(R.id.editServiceRate);
 
         //Select the service to modify
-        final Service currentService = serviceManager.getInstance().getServiceAt(serviceIndex);
+        final Service currentService = ServiceManager.getInstance().getServiceAt(serviceIndex);
 
         //Updating contents in this screen
         serviceName.setText(currentService.getName());
