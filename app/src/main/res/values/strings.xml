@@ -48,6 +48,7 @@
     
     <string-array name="times_array">
     <item>-----</item>
+    <item>closed</item>
     <item>0:00</item>
     <item>0:30</item>
     <item>1:00</item>
