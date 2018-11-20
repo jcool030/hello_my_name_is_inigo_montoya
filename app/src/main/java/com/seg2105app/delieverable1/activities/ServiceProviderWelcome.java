@@ -20,7 +20,7 @@ public class ServiceProviderWelcome extends AppCompatActivity {
     EditText phoneNum, address, companyName;
     TextInputEditText textInput;
     RadioGroup radioGroup;
-    RadioButton lisenceTrue;
+    RadioButton licenseTrue;
     String user;
 
     @Override
@@ -40,7 +40,7 @@ public class ServiceProviderWelcome extends AppCompatActivity {
         textInput = findViewById(R.id.textInput);
         radioGroup = findViewById(R.id.licenseBoolean);
 
-        lisenceTrue = findViewById(R.id.Yes);
+        licenseTrue = findViewById(R.id.Yes);
 
         Bundle bundle = getIntent().getExtras();
         user = bundle.getString("username");
@@ -56,6 +56,11 @@ public class ServiceProviderWelcome extends AppCompatActivity {
     public void updateInfo(View  v){
         Bundle bundle = getIntent().getExtras();
 
+        String getPhoneNum = phoneNum.getText().toString().trim();
+        String getAddress= address.getText().toString().trim();
+        String getCompanyName = companyName.getText().toString().trim();
+        String description = textInput.getText().toString().trim();
+
         int checked = radioGroup.getCheckedRadioButtonId();
         boolean license = false;
 
@@ -63,28 +68,43 @@ public class ServiceProviderWelcome extends AppCompatActivity {
             Toast toast = Toast.makeText(getApplicationContext(), "Please Check a Radio Button", Toast.LENGTH_LONG);
             toast.show();
         } else {
-            license = lisenceTrue.isSelected();
+            license = licenseTrue.isSelected();
         }
 
-        String getPhoneNum = phoneNum.getText().toString().trim();
-        String getAddress= address.getText().toString().trim();
-        String getCompanyName = companyName.getText().toString().trim();
-        String description = textInput.getText().toString().trim();
+        if (getPhoneNum.equals("") || !(getPhoneNum.length() == 10)) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please enter a valid phone number", Toast.LENGTH_LONG);
+            toast.show();
+        }
+        else if (getAddress.equals("")){
+            Toast toast = Toast.makeText(getApplicationContext(), "Please enter an address", Toast.LENGTH_LONG);
+            toast.show();
+        }
+        else if (getCompanyName.equals("")){
+            Toast toast = Toast.makeText(getApplicationContext(), "Please enter a valid Company Name", Toast.LENGTH_LONG);
+            toast.show();
+        }
+        else if (description.equals("")){
+            Toast toast = Toast.makeText(getApplicationContext(), "Please enter a description", Toast.LENGTH_LONG);
+            toast.show();
+        }
+        else {
 
-        bundle.putString("company", getCompanyName);
-        bundle.putString("description", description);
-        bundle.putString("address", getAddress);
-        bundle.putString("phone", getPhoneNum);
-        bundle.putBoolean("license", license);
+            bundle.putString("company", getCompanyName);
+            bundle.putString("description", description);
+            bundle.putString("address", getAddress);
+            bundle.putString("phone", getPhoneNum);
+            bundle.putBoolean("license", license);
 
-        Toast toast = Toast.makeText(getApplicationContext(), "Info Updated Successfully", Toast.LENGTH_LONG);
-        toast.show();
+            Toast toast = Toast.makeText(getApplicationContext(), "Info Updated Successfully", Toast.LENGTH_LONG);
+            toast.show();
+
+        }
+
     }
     public void onEditAvailClick(View v){
         Intent editAvailIntent = new Intent(this, EditAvailabilitiesActivity.class);
         editAvailIntent.putExtra("username", user);
         startActivity(editAvailIntent);
-        finish();
     }
 
 }
