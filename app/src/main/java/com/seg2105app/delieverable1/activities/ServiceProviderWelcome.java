@@ -16,7 +16,7 @@ import android.widget.Toast;
 public class ServiceProviderWelcome extends AppCompatActivity {
 
     Button signoutButton, updateBtn, editAvailBtn;
-    TextView usernameText;
+    TextView usernameText, availText;
     EditText phoneNum, address, companyName;
     TextInputEditText textInput;
     RadioGroup radioGroup;
@@ -32,6 +32,7 @@ public class ServiceProviderWelcome extends AppCompatActivity {
         updateBtn = findViewById(R.id.updateInfoBtn);
         editAvailBtn = findViewById(R.id.editAvailBtn);
 
+        availText = findViewById(R.id.availList);
         usernameText = findViewById(R.id.usernameText);
         phoneNum = findViewById(R.id.phoneNum);
         address = findViewById(R.id.address);
@@ -46,6 +47,30 @@ public class ServiceProviderWelcome extends AppCompatActivity {
         user = bundle.getString("username");
 
         usernameText.setText("Welcome, " + user + " you are logged in as a Service Provider.");
+
+        String monStart = bundle.getString("monStartTime");
+        String monEnd = bundle.getString("monEndTime");
+        String tuesStart = bundle.getString("tuesStartTime");
+        String tuesEnd = bundle.getString("tuesEndTime");
+        String wedStart = bundle.getString("wedStartTime");
+        String wedEnd = bundle.getString("wedEndTime");
+        String thursStart = bundle.getString("thursStartTime");
+        String thursEnd = bundle.getString("thursEndTime");
+        String friStart = bundle.getString("friStartTime");
+        String friEnd = bundle.getString("friEndTime");
+        String satStart = bundle.getString("satStartTime");
+        String satEnd = bundle.getString("satEndTime");
+        String sunStart = bundle.getString("sunStartTime");
+        String sunEnd = bundle.getString("sunEndTime");
+        availText.setText(new StringBuilder()
+                .append("Monday: "+ monStart +" - " + monEnd + "\n")
+                .append("Tuesday: " + tuesStart + " - " + tuesEnd + "\n")
+                .append("Wednesday: " + wedStart + " - " + wedEnd + "\n")
+                .append("Thursday: " + thursStart + " - " + thursEnd + "\n")
+                .append("Friday: " + friStart + " - " + friEnd + "\n")
+                .append("Saturday: " + satStart + " - " + satEnd + "\n")
+                .append("Sunday: " + sunStart + " - " + sunEnd + "\n")
+                .toString());
     }
 
     public void signOut(View v) {

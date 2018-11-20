@@ -88,12 +88,26 @@ public class EditAvailabilitiesActivity extends AppCompatActivity {
             Toast emptyTime = Toast.makeText(getApplicationContext(), "Missing a time for Sunday.", Toast.LENGTH_LONG);
             emptyTime.show();
         } else{
-
             Toast confirm = Toast.makeText(getApplicationContext(), "Availabilities Confirmed", Toast.LENGTH_LONG);
             confirm.show();
 
             Intent confirmAvail = new Intent(this, ServiceProviderWelcome.class);
             confirmAvail.putExtra("username", user);
+            confirmAvail.putExtra("monStartTime", mondayStartTime);
+            confirmAvail.putExtra("monEndTime", mondayEndTime);
+            confirmAvail.putExtra("tuesStartTime", tuesdayStartTime);
+            confirmAvail.putExtra("tuesEndTime", tuesdayEndTime);
+            confirmAvail.putExtra("wedStartTime", wednesdayStartTime);
+            confirmAvail.putExtra("wedEndTime", wednesdayEndTime);
+            confirmAvail.putExtra("thursStartTime", thursdayStartTime);
+            confirmAvail.putExtra("thursEndTime", thursdayEndTime);
+            confirmAvail.putExtra("friStartTime", fridayStartTime);
+            confirmAvail.putExtra("friEndTime", fridayEndTime);
+            confirmAvail.putExtra("satStartTime", saturdayStartTime);
+            confirmAvail.putExtra("satEndTime", saturdayEndTime);
+            confirmAvail.putExtra("sunStartTime", sundayStartTime);
+            confirmAvail.putExtra("sunEndTime", sundayEndTime);
+
             startActivity(confirmAvail);
             finish();
         }

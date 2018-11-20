@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
-        android:layout_height="421dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -106,6 +106,12 @@
             android:text="@string/updateInfoBtn"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="240dp" />
+
+        <TextView
+            android:id="@+id/availList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
 
         <Button
             android:id="@+id/editAvailBtn"
