@@ -9,15 +9,15 @@
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
-        android:layout_height="351dp"
-        android:layout_marginBottom="136dp"
+        android:layout_height="421dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,31 +60,25 @@
             android:text="@string/lisenseTest" />
 
         <RadioGroup
+            android:id="@+id/licenseBoolean"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:orientation="vertical">
 
             <RadioButton
-                android:id="@+id/radioButton5"
+                android:id="@+id/Yes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/licenseYes" />
 
             <RadioButton
-                android:id="@+id/radioButton6"
+                android:id="@+id/No"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/lisenceNo" />
         </RadioGroup>
-
-        <Button
-            android:id="@+id/updateInfoBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="updateInfo"
-            android:text="@string/updateInfoBtn" />
 
         <TextView
             android:id="@+id/personalDescription"
@@ -94,15 +88,24 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/textInput"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="37dp"
                 android:hint="@string/description"
                 android:inputType="text|textShortMessage|textLongMessage" />
         </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/updateInfoBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="updateInfo"
+            android:text="@string/updateInfoBtn"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="240dp" />
 
     </LinearLayout>
 
