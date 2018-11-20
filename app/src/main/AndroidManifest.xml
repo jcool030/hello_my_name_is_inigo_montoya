@@ -27,6 +27,7 @@
         <activity android:name=".CreateServiceActivity" />
         <activity android:name=".ManageServiceActivity" />
         <activity android:name=".ServiceEditorActivity" />
+        <activity android:name=".EditAvailabilitiesActivity" />
 
     </application>
 

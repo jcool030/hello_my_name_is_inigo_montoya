@@ -15,12 +15,13 @@ import android.widget.Toast;
 
 public class ServiceProviderWelcome extends AppCompatActivity {
 
-    Button signoutButton, updateBtn;
+    Button signoutButton, updateBtn, editAvailBtn;
     TextView usernameText;
     EditText phoneNum, address, companyName;
     TextInputEditText textInput;
     RadioGroup radioGroup;
     RadioButton lisenceTrue;
+    String user;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class ServiceProviderWelcome extends AppCompatActivity {
 
         signoutButton = findViewById(R.id.signoutButton);
         updateBtn = findViewById(R.id.updateInfoBtn);
+        editAvailBtn = findViewById(R.id.editAvailBtn);
 
         usernameText = findViewById(R.id.usernameText);
         phoneNum = findViewById(R.id.phoneNum);
@@ -41,7 +43,7 @@ public class ServiceProviderWelcome extends AppCompatActivity {
         lisenceTrue = findViewById(R.id.Yes);
 
         Bundle bundle = getIntent().getExtras();
-        String user = bundle.getString("username");
+        user = bundle.getString("username");
 
         usernameText.setText("Welcome, " + user + " you are logged in as a Service Provider.");
     }
@@ -77,6 +79,12 @@ public class ServiceProviderWelcome extends AppCompatActivity {
 
         Toast toast = Toast.makeText(getApplicationContext(), "Info Updated Successfully", Toast.LENGTH_LONG);
         toast.show();
+    }
+    public void onEditAvailClick(View v){
+        Intent editAvailIntent = new Intent(this, EditAvailabilitiesActivity.class);
+        editAvailIntent.putExtra("username", user);
+        startActivity(editAvailIntent);
+        finish();
     }
 
 }
