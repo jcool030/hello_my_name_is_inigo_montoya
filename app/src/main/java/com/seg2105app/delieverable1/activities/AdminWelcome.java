@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 //A copy of the homeowner welcome screen class
@@ -52,6 +53,8 @@ public class AdminWelcome extends AppCompatActivity {
     public void manageServiceClick(View v){
         Intent manageServiceIntent = new Intent(this, ManageServiceActivity.class);
         startActivity(manageServiceIntent);
+        Toast toast = Toast.makeText(getApplicationContext(), "If the list of services does not appear immediately, hit the 'back' button to refresh the page", Toast.LENGTH_LONG);
+        toast.show();
     }
 
 
