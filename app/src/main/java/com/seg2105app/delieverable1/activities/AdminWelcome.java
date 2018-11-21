@@ -37,7 +37,7 @@ public class AdminWelcome extends AppCompatActivity {
 //            public void onItemClick (AdapterView < ? > parent,final View view, int position, long id){
 //                Intent launchEditorIntent = new Intent(getApplicationContext(), serviceEditorActivity.class);
 //                launchEditorIntent.putExtra("selectedService", position);
-//                startActivityForResult(launchEditorIntent, 0);//POSITION IS THE PROBLEM
+//                startActivityForResult(launchEditorIntent, 0);
 //            }
 //        });
 

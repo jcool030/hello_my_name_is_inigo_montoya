@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.seg2105app.delieverable1.database.DatabaseHandler;
 import com.seg2105app.delieverable1.users.Service;
@@ -123,9 +124,24 @@ public class ServiceEditorActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                //STILL NEEDS TO BE REWORKED TO WORK WITH DATABASE
-                //maybe include a different toast for if it fails to delete, since right now it just says it deletes it without checking if it's the last service in the arraylist
-                //in fact, it doesnt even delete it yet
+                /*
+                Query query = sdbHandler.getReferenceToUserTable();
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                    {
+                        User user = sdbHandler.validateUsernameAndPassword(dataSnapshot, currentService.getName(), String.valueOf(currentService.getRate()));
+                        for (DataSnapshot ds: dataSnapshot.getChildren())
+                        {
+                            String retrievedValue = ds.child(columnKey).getValue(String.class);
+                        }
+                    }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError){
+                    }
+                });
+*/
                 Intent ServiceListIntent = new Intent(getApplicationContext(), ManageServiceActivity.class);
                 Toast toast = Toast.makeText(getApplicationContext(), "Service Deleted", Toast.LENGTH_SHORT);
                 toast.show();
