@@ -45,7 +45,13 @@
     <string name="sunday">Sunday</string>
     <string name="start_time">Start</string>
     <string name="end_time">End</string>
-    
+    <string name="create_service_button">Create Services</string>
+    <string name="Log_out_button">Log Out</string>
+    <string name="new_user_create_button">New user? Click Here to Sign Up!</string>
+    <string name="confirmAdditionsButton">Confirm Additions and Return</string>
+    <string name="PreviewText">Services to Add</string>
+    <string name="refreshButton">Refresh</string>
+
     <string-array name="times_array">
     <item>-----</item>
     <item>closed</item>

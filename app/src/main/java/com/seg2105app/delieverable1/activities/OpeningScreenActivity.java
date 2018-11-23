@@ -54,7 +54,7 @@ public class OpeningScreenActivity extends AppCompatActivity{
                     User user = udbHandler.validateUsernameAndPassword(dataSnapshot, username.getText().toString().trim(), password.getText().toString().trim());
 
                     if (user == null) {
-                        Toast toast = Toast.makeText(getApplicationContext(), "Username or Password are incorrect", Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(getApplicationContext(), "Username or Password are incorrect", Toast.LENGTH_SHORT);
                         toast.show();
 
                         username.setText("");
@@ -92,6 +92,4 @@ public class OpeningScreenActivity extends AppCompatActivity{
         Intent newUserIntent = new Intent(OpeningScreenActivity.this, SignUpScreenActivity.class);
         startActivity(newUserIntent);
     }
-
-
 }

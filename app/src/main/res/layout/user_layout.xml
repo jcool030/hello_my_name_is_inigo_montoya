@@ -1,35 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/firstName"
+        <LinearLayout
+            android:id="@+id/defaultLabels"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/firstName" />
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:paddingRight="10dp">
 
-        <TextView
-            android:id="@+id/lastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lastName" />
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                tools:text="@string/firstName" />
 
-        <TextView
-            android:id="@+id/userName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/userName" />
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lastName" />
 
-        <TextView
-            android:id="@+id/userType"
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/userName" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                tools:text="@string/userType" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/actualData"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/userType" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/firstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/firstName" />
+
+            <TextView
+                android:id="@+id/lastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lastName" />
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/userName" />
+
+            <TextView
+                android:id="@+id/userType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/userType" />
+        </LinearLayout>
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

@@ -12,13 +12,13 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.seg2105app.delieverable1.database.DatabaseHandler;
 import com.seg2105app.delieverable1.users.Service;
 
 public class ServiceEditorActivity extends AppCompatActivity
 {
+    //ctrl+f:    In some worlds    for notes on a future change
     private DatabaseHandler sdbHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -62,23 +62,47 @@ public class ServiceEditorActivity extends AppCompatActivity
                         Toast toast = Toast.makeText(getApplicationContext(), "Please enter an Hourly Rate.", Toast.LENGTH_SHORT);
                         toast.show();
                     } else {
-                        final String name = serviceName.getText().toString().trim();
-                        final Double rate = Double.parseDouble(serviceRate.getText().toString().trim());
+                        final String newName = serviceName.getText().toString();
+                        final Double newRate = Double.parseDouble(serviceRate.getText().toString());
 
                         sdbHandler.getReferenceToServiceTable().addListenerForSingleValueEvent(new ValueEventListener(){
 
                             @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                            {
                                 String key = "";
-                                for (DataSnapshot ds : dataSnapshot.getChildren()){
-                                    if (ds.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_NAME).getValue(String.class).equals(name)){
-                                        key = ds.getKey();
-                                        break;
+                                boolean nameAlreadyExists = false;
+
+                                if(!newName.equals(currentService.getName())) {       //so if name was changed, it does the check
+                                    for (DataSnapshot ds : dataSnapshot.getChildren()) { //THIS CHECK IS SO THAT THE NAME DOESNT ALREADY EXIST IN THE DB
+                                        if (ds.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_NAME).getValue(String.class).equals(newName)) {
+                                            nameAlreadyExists = true;
+                                            break;
+                                        }
                                     }
                                 }
-                                currentService.setName(name);
-                                currentService.setRate(rate);
-                                sdbHandler.updateService(currentService, key);
+                                if (nameAlreadyExists) { //if exists, creates error
+                                    Toast toast = Toast.makeText(getApplicationContext(), "That service name already exists! Please try another", Toast.LENGTH_SHORT);
+                                    toast.show();
+                                } else                      //In some worlds    Startpoint
+                                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                    if (ds.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_NAME).getValue(String.class).equals(currentService.getName())) {
+                                        key = ds.getKey();
+                                        break;
+                                        }                  //In some worlds    ENDS HERE, but needs the event listener bit too
+                                    }
+                                    if (key != "")
+                                    {           //precaution - not sure if there's a time when the key is not there (maybe someone else modifies database at same time as you?)
+                                        currentService.setName(newName);
+                                        currentService.setRate(newRate);
+                                        sdbHandler.updateService(currentService, key);
+                                        Toast toast = Toast.makeText(getApplicationContext(), "Service Saved Successfully", Toast.LENGTH_SHORT);
+                                        toast.show();
+
+                                        Intent ServiceListIntent = new Intent(getApplicationContext(), ManageServiceActivity.class);
+                                        finish();
+                                        startActivity(ServiceListIntent);
+                                    }
                             }
 
                             @Override
@@ -86,14 +110,6 @@ public class ServiceEditorActivity extends AppCompatActivity
 
                             }
                         });
-
-
-
-                        Intent ServiceListIntent = new Intent(getApplicationContext(), ManageServiceActivity.class);
-                        Toast toast = Toast.makeText(getApplicationContext(), "Service Saved Successfully", Toast.LENGTH_SHORT);
-                        toast.show();
-                        finish();
-                        startActivity(ServiceListIntent);
                     }
                 }
                 catch(NumberFormatException e)
@@ -102,7 +118,7 @@ public class ServiceEditorActivity extends AppCompatActivity
                     toast.show();
                 }
             }
-        });
+        }); //END OF SAVE BUTTON
 
         //Button to just return to the list of services
         Button cancelButton = findViewById(R.id.cancelButton);
@@ -124,29 +140,29 @@ public class ServiceEditorActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                /*
-                Query query = sdbHandler.getReferenceToUserTable();
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                //In some worlds, this code doesnt need to exist (it is duplicate of stuff in save button).
+                //Until we move the code to the start of this file it is still necessary.
+                sdbHandler.getReferenceToServiceTable().addListenerForSingleValueEvent(new ValueEventListener() {
+
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                    {
-                        User user = sdbHandler.validateUsernameAndPassword(dataSnapshot, currentService.getName(), String.valueOf(currentService.getRate()));
-                        for (DataSnapshot ds: dataSnapshot.getChildren())
-                        {
-                            String retrievedValue = ds.child(columnKey).getValue(String.class);
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            if (ds.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_NAME).getValue(String.class).equals(currentService.getName())) {
+                                ds.getRef().removeValue();
+
+                                Toast toast = Toast.makeText(getApplicationContext(), "Service Sucessfully Deleted", Toast.LENGTH_SHORT);
+                                toast.show();
+                                Intent ServiceListIntent = new Intent(getApplicationContext(), ManageServiceActivity.class);
+                                finish();
+                                startActivity(ServiceListIntent);
+                                break;
+                            }
                         }
                     }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError){
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
-                });
-*/
-                Intent ServiceListIntent = new Intent(getApplicationContext(), ManageServiceActivity.class);
-                Toast toast = Toast.makeText(getApplicationContext(), "Service Deleted", Toast.LENGTH_SHORT);
-                toast.show();
-                finish();
-                startActivity(ServiceListIntent);
+                    });
             }
             });
     }

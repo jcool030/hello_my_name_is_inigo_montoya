@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -39,11 +38,12 @@ public class ManageServiceActivity extends AppCompatActivity {
                  String name = dataSnapshot.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_NAME).getValue(String.class);
                  Double rate = dataSnapshot.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_RATE).getValue(Double.class);
 
+                 //dataSnapshot.getRef().removeValue();// REMOVE THE COMMENT TO PURGE THE CURRENT DATABASE
                  if(name != null && rate != null)
                  {
                      Service newService = new Service(name, rate);
                      manager.add(newService);
-                 }
+                 }//potentially add "else; dataSnapshot.getRef().removeValue();" to remove problem values
             }
 
             @Override
@@ -60,12 +60,10 @@ public class ManageServiceActivity extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
             }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
             }
 
             @Override
