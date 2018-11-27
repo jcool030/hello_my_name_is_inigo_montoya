@@ -13,7 +13,7 @@ public class ServiceManager {
     protected ServiceManager() {
         //This Exists to defeat instantiation
 
-        serviceList = new ArrayList<Service>(); //With the new version of the manageServiceActivity, null
+        serviceList = new ArrayList<>(); //With the new version of the manageServiceActivity, null
         //entries are ignored. Eventually we chould merge these classes into one file
     }
 

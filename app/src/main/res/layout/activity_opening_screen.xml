@@ -55,11 +55,6 @@
                 android:inputType="textPassword" />
         </LinearLayout>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="6" />
-
         <Button
             android:id="@+id/new_user_bttn"
             style="@android:style/Widget.DeviceDefault.Button.Inset"
@@ -80,5 +75,10 @@
             android:onClick="onLoginClick"
             android:text="@string/login_text"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="6" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

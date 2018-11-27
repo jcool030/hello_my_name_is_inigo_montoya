@@ -43,7 +43,8 @@ public class ManageServiceActivity extends AppCompatActivity {
                  {
                      Service newService = new Service(name, rate);
                      manager.add(newService);
-                 }//potentially add "else; dataSnapshot.getRef().removeValue();" to remove problem values
+                 }
+                 //else{ dataSnapshot.getRef().removeValue();} to remove problem values
             }
 
             @Override
@@ -82,6 +83,21 @@ public class ManageServiceActivity extends AppCompatActivity {
             launchEditorIntent.putExtra("selectedService", position);
             startActivity(launchEditorIntent);
             finish();
+            }
+        });
+    }
+    public void refreshClick(View v){
+        listView = findViewById(R.id.serviceList);
+        adapter = new ServiceArrayAdapter(this, manager.getServiceList());
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick (AdapterView < ? > parent,final View view, int position, long id){
+                Intent launchEditorIntent = new Intent(getApplicationContext(), ServiceEditorActivity.class);
+                launchEditorIntent.putExtra("selectedService", position);
+                startActivity(launchEditorIntent);
+                finish();
             }
         });
     }

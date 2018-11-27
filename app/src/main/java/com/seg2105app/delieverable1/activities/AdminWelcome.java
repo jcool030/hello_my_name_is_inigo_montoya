@@ -2,44 +2,97 @@ package com.seg2105app.delieverable1.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.seg2105app.delieverable1.database.DatabaseHandler;
+import com.seg2105app.delieverable1.users.User;
 
 //A copy of the homeowner welcome screen class
 public class AdminWelcome extends AppCompatActivity {
+    private ListView listView;//these 4 are part of user list code
+    private UserManager manager;
+    private DatabaseHandler sdbHandler;
+    private UserArrayAdapter adapter;
 
-    Button signoutButton, createService;
-    ListView userlv;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_welcome);
-
-        signoutButton = findViewById(R.id.logOutButton);
+        sdbHandler = new DatabaseHandler(this); //this is part of user list code
 
         Bundle bundle = getIntent().getExtras();
         String user = bundle.getString("username");
         TextView welcomeText = findViewById(R.id.welcomeText);
         welcomeText.setText("Welcome, " + user + "! You are logged in as: Admin.");
 
-        userlv = findViewById(R.id.userList);
-        UserManager manager = UserManager.getInstance();//creates instance of userManager if not already exists
+        //////Start of user list code
 
-        UserArrayAdapter adapter = new UserArrayAdapter(this, manager.getUserList());
-        userlv.setAdapter(adapter);
-//        userlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick (AdapterView < ? > parent,final View view, int position, long id){
-//                Intent launchEditorIntent = new Intent(getApplicationContext(), serviceEditorActivity.class);
-//                launchEditorIntent.putExtra("selectedService", position);
-//                startActivityForResult(launchEditorIntent, 0);
-//            }
-//        });
+        listView = findViewById(R.id.userList);
+        manager = UserManager.getInstance();
+        manager.clear();
 
+        sdbHandler.getReferenceToUserTable().addChildEventListener(new ChildEventListener(){
+
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String username = dataSnapshot.child(DatabaseHandler.UserEntry.COLUMN_USERNAME).getValue(String.class);
+                String password = dataSnapshot.child(DatabaseHandler.UserEntry.COLUMN_PASSWORD).getValue(String.class);
+                String firstname = dataSnapshot.child(DatabaseHandler.UserInfoEntry.COLUMN_FIRST_NAME).getValue(String.class);
+                String lastname = dataSnapshot.child(DatabaseHandler.UserInfoEntry.COLUMN_LAST_NAME).getValue(String.class);
+                String type = dataSnapshot.child(DatabaseHandler.UserInfoEntry.COLUMN_USER_TYPE).getValue(String.class);
+
+                Toast usename = Toast.makeText(getApplicationContext(), "username = "+ username, Toast.LENGTH_SHORT);
+                usename.show();
+                Toast pass = Toast.makeText(getApplicationContext(), "password = "+password, Toast.LENGTH_SHORT);
+                pass.show();
+                Toast fname = Toast.makeText(getApplicationContext(), "fname = "+firstname, Toast.LENGTH_SHORT);
+                fname.show();
+                Toast lname = Toast.makeText(getApplicationContext(), "lname = "+lastname, Toast.LENGTH_SHORT);
+                lname.show();
+                Toast types = Toast.makeText(getApplicationContext(), "type = "+type, Toast.LENGTH_SHORT);
+                types.show();
+
+                //dataSnapshot.getRef().removeValue();// REMOVE THE COMMENT TO PURGE THE CURRENT DATABASE
+                if(username != null && password != null && firstname != null && lastname != null && type != null)
+                {
+                    User newUser = new User(username, password, firstname, lastname, type) {
+                    };
+                    manager.add(newUser);
+                }
+                //else{ dataSnapshot.getRef().removeValue();} to remove problem values (currently will delete all since noone has names)
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        adapter = new UserArrayAdapter(this, manager.getUserList());
+        listView.setAdapter(adapter); //end of user list code
     }//end of onCreate
 
     public void createServiceClick(View v){

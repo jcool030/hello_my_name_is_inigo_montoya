@@ -63,7 +63,7 @@ public class ServiceEditorActivity extends AppCompatActivity
                         toast.show();
                     } else {
                         final String newName = serviceName.getText().toString();
-                        final Double newRate = Double.parseDouble(serviceRate.getText().toString());
+                        final String newRate = serviceRate.getText().toString();
 
                         sdbHandler.getReferenceToServiceTable().addListenerForSingleValueEvent(new ValueEventListener(){
 
@@ -81,7 +81,14 @@ public class ServiceEditorActivity extends AppCompatActivity
                                         }
                                     }
                                 }
-                                if (nameAlreadyExists) { //if exists, creates error
+                                if(newName.length()>30) {
+                                    Toast nameTooLong = Toast.makeText(getApplicationContext(), "Service name is too long (no more than 30 characters)", Toast.LENGTH_SHORT);
+                                    nameTooLong.show();
+                                }else if(newRate.length()>10) {
+                                    Toast rateTooLong = Toast.makeText(getApplicationContext(), "Rate is too long.", Toast.LENGTH_SHORT);
+                                    rateTooLong.show();
+                                }
+                                else if (nameAlreadyExists) { //if exists, creates error
                                     Toast toast = Toast.makeText(getApplicationContext(), "That service name already exists! Please try another", Toast.LENGTH_SHORT);
                                     toast.show();
                                 } else                      //In some worlds    Startpoint
@@ -94,7 +101,7 @@ public class ServiceEditorActivity extends AppCompatActivity
                                     if (key != "")
                                     {           //precaution - not sure if there's a time when the key is not there (maybe someone else modifies database at same time as you?)
                                         currentService.setName(newName);
-                                        currentService.setRate(newRate);
+                                        currentService.setRate( Double.parseDouble(newRate));
                                         sdbHandler.updateService(currentService, key);
                                         Toast toast = Toast.makeText(getApplicationContext(), "Service Saved Successfully", Toast.LENGTH_SHORT);
                                         toast.show();

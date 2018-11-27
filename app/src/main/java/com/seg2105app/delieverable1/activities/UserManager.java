@@ -15,9 +15,7 @@ public class UserManager {
     protected UserManager() {
         //This Exists to defeat instantiation
 
-        userList = new ArrayList<User>();
-        User newUser = new HomeOwner("Username", "Password", "First Name", "Last Name", "Homeowner");
-        userList.add(newUser);
+        userList = new ArrayList<>();
     }
 
     //This will be called to check if a list already exists
@@ -36,5 +34,13 @@ public class UserManager {
     public User getUserAt(int index)
     {
         return userList.get(index);
+    }
+
+    public void add(User user){userList.add(user);}
+
+    public void clear()
+    {
+        ArrayList<User> tmpList = new ArrayList<>();
+        this.userList = tmpList;
     }
 }

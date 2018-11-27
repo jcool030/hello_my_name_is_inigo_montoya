@@ -51,6 +51,8 @@
     <string name="confirmAdditionsButton">Confirm Additions and Return</string>
     <string name="PreviewText">Services to Add</string>
     <string name="refreshButton">Refresh</string>
+    <string name="searchButton_ServiceName">Search by Service</string>
+    <string name="providerSearchButton">Search by Service Provider</string>
 
     <string-array name="times_array">
     <item>-----</item>

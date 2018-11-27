@@ -166,6 +166,8 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
                             toast.show();
                             return;
                         }
+                        Toast sucessfulAccCreation = Toast.makeText(getApplicationContext(),"Sucessfully created account with username: "+username + " and password: "+password, Toast.LENGTH_LONG);
+                        sucessfulAccCreation.show();
                         Intent returnIntent = new Intent(SignUpScreenActivity.this, OpeningScreenActivity.class);
                         startActivity(returnIntent);
                         finish();

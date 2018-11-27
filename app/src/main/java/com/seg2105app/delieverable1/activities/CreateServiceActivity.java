@@ -42,7 +42,14 @@ public class CreateServiceActivity extends AppCompatActivity implements View.OnC
                 Toast noHourlyRate = Toast.makeText(CreateServiceActivity.this, "Hourly rate is empty.", Toast.LENGTH_SHORT);
                 noHourlyRate.show();
 
-            } else { //if both fields are filled out, checks if the name already exists before creating new service
+            } else if(serviceName.length()>30) {
+                Toast nameTooLong = Toast.makeText(CreateServiceActivity.this, "Service name is too long", Toast.LENGTH_SHORT);
+                nameTooLong.show();
+            }else if(hourlyRateString.length()>10){
+                Toast rateTooLong = Toast.makeText(CreateServiceActivity.this, "Rate is too long.", Toast.LENGTH_SHORT);
+                rateTooLong.show();
+
+            }else{ //if both fields are filled out, checks if the name already exists before creating new service
 
                 sdbHandler.getReferenceToServiceTable().addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -62,7 +69,7 @@ public class CreateServiceActivity extends AppCompatActivity implements View.OnC
                         } else {
                             //for the database
                             sdbHandler.createService(new Service(serviceName, Double.parseDouble(hourlyRateString))); //if hourlyRate invalid, throws NumberFormatException
-                            Toast toast = Toast.makeText(getApplicationContext(), "Service Created Successfully", Toast.LENGTH_SHORT);
+                            Toast toast = Toast.makeText(getApplicationContext(), "Service Created Successfully with name: "+serviceName+" and rate: "+hourlyRateString, Toast.LENGTH_SHORT);
                             toast.show();
                         }
                     }
