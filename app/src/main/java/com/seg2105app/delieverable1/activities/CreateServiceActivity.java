@@ -71,6 +71,7 @@ public class CreateServiceActivity extends AppCompatActivity implements View.OnC
                             sdbHandler.createService(new Service(serviceName, Double.parseDouble(hourlyRateString))); //if hourlyRate invalid, throws NumberFormatException
                             Toast toast = Toast.makeText(getApplicationContext(), "Service Created Successfully with name: "+serviceName+" and rate: "+hourlyRateString, Toast.LENGTH_SHORT);
                             toast.show();
+                            finish();
                         }
                     }
 

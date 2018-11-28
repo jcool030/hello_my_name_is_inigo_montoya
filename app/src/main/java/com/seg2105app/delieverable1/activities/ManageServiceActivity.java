@@ -85,6 +85,7 @@ public class ManageServiceActivity extends AppCompatActivity {
             finish();
             }
         });
+
     }
     public void refreshClick(View v){
         listView = findViewById(R.id.serviceList);

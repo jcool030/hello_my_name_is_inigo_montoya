@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.seg2105app.delieverable1.database.DatabaseHandler;
+import com.seg2105app.delieverable1.users.ServiceProvider;
 import com.seg2105app.delieverable1.users.User;
 
 //A copy of the homeowner welcome screen class
@@ -64,6 +66,18 @@ public class AdminWelcome extends AppCompatActivity {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String username = dataSnapshot.child(DatabaseHandler.UserEntry.COLUMN_USERNAME).getValue(String.class);
+                String password = dataSnapshot.child(DatabaseHandler.UserEntry.COLUMN_PASSWORD).getValue(String.class);
+                String firstname = dataSnapshot.child(DatabaseHandler.UserInfoEntry.COLUMN_FIRST_NAME).getValue(String.class);
+                String lastname = dataSnapshot.child(DatabaseHandler.UserInfoEntry.COLUMN_LAST_NAME).getValue(String.class);
+                String type = dataSnapshot.child(DatabaseHandler.UserInfoEntry.COLUMN_USER_TYPE).getValue(String.class);
+
+                if(username != null && password != null && firstname != null && lastname != null && type != null)
+                {
+                    User newUser = new User(username, password, firstname, lastname, type){
+                    };
+                    manager.add(newUser);
+                }
 
             }
 
@@ -83,6 +97,7 @@ public class AdminWelcome extends AppCompatActivity {
 
         adapter = new UserArrayAdapter(this, manager.getUserList());
         listView.setAdapter(adapter); //end of user list code
+
     }//end of onCreate
 
     public void createServiceClick(View v){
@@ -100,6 +115,7 @@ public class AdminWelcome extends AppCompatActivity {
         startActivity(signoutIntent);
         finish();
     }
+
 }
 
 
