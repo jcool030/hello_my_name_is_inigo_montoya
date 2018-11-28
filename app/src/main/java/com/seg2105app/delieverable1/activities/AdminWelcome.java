@@ -6,10 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -52,14 +50,14 @@ public class AdminWelcome extends AppCompatActivity {
                 String lastname = dataSnapshot.child(DatabaseHandler.UserInfoEntry.COLUMN_LAST_NAME).getValue(String.class);
                 String type = dataSnapshot.child(DatabaseHandler.UserInfoEntry.COLUMN_USER_TYPE).getValue(String.class);
 
-                //dataSnapshot.getRef().removeValue();// REMOVE THE COMMENT TO PURGE THE CURRENT DATABASE
+                //dataSnapshot.getRef().removeValue();// REMOVE THE COMMENT BIT TO PURGE THE CURRENT DATABASE
                 if(username != null && password != null && firstname != null && lastname != null && type != null)
                 {
                     User newUser = new User(username, password, firstname, lastname, type) {
                     };
                     manager.add(newUser);
                 }
-                //else{ dataSnapshot.getRef().removeValue();} to remove problem values (currently will delete all since noone has names)
+                //else{ dataSnapshot.getRef().removeValue();} to remove problem values
             }
 
             @Override
