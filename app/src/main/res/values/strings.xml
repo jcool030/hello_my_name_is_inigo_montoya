@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Yelp for Plumbers</string>
+    <string name="app_name">Delieverable1</string>
     <string name="login_text">Log in</string>
     <string name="newuser_text">New User?</string>
     <string name="password">Password</string>
@@ -53,7 +53,7 @@
     <string name="refreshButton">Refresh</string>
     <string name="searchButton_ServiceName">Search by Service</string>
     <string name="providerSearchButton">Search by Service Provider</string>
-    <string name="refreshUserList">Refresh</string>
+    <string name="userlistTitle">List of Users</string>
 
     <string-array name="times_array">
     <item>-----</item>
