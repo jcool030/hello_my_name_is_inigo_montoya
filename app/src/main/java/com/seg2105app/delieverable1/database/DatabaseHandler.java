@@ -31,8 +31,8 @@ public final class DatabaseHandler{
     }
 
     public static class UserInfoEntry implements BaseColumns {
-        public static final String COLUMN_FIRST_NAME = "firstname";
-        public static final String COLUMN_LAST_NAME = "lastname";
+        public static final String COLUMN_FIRST_NAME = "firstName";
+        public static final String COLUMN_LAST_NAME = "lastName";
         public static final String COLUMN_USER_TYPE = "type";
     }
 

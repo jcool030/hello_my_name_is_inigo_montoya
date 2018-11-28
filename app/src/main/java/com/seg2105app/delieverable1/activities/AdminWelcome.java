@@ -45,22 +45,12 @@ public class AdminWelcome extends AppCompatActivity {
 
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
                 String username = dataSnapshot.child(DatabaseHandler.UserEntry.COLUMN_USERNAME).getValue(String.class);
                 String password = dataSnapshot.child(DatabaseHandler.UserEntry.COLUMN_PASSWORD).getValue(String.class);
                 String firstname = dataSnapshot.child(DatabaseHandler.UserInfoEntry.COLUMN_FIRST_NAME).getValue(String.class);
                 String lastname = dataSnapshot.child(DatabaseHandler.UserInfoEntry.COLUMN_LAST_NAME).getValue(String.class);
                 String type = dataSnapshot.child(DatabaseHandler.UserInfoEntry.COLUMN_USER_TYPE).getValue(String.class);
-
-                Toast usename = Toast.makeText(getApplicationContext(), "username = "+ username, Toast.LENGTH_SHORT);
-                usename.show();
-                Toast pass = Toast.makeText(getApplicationContext(), "password = "+password, Toast.LENGTH_SHORT);
-                pass.show();
-                Toast fname = Toast.makeText(getApplicationContext(), "fname = "+firstname, Toast.LENGTH_SHORT);
-                fname.show();
-                Toast lname = Toast.makeText(getApplicationContext(), "lname = "+lastname, Toast.LENGTH_SHORT);
-                lname.show();
-                Toast types = Toast.makeText(getApplicationContext(), "type = "+type, Toast.LENGTH_SHORT);
-                types.show();
 
                 //dataSnapshot.getRef().removeValue();// REMOVE THE COMMENT TO PURGE THE CURRENT DATABASE
                 if(username != null && password != null && firstname != null && lastname != null && type != null)
