@@ -14,7 +14,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.seg2105app.activities.admin.ManageServiceActivity;
-import com.seg2105app.delieverable1.activities.R;
+import com.seg2105app.activities.R;
 import com.seg2105app.database.DatabaseHandler;
 import com.seg2105app.services.ServiceList;
 import com.seg2105app.services.Service;

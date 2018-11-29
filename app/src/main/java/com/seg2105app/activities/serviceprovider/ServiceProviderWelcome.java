@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.seg2105app.activities.OpeningScreenActivity;
 import com.seg2105app.activities.serviceprovider.EditAvailabilitiesActivity;
-import com.seg2105app.delieverable1.activities.R;
+import com.seg2105app.activities.R;
 import com.seg2105app.users.CurrentUser;
 import com.seg2105app.users.ServiceProvider;
 import com.seg2105app.users.UserList;

@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 //import com.seg2105app.delieverable1.activities.R;
 import com.seg2105app.activities.OpeningScreenActivity;
-import com.seg2105app.delieverable1.activities.R;
+import com.seg2105app.activities.R;
 import com.seg2105app.users.HomeOwner;
 import com.seg2105app.users.UserList;
 

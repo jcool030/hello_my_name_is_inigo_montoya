@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.seg2105app.delieverable1.activities.R;
+import com.seg2105app.activities.R;
 import com.seg2105app.users.User;
 
 import java.util.ArrayList;

@@ -15,7 +15,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.seg2105app.database.DatabaseHandler;
-import com.seg2105app.delieverable1.activities.R;
+import com.seg2105app.activities.R;
 import com.seg2105app.users.CurrentUser;
 import com.seg2105app.users.User;
 import com.seg2105app.users.UserFactory;

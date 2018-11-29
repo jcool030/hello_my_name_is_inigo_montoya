@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.seg2105app.activities.ServiceArrayAdapter;
 import com.seg2105app.activities.admin.ServiceEditorActivity;
-import com.seg2105app.delieverable1.activities.R;
+import com.seg2105app.activities.R;
 import com.seg2105app.database.DatabaseHandler;
 import com.seg2105app.services.ServiceList;
 
