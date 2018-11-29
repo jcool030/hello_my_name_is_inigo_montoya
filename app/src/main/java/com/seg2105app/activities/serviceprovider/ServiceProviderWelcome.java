@@ -1,4 +1,4 @@
-package com.seg2105app.delieverable1.activities;
+package com.seg2105app.activities.serviceprovider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,16 @@ import android.widget.RadioGroup;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.seg2105app.activities.OpeningScreenActivity;
+import com.seg2105app.activities.serviceprovider.EditAvailabilitiesActivity;
+import com.seg2105app.delieverable1.activities.R;
+import com.seg2105app.users.CurrentUser;
+import com.seg2105app.users.ServiceProvider;
+import com.seg2105app.users.UserList;
+
 public class ServiceProviderWelcome extends AppCompatActivity {
+
+    ServiceProvider contractor = (ServiceProvider)CurrentUser.getCurrentUser();
 
     Button signoutButton, updateBtn, editAvailBtn;
     TextView usernameText, availText;
@@ -44,9 +53,8 @@ public class ServiceProviderWelcome extends AppCompatActivity {
         licenseTrue = findViewById(R.id.Yes);
 
         Bundle bundle = getIntent().getExtras();
-        user = bundle.getString("username");
-
-        usernameText.setText("Welcome, " + user + " you are logged in as a Service Provider.");
+        String userKey = bundle.getString("key");
+        usernameText.setText("Welcome, " + contractor.getUsername() + " you are logged in as a Service Provider.");
 
         String monStart = bundle.getString("monStartTime");
         String monEnd = bundle.getString("monEndTime");

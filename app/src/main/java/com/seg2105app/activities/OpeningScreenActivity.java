@@ -1,4 +1,4 @@
-package com.seg2105app.delieverable1.activities;
+package com.seg2105app.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -14,8 +14,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.seg2105app.delieverable1.database.DatabaseHandler;
-import com.seg2105app.delieverable1.users.*;
+import com.seg2105app.database.DatabaseHandler;
+import com.seg2105app.delieverable1.activities.R;
+import com.seg2105app.users.CurrentUser;
+import com.seg2105app.users.User;
+import com.seg2105app.users.UserFactory;
+import com.seg2105app.users.UserList;
 
 public class OpeningScreenActivity extends AppCompatActivity{
     EditText username;
@@ -51,31 +55,28 @@ public class OpeningScreenActivity extends AppCompatActivity{
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    User user = udbHandler.validateUsernameAndPassword(dataSnapshot, username.getText().toString().trim(), password.getText().toString().trim());
+                    DataSnapshot ds = udbHandler.validateUsernameAndPassword(dataSnapshot, username.getText().toString().trim(), password.getText().toString().trim());
 
-                    if (user == null) {
+                    if (ds == null) {
                         Toast toast = Toast.makeText(getApplicationContext(), "Username or Password are incorrect", Toast.LENGTH_SHORT);
                         toast.show();
 
                         username.setText("");
                         password.setText("");
                     } else {
-                        if (user.getType().equals("Administrator")) {
-                            Intent intent = new Intent(OpeningScreenActivity.this, AdminWelcome.class);
-                            intent.putExtra("username", user.getUsername());
-                            startActivity(intent);
-                            finish();
-                        } else if (user.getType().equals("ServiceProvider")) {
-                            Intent intent = new Intent(OpeningScreenActivity.this, ServiceProviderWelcome.class);
-                            intent.putExtra("username", user.getUsername());
-                            startActivity(intent);
-                            finish();
-                        } else if (user.getType().equals("HomeOwner")) {
-                            Intent intent = new Intent(OpeningScreenActivity.this, HomeOwnerWelcome.class);
-                            intent.putExtra("username", user.getUsername());
-                            startActivity(intent);
-                            finish();
-                        }
+                        String username = ds.child(DatabaseHandler.UserEntry.COLUMN_USERNAME).getValue(String.class);
+                        String password = ds.child(DatabaseHandler.UserEntry.COLUMN_PASSWORD).getValue(String.class);
+                        String firstName = ds.child(DatabaseHandler.UserInfoEntry.COLUMN_FIRST_NAME).getValue(String.class);
+                        String lastName = ds.child(DatabaseHandler.UserInfoEntry.COLUMN_LAST_NAME).getValue(String.class);
+                        String type = ds.child(DatabaseHandler.UserInfoEntry.COLUMN_USER_TYPE).getValue(String.class);
+
+                        UserFactory factory = new UserFactory();
+                        User user = factory.getUser(username, password, firstName, lastName, type);
+                        CurrentUser.setCurrentLogIn(user, ds.getKey());
+                        CurrentUser currentUser = new CurrentUser();
+                        currentUser.logIn(OpeningScreenActivity.this);
+                        finish();
+
                     }
                 }
 

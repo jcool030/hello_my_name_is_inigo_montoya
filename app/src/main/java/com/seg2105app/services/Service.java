@@ -1,4 +1,4 @@
-package com.seg2105app.delieverable1.users;
+package com.seg2105app.services;
 import java.util.List;
 
 public class Service {
@@ -7,10 +7,16 @@ public class Service {
     private double rate = 0.0;
     private List<Service> subservices;
 
+    public Service(){
+        name = "name not yet defined";
+        rate = 0.0;
+    }
+
     public Service(String serviceName, double hourlyRate){
         this.name = serviceName;
         this.rate = hourlyRate;
     }
+
     //Getters
     public String getName(){
         return this.name;

@@ -1,4 +1,4 @@
-package com.seg2105app.delieverable1.activities;
+package com.seg2105app.activities.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,8 +13,11 @@ import android.widget.Toast;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
-import com.seg2105app.delieverable1.database.DatabaseHandler;
-import com.seg2105app.delieverable1.users.Service;
+import com.seg2105app.activities.admin.ManageServiceActivity;
+import com.seg2105app.delieverable1.activities.R;
+import com.seg2105app.database.DatabaseHandler;
+import com.seg2105app.services.ServiceList;
+import com.seg2105app.services.Service;
 
 public class ServiceEditorActivity extends AppCompatActivity
 {
@@ -36,7 +39,7 @@ public class ServiceEditorActivity extends AppCompatActivity
         final EditText serviceRate = (EditText) findViewById(R.id.editServiceRate);
 
         //Select the service to modify
-        final Service currentService = ServiceManager.getInstance().getServiceAt(serviceIndex);
+        final Service currentService = ServiceList.getInstance().getServiceAt(serviceIndex);
 
         //Updating contents in this screen
         serviceName.setText(currentService.getName());

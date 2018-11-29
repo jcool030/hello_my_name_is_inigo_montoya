@@ -1,4 +1,4 @@
-package com.seg2105app.delieverable1.activities;
+package com.seg2105app.activities;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import com.seg2105app.delieverable1.users.Service;
+
+import com.seg2105app.delieverable1.activities.R;
+import com.seg2105app.services.Service;
 import java.util.ArrayList;
 
 public class ServiceArrayAdapter extends ArrayAdapter<Service> {

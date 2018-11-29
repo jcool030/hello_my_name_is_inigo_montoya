@@ -1,4 +1,4 @@
-package com.seg2105app.delieverable1.activities;
+package com.seg2105app.activities;
 
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -14,8 +14,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.seg2105app.delieverable1.database.DatabaseHandler;
-import com.seg2105app.delieverable1.users.*;
+import com.seg2105app.delieverable1.activities.R;
+import com.seg2105app.database.DatabaseHandler;
+import com.seg2105app.users.*;
 
 import static android.content.ContentValues.TAG;
 
@@ -146,20 +147,20 @@ public class SignUpScreenActivity extends AppCompatActivity implements View.OnCl
                                 return;
                             } else {
                                 Administrator admin = (Administrator) userFactory.getUser(username, password, firstName, lastName, "Administrator");
-                                users.add(admin);
+                                //users.add(admin);
                                 udbHandler.createUserWithUsernameAndPassword(admin, Integer.toString(users.indexOf(admin)));
                                 adminAlreadyExists = true;//after making the first one, it stores it permanently to prevent creating another
                             }
                         } else if (contractorSelected && !adminSelected && !userSelected) { //ServiceProvider selected
 
                             ServiceProvider contractor = (ServiceProvider) userFactory.getUser(username, password, firstName, lastName, "ServiceProvider");
-                            users.add(contractor);
+                            //users.add(contractor);
                             udbHandler.createUserWithUsernameAndPassword(contractor, Integer.toString(users.indexOf(contractor)));
 
                         } else if (userSelected && !adminSelected && !contractorSelected) { //HomeOwner selected
 
                             HomeOwner homeOwner = (HomeOwner) userFactory.getUser(username, password, firstName, lastName, "HomeOwner");
-                            users.add(homeOwner);
+                            //users.add(homeOwner);
                             udbHandler.createUserWithUsernameAndPassword(homeOwner, Integer.toString(users.indexOf(homeOwner)));
                         } else {
                             Toast toast = Toast.makeText(getApplicationContext(), "Invalid user type selection", Toast.LENGTH_SHORT);

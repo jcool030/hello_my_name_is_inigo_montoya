@@ -1,4 +1,4 @@
-package com.seg2105app.delieverable1.activities;
+package com.seg2105app.activities.admin;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,10 +12,14 @@ import android.widget.Toast;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
-import com.seg2105app.delieverable1.database.DatabaseHandler;
-import com.seg2105app.delieverable1.users.Service;
+import com.seg2105app.delieverable1.activities.R;
+import com.seg2105app.database.DatabaseHandler;
+import com.seg2105app.services.Service;
+import com.seg2105app.users.Administrator;
+import com.seg2105app.users.UserList;
 
 public class CreateServiceActivity extends AppCompatActivity implements View.OnClickListener {
+    Administrator admin;
     private EditText getHourlyRate, getServiceName;
     private DatabaseHandler sdbHandler;
 
@@ -26,6 +30,10 @@ public class CreateServiceActivity extends AppCompatActivity implements View.OnC
         getHourlyRate = findViewById(R.id.HourlyRate);
         getServiceName = findViewById(R.id.ServiceName);
         sdbHandler = new DatabaseHandler(this);
+
+        Bundle bundle = getIntent().getExtras();
+        String key = bundle.getString("key");
+        admin = (Administrator) UserList.getUser(key);
     }
 
     public void onClick(View view) {
@@ -50,7 +58,6 @@ public class CreateServiceActivity extends AppCompatActivity implements View.OnC
                 rateTooLong.show();
 
             }else{ //if both fields are filled out, checks if the name already exists before creating new service
-
                 sdbHandler.getReferenceToServiceTable().addListenerForSingleValueEvent(new ValueEventListener() {
 
                     @Override

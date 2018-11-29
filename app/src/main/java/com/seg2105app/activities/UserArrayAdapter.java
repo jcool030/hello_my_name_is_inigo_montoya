@@ -1,4 +1,4 @@
-package com.seg2105app.delieverable1.activities;
+package com.seg2105app.activities;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.seg2105app.delieverable1.users.User;
+import com.seg2105app.delieverable1.activities.R;
+import com.seg2105app.users.User;
 
 import java.util.ArrayList;
 

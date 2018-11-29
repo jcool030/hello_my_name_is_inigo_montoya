@@ -1,9 +1,7 @@
-package com.seg2105app.delieverable1.activities;
+package com.seg2105app.activities.serviceprovider;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,11 +9,11 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.seg2105app.delieverable1.database.DatabaseHandler;
-import com.seg2105app.delieverable1.users.Service;
+import com.seg2105app.activities.ServiceArrayAdapter;
+import com.seg2105app.activities.admin.ServiceEditorActivity;
+import com.seg2105app.delieverable1.activities.R;
+import com.seg2105app.database.DatabaseHandler;
+import com.seg2105app.services.ServiceList;
 
 public class EditAvailabilitiesActivity extends AppCompatActivity {
 
@@ -30,7 +28,7 @@ public class EditAvailabilitiesActivity extends AppCompatActivity {
     String user;
 
     private ListView listView;
-    private ServiceManager manager;
+    private ServiceList manager;
     private DatabaseHandler sdbHandler;
     private ServiceArrayAdapter adapter;
 
@@ -60,50 +58,50 @@ public class EditAvailabilitiesActivity extends AppCompatActivity {
 
         sdbHandler = new DatabaseHandler(this);
         listView = findViewById(R.id.serviceList2);
-        manager = ServiceManager.getInstance();
+        manager = ServiceList.getInstance();
         manager.clear();
-
-        sdbHandler.getReferenceToServiceTable().addChildEventListener(new ChildEventListener(){
-
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String name = dataSnapshot.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_NAME).getValue(String.class);
-                Double rate = dataSnapshot.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_RATE).getValue(Double.class);
-
-                if(name != null && rate != null)
-                {
-                    Service newService = new Service(name, rate);
-                    manager.add(newService);
-                }
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String name = dataSnapshot.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_NAME).getValue(String.class);
-                Double rate = dataSnapshot.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_RATE).getValue(Double.class);
-
-                if(name != null && rate != null)
-                {
-                    Service newService = new Service(name, rate);
-                    manager.add(newService);
-                }
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+        manager.populateServiceList(sdbHandler);
+//        sdbHandler.getReferenceToServiceTable().addChildEventListener(new ChildEventListener(){
+//
+//            @Override
+//            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//                String name = dataSnapshot.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_NAME).getValue(String.class);
+//                Double rate = dataSnapshot.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_RATE).getValue(Double.class);
+//
+//                if(name != null && rate != null)
+//                {
+//                    Service newService = new Service(name, rate);
+//                    manager.add(newService);
+//                }
+//            }
+//
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//                String name = dataSnapshot.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_NAME).getValue(String.class);
+//                Double rate = dataSnapshot.child(DatabaseHandler.ServiceEntry.COLUMN_SERVICE_RATE).getValue(Double.class);
+//
+//                if(name != null && rate != null)
+//                {
+//                    Service newService = new Service(name, rate);
+//                    manager.add(newService);
+//                }
+//            }
+//
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
         adapter = new ServiceArrayAdapter(this, manager.getServiceList());
         listView.setAdapter(adapter);

@@ -1,4 +1,4 @@
-package com.seg2105app.delieverable1.users;
+package com.seg2105app.users;
 
 public class UserFactory {
 

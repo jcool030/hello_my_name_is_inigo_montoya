@@ -1,4 +1,4 @@
-package com.seg2105app.delieverable1.database;
+package com.seg2105app.database;
 
 
 import android.content.Context;
@@ -10,10 +10,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.seg2105app.delieverable1.users.Service;
-import com.seg2105app.delieverable1.users.User;
-import com.seg2105app.delieverable1.users.UserFactory;
-import com.seg2105app.delieverable1.users.UserList;
+import com.seg2105app.services.Service;
+import com.seg2105app.users.User;
 
 
 import static android.content.ContentValues.TAG;
@@ -61,8 +59,11 @@ public final class DatabaseHandler{
     }
 
     public void updateService(Service service, String key){
-        String uid = key;
-        firebaseDatabase.getReference(ServiceEntry.TABLE_SERVICES).child(uid).setValue(service);
+        firebaseDatabase.getReference(ServiceEntry.TABLE_SERVICES).child(key).setValue(service);
+    }
+
+    public void deleteService(String key){
+        firebaseDatabase.getReference(ServiceEntry.TABLE_SERVICES).child(key).removeValue();
     }
 
     public Query getReferenceToUserTable(){
@@ -91,7 +92,7 @@ public final class DatabaseHandler{
         return valueIsPresent;
     }
 
-    public User validateUsernameAndPassword(DataSnapshot snapshot, String username, String password){
+    public DataSnapshot validateUsernameAndPassword(DataSnapshot snapshot, String username, String password){
         for (DataSnapshot ds: snapshot.getChildren()) {
             String retrievedUsername = ds.child(UserEntry.COLUMN_USERNAME).getValue(String.class);
             String retrievedPassword = ds.child(UserEntry.COLUMN_PASSWORD).getValue(String.class);
@@ -103,42 +104,15 @@ public final class DatabaseHandler{
 
             }
 
-
-            if (retrievedUsername.equalsIgnoreCase(username) && retrievedPassword.equals(password)) {
-                String mUsername = ds.child(UserEntry.COLUMN_USERNAME).getValue(String.class);
-                String mPassword = ds.child(UserEntry.COLUMN_PASSWORD).getValue(String.class);
-                String mFirstName = ds.child(UserInfoEntry.COLUMN_FIRST_NAME).getValue(String.class);
-                String mLastName = ds.child(UserInfoEntry.COLUMN_LAST_NAME).getValue(String.class);
-                String mType = ds.child(UserInfoEntry.COLUMN_USER_TYPE).getValue(String.class);
-                UserFactory userFactory = new UserFactory();
-
-                User user = userFactory.getUser(mUsername,mPassword,mFirstName,mLastName,mType);;
-
-                return user;
+            if (retrievedUsername.equals(username) && retrievedPassword.equals(password)) {
+                return ds;
             }
         }
 
         return null;
     }
 
-    public void produceListOfElementsFromSnapshot(DataSnapshot snapshot){
-            UserList userList = UserList.getInstance();
 
-        for (DataSnapshot ds: snapshot.getChildren()){
-            String mUsername = ds.child(UserEntry.COLUMN_USERNAME).getValue(String.class);
-            String mPassword = ds.child(UserEntry.COLUMN_PASSWORD).getValue(String.class);
-            String mFirstName = ds.child(UserInfoEntry.COLUMN_FIRST_NAME).getValue(String.class);
-            String mLastName = ds.child(UserInfoEntry.COLUMN_LAST_NAME).getValue(String.class);
-            String mType = ds.child(UserInfoEntry.COLUMN_USER_TYPE).getValue(String.class);
-            UserFactory userFactory = new UserFactory();
-
-            User user = userFactory.getUser(mUsername,mPassword,mFirstName,mLastName,mType);
-
-            if (!userList.contains(user)){
-                userList.add(user);
-            }
-        }
-    }
 
 
 //    public void readUserFromDatabase(Context context, String username){

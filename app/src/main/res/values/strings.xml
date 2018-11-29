@@ -24,7 +24,7 @@
     <string name="userType">User Type</string>
     <string name="deleteButton">Delete this Service</string>
     <string name="manage_service_title">Services Offered</string>
-    <string name="phoneNum" >Phone Number</string>
+    <string name="phoneNum">Phone Number</string>
     <string name="address">Address</string>
     <string name="companyName">Company Name</string>
     <string name="lisenseTest">License:</string>
@@ -56,55 +56,59 @@
     <string name="userlistTitle">List of Users</string>
 
     <string-array name="times_array">
-    <item>-----</item>
-    <item>closed</item>
-    <item>0:00</item>
-    <item>0:30</item>
-    <item>1:00</item>
-    <item>1:30</item>
-    <item>2:00</item>
-    <item>2:30</item>
-    <item>3:00</item>
-    <item>3:30</item>
-    <item>4:00</item>
-    <item>4:30</item>
-    <item>5:00</item>
-    <item>5:30</item>
-    <item>6:00</item>
-    <item>6:30</item>
-    <item>7:00</item>
-    <item>7:30</item>
-    <item>8:00</item>
-    <item>8:30</item>
-    <item>9:00</item>
-    <item>9:30</item>
-    <item>10:00</item>
-    <item>10:30</item>
-    <item>11:00</item>
-    <item>11:30</item>
-    <item>12:00</item>
-    <item>12:30</item>
-    <item>13:00</item>
-    <item>13:30</item>
-    <item>14:00</item>
-    <item>14:30</item>
-    <item>15:00</item>
-    <item>15:30</item>
-    <item>16:00</item>
-    <item>16:30</item>
-    <item>17:00</item>
-    <item>17:30</item>
-    <item>18:00</item>
-    <item>19:30</item>
-    <item>20:00</item>
-    <item>20:30</item>
-    <item>21:00</item>
-    <item>21:30</item>
-    <item>22:00</item>
-    <item>22:30</item>
-    <item>23:00</item>
-    <item>23:30</item>
+        <item>-----</item>
+        <item>closed</item>
+        <item>0:00</item>
+        <item>0:30</item>
+        <item>1:00</item>
+        <item>1:30</item>
+        <item>2:00</item>
+        <item>2:30</item>
+        <item>3:00</item>
+        <item>3:30</item>
+        <item>4:00</item>
+        <item>4:30</item>
+        <item>5:00</item>
+        <item>5:30</item>
+        <item>6:00</item>
+        <item>6:30</item>
+        <item>7:00</item>
+        <item>7:30</item>
+        <item>8:00</item>
+        <item>8:30</item>
+        <item>9:00</item>
+        <item>9:30</item>
+        <item>10:00</item>
+        <item>10:30</item>
+        <item>11:00</item>
+        <item>11:30</item>
+        <item>12:00</item>
+        <item>12:30</item>
+        <item>13:00</item>
+        <item>13:30</item>
+        <item>14:00</item>
+        <item>14:30</item>
+        <item>15:00</item>
+        <item>15:30</item>
+        <item>16:00</item>
+        <item>16:30</item>
+        <item>17:00</item>
+        <item>17:30</item>
+        <item>18:00</item>
+        <item>19:30</item>
+        <item>20:00</item>
+        <item>20:30</item>
+        <item>21:00</item>
+        <item>21:30</item>
+        <item>22:00</item>
+        <item>22:30</item>
+        <item>23:00</item>
+        <item>23:30</item>
 
-</string-array>
+    </string-array>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
