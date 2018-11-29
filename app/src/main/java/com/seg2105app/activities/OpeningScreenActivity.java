@@ -34,8 +34,8 @@ public class OpeningScreenActivity extends AppCompatActivity{
         FirebaseApp.initializeApp(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opening_screen);
-        username =  (EditText)findViewById(R.id.username_textfield);
-        password = (EditText)findViewById(R.id.password_textfield);
+        username =  findViewById(R.id.username_textfield);
+        password = findViewById(R.id.password_textfield);
     }
 
     public void onLoginClick(View view){

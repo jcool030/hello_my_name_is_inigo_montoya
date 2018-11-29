@@ -35,8 +35,8 @@ public class ServiceEditorActivity extends AppCompatActivity
         int serviceIndex = intent.getIntExtra("selectedService",0);
 
         //Getting TextFields to update
-        final EditText serviceName = (EditText) findViewById(R.id.editServiceName);
-        final EditText serviceRate = (EditText) findViewById(R.id.editServiceRate);
+        final EditText serviceName = findViewById(R.id.editServiceName);
+        final EditText serviceRate = findViewById(R.id.editServiceRate);
 
         //Select the service to modify
         final Service currentService = ServiceList.getInstance().getServiceAt(serviceIndex);
@@ -46,7 +46,7 @@ public class ServiceEditorActivity extends AppCompatActivity
         serviceRate.setText(String.valueOf(currentService.getRate()));
 
         //Button to save changes
-        Button saveButton = (Button) findViewById(R.id.saveButton);
+        Button saveButton = findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)

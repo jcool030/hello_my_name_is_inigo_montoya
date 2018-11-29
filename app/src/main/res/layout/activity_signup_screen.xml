@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.seg2105app.delieverable1.activities.com.seg2105app.activities.SignUpScreenActivity">
+    tools:context="com.seg2105app.activities.SignUpScreenActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"

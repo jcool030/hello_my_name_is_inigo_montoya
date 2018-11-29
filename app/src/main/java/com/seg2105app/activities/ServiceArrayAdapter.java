@@ -30,8 +30,8 @@ public class ServiceArrayAdapter extends ArrayAdapter<Service> {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View rowView = inflater.inflate(R.layout.service_layout, parent, false);
-        TextView serviceName = (TextView) rowView.findViewById(R.id.serviceName);
-        TextView serviceRate = (TextView) rowView.findViewById(R.id.serviceRate);
+        TextView serviceName = rowView.findViewById(R.id.serviceName);
+        TextView serviceRate = rowView.findViewById(R.id.serviceRate);
 
         serviceName.setText(currentService.getName());
         serviceRate.setText(String.valueOf(currentService.getRate()));

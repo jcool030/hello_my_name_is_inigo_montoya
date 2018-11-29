@@ -139,9 +139,9 @@ public class EditAvailabilitiesActivity extends AppCompatActivity {
         boolean mondayIsEmpty = mondayStartTime.equals("-----") || mondayEndTime.equals("-----");
         boolean tuesdayIsEmpty = tuesdayStartTime.equals("-----") || tuesdayEndTime.equals("-----");
         boolean wednesdayIsEmpty = wednesdayStartTime.equals("-----") || wednesdayEndTime.equals("-----");
-        boolean thursdayIsEmpty = thursdayStartTime == "-----" || thursdayEndTime == "-----";
+        boolean thursdayIsEmpty = thursdayStartTime.equals("-----") || thursdayEndTime.equals("-----");
         boolean fridayIsEmpty = fridayStartTime.equals("-----") || fridayEndTime.equals("-----");
-        boolean saturdayIsEmpty = saturdayStartTime == "-----" || saturdayEndTime == "-----";
+        boolean saturdayIsEmpty = saturdayStartTime.equals("-----") || saturdayEndTime.equals("-----");
         boolean sundayIsEmpty = sundayStartTime.equals("-----") || sundayEndTime.equals("-----");
         //check for missing inputs
         if (mondayIsEmpty){
