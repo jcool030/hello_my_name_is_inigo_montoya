@@ -162,5 +162,9 @@ public class ServiceProviderWelcome extends AppCompatActivity {
         editAvailIntent.putExtra("username", user);
         startActivity(editAvailIntent);
     }
+    public void pickUpServicesClick(View v){
+        Intent addServicesInent = new Intent(this, AddServicesActivity.class);
+        startActivity(addServicesInent);
+    }
 
 }
