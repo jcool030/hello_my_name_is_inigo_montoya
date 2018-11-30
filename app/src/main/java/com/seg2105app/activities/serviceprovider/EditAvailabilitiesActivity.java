@@ -14,6 +14,8 @@ import com.seg2105app.activities.admin.ServiceEditorActivity;
 import com.seg2105app.activities.R;
 import com.seg2105app.database.DatabaseHandler;
 import com.seg2105app.services.ServiceList;
+import com.seg2105app.users.CurrentUser;
+import com.seg2105app.users.ServiceProvider;
 
 public class EditAvailabilitiesActivity extends AppCompatActivity {
 
@@ -25,7 +27,8 @@ public class EditAvailabilitiesActivity extends AppCompatActivity {
     Spinner saturdayStart, saturdayEnd;
     Spinner sundayStart, sundayEnd;
 
-    String user;
+    //String user;
+    ServiceProvider contractor = (ServiceProvider) CurrentUser.getCurrentUser();
 
     private ListView listView;
     private ServiceList manager;
@@ -51,8 +54,8 @@ public class EditAvailabilitiesActivity extends AppCompatActivity {
         sundayStart = findViewById(R.id.sundayStartSpinner);
         sundayEnd = findViewById(R.id.sundayEndSpinner);
 
-        Bundle bundle = getIntent().getExtras();
-        user = bundle.getString("username");
+        //Bundle bundle = getIntent().getExtras();
+        //user = bundle.getString("username");
 
         //shoehorning the list in
 
@@ -169,23 +172,23 @@ public class EditAvailabilitiesActivity extends AppCompatActivity {
             Toast confirm = Toast.makeText(getApplicationContext(), "Availabilities Confirmed", Toast.LENGTH_LONG);
             confirm.show();
 
-            Intent confirmAvail = new Intent(this, ServiceProviderWelcome.class);
-            confirmAvail.putExtra("username", user);
-            confirmAvail.putExtra("monStartTime", mondayStartTime);
-            confirmAvail.putExtra("monEndTime", mondayEndTime);
-            confirmAvail.putExtra("tuesStartTime", tuesdayStartTime);
-            confirmAvail.putExtra("tuesEndTime", tuesdayEndTime);
-            confirmAvail.putExtra("wedStartTime", wednesdayStartTime);
-            confirmAvail.putExtra("wedEndTime", wednesdayEndTime);
-            confirmAvail.putExtra("thursStartTime", thursdayStartTime);
-            confirmAvail.putExtra("thursEndTime", thursdayEndTime);
-            confirmAvail.putExtra("friStartTime", fridayStartTime);
-            confirmAvail.putExtra("friEndTime", fridayEndTime);
-            confirmAvail.putExtra("satStartTime", saturdayStartTime);
-            confirmAvail.putExtra("satEndTime", saturdayEndTime);
-            confirmAvail.putExtra("sunStartTime", sundayStartTime);
-            confirmAvail.putExtra("sunEndTime", sundayEndTime);
+            contractor.setAvailabilities(0, 0, mondayStartTime);
+            contractor.setAvailabilities(0, 1, mondayEndTime);
+            contractor.setAvailabilities(1, 0, tuesdayStartTime);
+            contractor.setAvailabilities(1, 1, tuesdayEndTime);
+            contractor.setAvailabilities(2, 0, wednesdayStartTime);
+            contractor.setAvailabilities(2, 1, wednesdayEndTime);
+            contractor.setAvailabilities(3, 0, thursdayStartTime);
+            contractor.setAvailabilities(3, 1, thursdayEndTime);
+            contractor.setAvailabilities(4, 0, fridayStartTime);
+            contractor.setAvailabilities(4, 1, fridayEndTime);
+            contractor.setAvailabilities(5, 0, saturdayStartTime);
+            contractor.setAvailabilities(5, 1, saturdayEndTime);
+            contractor.setAvailabilities(6, 0, sundayStartTime);
+            contractor.setAvailabilities(6, 1, sundayEndTime);
+            contractor.notifyCurrentUser(getApplicationContext());
 
+            Intent confirmAvail = new Intent(this, ServiceProviderWelcome.class);
             startActivity(confirmAvail);
             finish();
         }

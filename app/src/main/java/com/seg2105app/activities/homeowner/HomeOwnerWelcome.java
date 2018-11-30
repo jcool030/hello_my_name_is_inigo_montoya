@@ -18,13 +18,16 @@ import com.seg2105app.users.UserList;
 public class HomeOwnerWelcome extends AppCompatActivity {
 
     HomeOwner homeOwner = (HomeOwner)CurrentUser.getCurrentUser();
+    Button signoutButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_owner_welcome);
+        signoutButton = findViewById(R.id.signoutButton);
         Bundle bundle = getIntent().getExtras();
-        TextView textView = findViewById(R.id.textView);
+        //String userKey = bundle.getString("key");
+        TextView textView = (TextView) findViewById(R.id.textView);
         textView.setText("Welcome, " + homeOwner.getUsername() + " you are logged in as a Home Owner.");
 
     }
