@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.seg2105app.activities.ServiceArrayAdapter;
@@ -28,8 +27,8 @@ public class ManageServiceActivity extends AppCompatActivity {
         sdbHandler = new DatabaseHandler(this);
 
         listView = findViewById(R.id.serviceList);
-        manager = ServiceList.getInstance();//creates instance of serviceManager if not already exists
 
+        manager = ServiceList.getInstance();//creates instance of serviceManager if not already exists
         manager.populateServiceList(sdbHandler);
 
         adapter = new ServiceArrayAdapter(this, manager.getServiceList());

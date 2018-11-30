@@ -29,7 +29,7 @@
             android:text="Welcome username you are signed in as a Home Owner" />
 
         <Button
-            android:id="@+id/searchBtn"
+            android:id="@+id/searchProviderBtn"
             style="@android:style/Widget.DeviceDefault.Light.Button.Inset"
             android:layout_width="match_parent"
             android:layout_height="0dp"

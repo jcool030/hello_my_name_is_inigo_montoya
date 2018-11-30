@@ -113,5 +113,6 @@
     <string name="providerSearchBtn">Search for Service Provider</string>
     <string name="textSearch" />
     <string name="searchBtn">Search</string>
+    <string name="searchText">Search by Name, Rating, or Service</string>
 
 </resources>
