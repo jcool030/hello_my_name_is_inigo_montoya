@@ -15,8 +15,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.seg2105app.database.DatabaseHandler;
+
 import com.seg2105app.activities.R;
 import com.seg2105app.users.CurrentUser;
+import com.seg2105app.users.ServiceProvider;
 import com.seg2105app.users.User;
 import com.seg2105app.users.UserFactory;
 import com.seg2105app.users.UserList;
@@ -34,6 +36,7 @@ public class OpeningScreenActivity extends AppCompatActivity{
         FirebaseApp.initializeApp(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opening_screen);
+
         username =  findViewById(R.id.username_textfield);
         password = findViewById(R.id.password_textfield);
     }
@@ -70,8 +73,37 @@ public class OpeningScreenActivity extends AppCompatActivity{
                         String lastName = ds.child(DatabaseHandler.UserInfoEntry.COLUMN_LAST_NAME).getValue(String.class);
                         String type = ds.child(DatabaseHandler.UserInfoEntry.COLUMN_USER_TYPE).getValue(String.class);
 
+
                         UserFactory factory = new UserFactory();
                         User user = factory.getUser(username, password, firstName, lastName, type);
+
+                        if (type.equals("ServiceProvider")){
+                            String phoneNumber = null, address = null, description = null, company = null;
+                            boolean licensed = false;
+
+                            if (ds.hasChild(DatabaseHandler.ServiceProviderEntry.COLUMN_PHONE_NUM))
+                                phoneNumber = ds.child(DatabaseHandler.ServiceProviderEntry.COLUMN_PHONE_NUM).getValue(String.class);
+                            if (ds.hasChild(DatabaseHandler.ServiceProviderEntry.COLUMN_ADDRESS))
+                                address = ds.child(DatabaseHandler.ServiceProviderEntry.COLUMN_ADDRESS).getValue(String.class);
+                            if (ds.hasChild(DatabaseHandler.ServiceProviderEntry.COLUMN_DESCRIPTION))
+                                description = ds.child(DatabaseHandler.ServiceProviderEntry.COLUMN_DESCRIPTION).getValue(String.class);
+                            if (ds.hasChild(DatabaseHandler.ServiceProviderEntry.COLUMN_COMPANY))
+                            company = ds.child(DatabaseHandler.ServiceProviderEntry.COLUMN_COMPANY).getValue(String.class);
+                            if (ds.hasChild(DatabaseHandler.ServiceProviderEntry.COLUMN_LICENSED))
+                                licensed = ds.child(DatabaseHandler.ServiceProviderEntry.COLUMN_LICENSED).getValue(Boolean.class);
+
+                            ServiceProvider serviceProvider = (ServiceProvider)user;
+                            serviceProvider.setDescription(description);
+                            serviceProvider.setLicensed(licensed);
+                            serviceProvider.setCompanyName(company);
+                            serviceProvider.setAddress(address);
+                            serviceProvider.setPhoneNumber(phoneNumber);
+
+
+                            user = serviceProvider;
+                        }
+
+
                         CurrentUser.setCurrentLogIn(user, ds.getKey());
                         CurrentUser currentUser = new CurrentUser();
                         currentUser.logIn(OpeningScreenActivity.this);

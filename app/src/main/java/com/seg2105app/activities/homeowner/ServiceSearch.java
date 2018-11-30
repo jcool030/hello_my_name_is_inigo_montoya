@@ -56,12 +56,13 @@ public class ServiceSearch extends AppCompatActivity {
 
     }
     public void searchClick(View v){
+        arrayList = new ArrayList<>();
+        serviceSearch = findViewById(R.id.search);
+        String search = serviceSearch.toString().trim();
         listView = findViewById(R.id.serviceList);
         for (Service s : manager.getServiceList()) {
-            System.out.println(s.getName());
-            if (s.getName().equals(serviceSearch.toString().trim()) || s.getRate() == Double.parseDouble(serviceSearch.toString().trim())) {
-                arrayList.add(s);
-            }
+            arrayList.add(s);
+
         }
         if (arrayList.size() == 0){
             Toast noResults = Toast.makeText(ServiceSearch.this, "No Results found", Toast.LENGTH_SHORT);
