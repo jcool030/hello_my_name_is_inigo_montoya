@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Delieverable1</string>
+    <string name="app_name">SEG2105 App</string>
     <string name="login_text">Log in</string>
     <string name="newuser_text">New User?</string>
     <string name="password">Password</string>
@@ -24,7 +24,7 @@
     <string name="userType">User Type</string>
     <string name="deleteButton">Delete this Service</string>
     <string name="manage_service_title">Services Offered</string>
-    <string name="phoneNum" >Phone Number</string>
+    <string name="phoneNum">Phone Number</string>
     <string name="address">Address</string>
     <string name="companyName">Company Name</string>
     <string name="lisenseTest">License:</string>
@@ -45,57 +45,79 @@
     <string name="sunday">Sunday</string>
     <string name="start_time">Start</string>
     <string name="end_time">End</string>
-    
-    <string-array name="times_array">
-    <item>-----</item>
-    <item>closed</item>
-    <item>0:00</item>
-    <item>0:30</item>
-    <item>1:00</item>
-    <item>1:30</item>
-    <item>2:00</item>
-    <item>2:30</item>
-    <item>3:00</item>
-    <item>3:30</item>
-    <item>4:00</item>
-    <item>4:30</item>
-    <item>5:00</item>
-    <item>5:30</item>
-    <item>6:00</item>
-    <item>6:30</item>
-    <item>7:00</item>
-    <item>7:30</item>
-    <item>8:00</item>
-    <item>8:30</item>
-    <item>9:00</item>
-    <item>9:30</item>
-    <item>10:00</item>
-    <item>10:30</item>
-    <item>11:00</item>
-    <item>11:30</item>
-    <item>12:00</item>
-    <item>12:30</item>
-    <item>13:00</item>
-    <item>13:30</item>
-    <item>14:00</item>
-    <item>14:30</item>
-    <item>15:00</item>
-    <item>15:30</item>
-    <item>16:00</item>
-    <item>16:30</item>
-    <item>17:00</item>
-    <item>17:30</item>
-    <item>18:00</item>
-    <item>19:30</item>
-    <item>20:00</item>
-    <item>20:30</item>
-    <item>21:00</item>
-    <item>21:30</item>
-    <item>22:00</item>
-    <item>22:30</item>
-    <item>23:00</item>
-    <item>23:30</item>
+    <string name="create_service_button">Create Services</string>
+    <string name="Log_out_button">Log Out</string>
+    <string name="new_user_create_button">New user? Click Here to Sign Up!</string>
+    <string name="confirmAdditionsButton">Confirm Additions and Return</string>
+    <string name="PreviewText">Services to Add</string>
+    <string name="refreshButton">Refresh</string>
+    <string name="searchButton_ServiceName">Search by Service</string>
+    <string name="providerSearchButton">Search by Service Provider</string>
+    <string name="userlistTitle">List of Users</string>
+    <string name="submit">Submit</string>
 
-</string-array>
+    <string-array name="times_array">
+        <item>-----</item>
+        <item>closed</item>
+        <item>0:00</item>
+        <item>0:30</item>
+        <item>1:00</item>
+        <item>1:30</item>
+        <item>2:00</item>
+        <item>2:30</item>
+        <item>3:00</item>
+        <item>3:30</item>
+        <item>4:00</item>
+        <item>4:30</item>
+        <item>5:00</item>
+        <item>5:30</item>
+        <item>6:00</item>
+        <item>6:30</item>
+        <item>7:00</item>
+        <item>7:30</item>
+        <item>8:00</item>
+        <item>8:30</item>
+        <item>9:00</item>
+        <item>9:30</item>
+        <item>10:00</item>
+        <item>10:30</item>
+        <item>11:00</item>
+        <item>11:30</item>
+        <item>12:00</item>
+        <item>12:30</item>
+        <item>13:00</item>
+        <item>13:30</item>
+        <item>14:00</item>
+        <item>14:30</item>
+        <item>15:00</item>
+        <item>15:30</item>
+        <item>16:00</item>
+        <item>16:30</item>
+        <item>17:00</item>
+        <item>17:30</item>
+        <item>18:00</item>
+        <item>19:30</item>
+        <item>20:00</item>
+        <item>20:30</item>
+        <item>21:00</item>
+        <item>21:30</item>
+        <item>22:00</item>
+        <item>22:30</item>
+        <item>23:00</item>
+        <item>23:30</item>
+
+    </string-array>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="providerSearchBtn">Search for Service Provider</string>
+    <string name="textSearch" />
+    <string name="searchBtn">Search</string>
+    <string name="searchText">Search by Name, Rating, or Service</string>
+    <string name="viewUserListButton">Click to view List of current Users</string>
+    <string name="changePersonalInfoBtn">Click to change your Personal Information</string>
+    <string name="title_of_sProvider_list">List of Service Providers</string>
+    <string name="title_of_user_list">List of Home owners</string>
 
 </resources>

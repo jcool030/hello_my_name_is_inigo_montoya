@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.seg2105app.delieverable1.activities">
+    package="com.seg2105app.activities">
 
     <application
         android:allowBackup="true"
@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".OpeningScreenActivity"
+            android:name="com.seg2105app.activities.OpeningScreenActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,15 +20,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpScreenActivity" />
-        <activity android:name=".HomeOwnerWelcome" />
-        <activity android:name=".AdminWelcome"/>
-        <activity android:name=".ServiceProviderWelcome"/>
-        <activity android:name=".CreateServiceActivity" />
-        <activity android:name=".ManageServiceActivity" />
-        <activity android:name=".ServiceEditorActivity" />
-        <activity android:name=".EditAvailabilitiesActivity" />
-
+        <activity android:name="com.seg2105app.activities.SignUpScreenActivity" />
+        <activity android:name="com.seg2105app.activities.homeowner.HomeOwnerWelcome" />
+        <activity android:name="com.seg2105app.activities.admin.AdminWelcome" />
+        <activity android:name="com.seg2105app.activities.serviceprovider.ServiceProviderWelcome" />
+        <activity android:name="com.seg2105app.activities.admin.CreateServiceActivity" />
+        <activity android:name="com.seg2105app.activities.admin.ManageServiceActivity" />
+        <activity android:name="com.seg2105app.activities.admin.ServiceEditorActivity" />
+        <activity android:name="com.seg2105app.activities.serviceprovider.EditAvailabilitiesActivity" />
+        <activity android:name="com.seg2105app.activities.homeowner.ServiceSearch" />
+        <activity android:name="com.seg2105app.activities.serviceprovider.AddServicesActivity" />
+        <activity android:name="com.seg2105app.activities.homeowner.RateServiceProviderActivity" />
     </application>
 
 </manifest>

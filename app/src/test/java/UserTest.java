@@ -1,4 +1,4 @@
-import com.seg2105app.delieverable1.users.HomeOwner;
+import com.seg2105app.users.HomeOwner;
 
 import static org.junit.Assert.*;
 import org.junit.Test;

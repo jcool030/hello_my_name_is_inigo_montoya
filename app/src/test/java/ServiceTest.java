@@ -1,4 +1,4 @@
-import com.seg2105app.delieverable1.users.Service;
+import com.seg2105app.services.Service;
 
 import org.junit.Test;
 import static org.junit.Assert.*;

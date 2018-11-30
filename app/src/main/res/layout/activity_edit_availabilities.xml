@@ -7,16 +7,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="49dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,294 +37,324 @@
                 android:layout_height="49dp"
                 android:layout_weight="1"
                 android:text="@string/edit_avail_title"
-                android:textSize="36sp"/>
+                android:textSize="36sp" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="388dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:text="@string/monday"/>
+                android:text="@string/monday" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/start_time"/>
+                android:text="@string/start_time" />
+
             <Spinner
                 android:id="@+id/mondayStartSpinner"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:dropDownWidth="100dp"
                 android:entries="@array/times_array"
-                android:spinnerMode="dropdown"
-                android:dropDownWidth="100dp"/>
+                android:spinnerMode="dropdown" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/end_time"/>
+                android:text="@string/end_time" />
+
             <Spinner
                 android:id="@+id/mondayEndSpinner"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:dropDownWidth="100dp"
                 android:entries="@array/times_array"
-                android:spinnerMode="dropdown"
-                android:dropDownWidth="100dp"/>
+                android:spinnerMode="dropdown" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout3"
             android:layout_width="388dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:text="@string/tuesday"/>
+                android:text="@string/tuesday" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/start_time"/>
+                android:text="@string/start_time" />
+
             <Spinner
                 android:id="@+id/tuesdayStartSpinner"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:dropDownWidth="100dp"
                 android:entries="@array/times_array"
-                android:spinnerMode="dropdown"
-                android:dropDownWidth="100dp"/>
+                android:spinnerMode="dropdown" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/end_time"/>
+                android:text="@string/end_time" />
+
             <Spinner
                 android:id="@+id/tuesdayEndSpinner"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:dropDownWidth="100dp"
                 android:entries="@array/times_array"
-                android:spinnerMode="dropdown"
-                android:dropDownWidth="100dp"/>
+                android:spinnerMode="dropdown" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout4"
             android:layout_width="388dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:text="@string/wednesday"/>
+                android:text="@string/wednesday" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/start_time"/>
+                android:text="@string/start_time" />
+
             <Spinner
                 android:id="@+id/wednesdayStartSpinner"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:dropDownWidth="100dp"
                 android:entries="@array/times_array"
-                android:spinnerMode="dropdown"
-                android:dropDownWidth="100dp"/>
+                android:spinnerMode="dropdown" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/end_time"/>
+                android:text="@string/end_time" />
+
             <Spinner
                 android:id="@+id/wednesdayEndSpinner"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:dropDownWidth="100dp"
                 android:entries="@array/times_array"
-                android:spinnerMode="dropdown"
-                android:dropDownWidth="100dp"/>
+                android:spinnerMode="dropdown" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout5"
             android:layout_width="388dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:text="@string/thursday"/>
+                android:text="@string/thursday" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/start_time"/>
+                android:text="@string/start_time" />
+
             <Spinner
                 android:id="@+id/thursdayStartSpinner"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:dropDownWidth="100dp"
                 android:entries="@array/times_array"
-                android:spinnerMode="dropdown"
-                android:dropDownWidth="100dp"/>
+                android:spinnerMode="dropdown" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/end_time"/>
+                android:text="@string/end_time" />
+
             <Spinner
                 android:id="@+id/thursdayEndSpinner"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:dropDownWidth="100dp"
                 android:entries="@array/times_array"
-                android:spinnerMode="dropdown"
-                android:dropDownWidth="100dp"/>
+                android:spinnerMode="dropdown" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout6"
             android:layout_width="388dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:text="@string/friday"/>
+                android:text="@string/friday" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/start_time"/>
+                android:text="@string/start_time" />
+
             <Spinner
                 android:id="@+id/fridayStartSpinner"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:dropDownWidth="100dp"
                 android:entries="@array/times_array"
-                android:spinnerMode="dropdown"
-                android:dropDownWidth="100dp"/>
+                android:spinnerMode="dropdown" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/end_time"/>
+                android:text="@string/end_time" />
+
             <Spinner
                 android:id="@+id/fridayEndSpinner"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:dropDownWidth="100dp"
                 android:entries="@array/times_array"
-                android:spinnerMode="dropdown"
-                android:dropDownWidth="100dp"/>
+                android:spinnerMode="dropdown" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout7"
             android:layout_width="388dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:text="@string/saturday"/>
+                android:text="@string/saturday" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/start_time"/>
+                android:text="@string/start_time" />
+
             <Spinner
                 android:id="@+id/saturdayStartSpinner"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:dropDownWidth="100dp"
                 android:entries="@array/times_array"
-                android:spinnerMode="dropdown"
-                android:dropDownWidth="100dp"/>
+                android:spinnerMode="dropdown" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/end_time"/>
+                android:text="@string/end_time" />
+
             <Spinner
                 android:id="@+id/saturdayEndSpinner"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:dropDownWidth="100dp"
                 android:entries="@array/times_array"
-                android:spinnerMode="dropdown"
-                android:dropDownWidth="100dp"/>
+                android:spinnerMode="dropdown" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout8"
             android:layout_width="388dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:text="@string/sunday"/>
+                android:text="@string/sunday" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/start_time"/>
+                android:text="@string/start_time" />
+
             <Spinner
                 android:id="@+id/sundayStartSpinner"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:dropDownWidth="100dp"
                 android:entries="@array/times_array"
-                android:spinnerMode="dropdown"
-                android:dropDownWidth="100dp"/>
+                android:spinnerMode="dropdown" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/end_time"/>
+                android:text="@string/end_time" />
+
             <Spinner
                 android:id="@+id/sundayEndSpinner"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:dropDownWidth="100dp"
                 android:entries="@array/times_array"
-                android:spinnerMode="dropdown"
-                android:dropDownWidth="100dp"/>
+                android:spinnerMode="dropdown" />
         </LinearLayout>
 
         <Button
             android:id="@+id/confirmButton"
+            style="@android:style/Widget.DeviceDefault.Button.Inset"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:onClick="onConfirmAvailClick"
-            android:text="Confirm"/>
+            android:text="Confirm Availabilities" />
 
         <ListView
             android:id="@+id/serviceList2"
