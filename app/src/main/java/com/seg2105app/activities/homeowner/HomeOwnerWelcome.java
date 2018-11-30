@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 //import com.seg2105app.delieverable1.activities.R;
 import com.seg2105app.activities.OpeningScreenActivity;
+
 import com.seg2105app.activities.R;
 import com.seg2105app.users.CurrentUser;
 import com.seg2105app.users.HomeOwner;
@@ -33,6 +34,7 @@ public class HomeOwnerWelcome extends AppCompatActivity {
 
     public void logoutClick(View v) {
         Intent signoutIntent = new Intent(this, OpeningScreenActivity.class);
+        CurrentUser.logOut();
         startActivity(signoutIntent);
         finish();
     }

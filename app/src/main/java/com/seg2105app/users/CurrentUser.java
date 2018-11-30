@@ -60,11 +60,18 @@ public class CurrentUser{
             currentUser = user;
             currentKey = key;
             logInSuccessful = true;
+            currentUser.attachAsCurrentUser();
         }
     }
 
-    private static void logOut(){
+    public static void logOut(){
         currentUser = null;
         currentKey = null;
+    }
+
+    public void notified(Context context){
+        DatabaseHandler dbHandler = new DatabaseHandler(context);
+        if (currentUser.getType().equals("ServiceProvider"))
+        dbHandler.updateServiceProvider((ServiceProvider)currentUser, currentKey);
     }
 }
