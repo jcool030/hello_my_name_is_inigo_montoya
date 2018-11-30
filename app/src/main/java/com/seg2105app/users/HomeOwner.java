@@ -23,4 +23,5 @@ public class HomeOwner extends User{
     public void logOut(Context context){
 
     }
+
 }

@@ -10,12 +10,13 @@ import android.widget.TextView;
 //import com.seg2105app.delieverable1.activities.R;
 import com.seg2105app.activities.OpeningScreenActivity;
 import com.seg2105app.activities.R;
+import com.seg2105app.users.CurrentUser;
 import com.seg2105app.users.HomeOwner;
 import com.seg2105app.users.UserList;
 
 public class HomeOwnerWelcome extends AppCompatActivity {
 
-    HomeOwner homeOwner;
+    HomeOwner homeOwner = (HomeOwner)CurrentUser.getCurrentUser();
     Button signoutButton;
 
     @Override
@@ -24,8 +25,7 @@ public class HomeOwnerWelcome extends AppCompatActivity {
         setContentView(R.layout.activity_home_owner_welcome);
         signoutButton = findViewById(R.id.signoutButton);
         Bundle bundle = getIntent().getExtras();
-        String userKey = bundle.getString("key");
-        homeOwner = (HomeOwner)UserList.getUser(userKey);
+        //String userKey = bundle.getString("key");
         TextView textView = (TextView) findViewById(R.id.textView);
         textView.setText("Welcome, " + homeOwner.getUsername() + " you are logged in as a Home Owner.");
 
