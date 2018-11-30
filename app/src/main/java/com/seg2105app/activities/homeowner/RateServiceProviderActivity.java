@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.seg2105app.activities.R;
 
-public class RateServiceActivity extends AppCompatActivity {
+public class RateServiceProviderActivity extends AppCompatActivity {
 
     TextView textView;
     EditText ratingBox, commentBox;
@@ -22,11 +22,11 @@ public class RateServiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rate_service);
 
         Bundle bundle = getIntent().getExtras();
-        String serviceName = bundle.getString("serviceName");
+        String serviceName = bundle.getString("serviceName"); //change to service provider
         ratingBox = findViewById(R.id.ratingBox);
         commentBox = findViewById(R.id.commentBox);
         textView = findViewById(R.id.textView);
-        textView.setText("Please give " + serviceName + " a rating on a scale from 1 to 5.");
+        textView.setText("Please give " + serviceName + " a rating on a scale from 1 to 5."); //change to service provider
         submitBtn = findViewById(R.id.submitBtn);
     }
 
@@ -49,7 +49,7 @@ public class RateServiceActivity extends AppCompatActivity {
             Toast invalidRating = Toast.makeText(getApplicationContext(), "Invalid rating", Toast.LENGTH_LONG);
             invalidRating.show();
         } else{
-            //save rating and comment
+            //get service provider from bundle and add the comment and rating using appropriate methods in ServiceProvider
         }
 
     }

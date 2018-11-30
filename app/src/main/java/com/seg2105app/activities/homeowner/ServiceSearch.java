@@ -55,6 +55,7 @@ public class ServiceSearch extends AppCompatActivity {
             @Override
             public void onItemClick (AdapterView < ? > parent, final View view, int position, long id){
 
+
             }
         });
         listView = findViewById(R.id.serviceList);

@@ -6,16 +6,28 @@ import com.seg2105app.activities.serviceProviderRating;
 import com.seg2105app.activities.OpeningScreenActivity;
 import com.seg2105app.activities.serviceprovider.ServiceProviderWelcome;
 
+import java.util.ArrayList;
+
 public class ServiceProvider extends User {
     private String phoneNumber;
     private String address;
     private String companyName;
     private boolean licensed;
     private String description;
+    //for availabilities
+    private String[][] availabilities;
+    //for rating
+    private double rating;
+    private int numOfRatings;
+    private ArrayList<String> comments;
     serviceProviderRating associatedRating;
 
     public ServiceProvider(String username, String password, String firstName, String lastName, String type){
         super(username, password, firstName, lastName, type);
+        availabilities = new String[7][2];
+        rating = 0;
+        numOfRatings = 0;
+        comments = null;
         associatedRating = new serviceProviderRating(this);
     }
 
@@ -36,10 +48,10 @@ public class ServiceProvider extends User {
         this.phoneNumber = phoneNumber;
     }
 
-    public double getRating()
-    {
-        return associatedRating.getRating();
-    }
+//    public double getRating()
+//    {
+//        return associatedRating.getRating();
+//    }
 
     public void addRating(double newAddition)
     {
@@ -80,5 +92,26 @@ public class ServiceProvider extends User {
 
     public String getDescription() {
         return description;
+    }
+
+    public double getRating() { return rating; }
+
+    public void updateRating(int newRating){
+        numOfRatings++;
+        rating = (rating + newRating)/numOfRatings;
+    }
+
+    public ArrayList<String> getComments(){ return comments; }
+
+    public void addComment(String newComment){
+        comments.add(newComment);
+    }
+
+    public void setAvailabilities(int day, int startOrEnd, String time){
+        availabilities[day][startOrEnd] = time;
+    }
+
+    public String getAvailability(int day, int startOrEnd){
+        return availabilities[day][startOrEnd];
     }
 }
