@@ -58,8 +58,8 @@ public class ServiceProviderWelcome extends AppCompatActivity {
 //        radioGroup.addView(licenseTrue,0);
 //        radioGroup.addView(licenseFalse,1);
 
-        Bundle bundle = getIntent().getExtras();
-        String userKey = bundle.getString("key");
+        //Bundle bundle = getIntent().getExtras();
+        //String userKey = bundle.getString("key");
         usernameText.setText("Welcome, " + contractor.getUsername() + " you are logged in as a Service Provider.");
 
         if(contractor.getPhoneNumber() != null){
@@ -79,28 +79,15 @@ public class ServiceProviderWelcome extends AppCompatActivity {
         }else{
             licenseFalse.toggle();
         }
-        String monStart = bundle.getString("monStartTime");
-        String monEnd = bundle.getString("monEndTime");
-        String tuesStart = bundle.getString("tuesStartTime");
-        String tuesEnd = bundle.getString("tuesEndTime");
-        String wedStart = bundle.getString("wedStartTime");
-        String wedEnd = bundle.getString("wedEndTime");
-        String thursStart = bundle.getString("thursStartTime");
-        String thursEnd = bundle.getString("thursEndTime");
-        String friStart = bundle.getString("friStartTime");
-        String friEnd = bundle.getString("friEndTime");
-        String satStart = bundle.getString("satStartTime");
-        String satEnd = bundle.getString("satEndTime");
-        String sunStart = bundle.getString("sunStartTime");
-        String sunEnd = bundle.getString("sunEndTime");
+        //update availabilities displayed
         availText.setText(new StringBuilder()
-                .append("Monday: "+ monStart +" - " + monEnd + "\n")
-                .append("Tuesday: " + tuesStart + " - " + tuesEnd + "\n")
-                .append("Wednesday: " + wedStart + " - " + wedEnd + "\n")
-                .append("Thursday: " + thursStart + " - " + thursEnd + "\n")
-                .append("Friday: " + friStart + " - " + friEnd + "\n")
-                .append("Saturday: " + satStart + " - " + satEnd + "\n")
-                .append("Sunday: " + sunStart + " - " + sunEnd + "\n")
+                .append("Monday: "+ contractor.getAvailability(0,0) +" - " + contractor.getAvailability(0,1) + "\n")
+                .append("Tuesday: " + contractor.getAvailability(1,0) + " - " + contractor.getAvailability(1,1) + "\n")
+                .append("Wednesday: " + contractor.getAvailability(2,0) + " - " + contractor.getAvailability(2,1) + "\n")
+                .append("Thursday: " + contractor.getAvailability(3,0) + " - " + contractor.getAvailability(3,1) + "\n")
+                .append("Friday: " + contractor.getAvailability(4,0) + " - " + contractor.getAvailability(4,1) + "\n")
+                .append("Saturday: " + contractor.getAvailability(5,0) + " - " + contractor.getAvailability(5,1) + "\n")
+                .append("Sunday: " + contractor.getAvailability(6,0) + " - " + contractor.getAvailability(6,1) + "\n")
                 .toString());
     }
 
@@ -159,8 +146,12 @@ public class ServiceProviderWelcome extends AppCompatActivity {
     }
     public void onEditAvailClick(View v){
         Intent editAvailIntent = new Intent(this, EditAvailabilitiesActivity.class);
-        editAvailIntent.putExtra("username", user);
+        //editAvailIntent.putExtra("username", user);
         startActivity(editAvailIntent);
+    }
+    public void pickUpServicesClick(View v){
+        Intent addServicesInent = new Intent(this, AddServicesActivity.class);
+        startActivity(addServicesInent);
     }
 
 }

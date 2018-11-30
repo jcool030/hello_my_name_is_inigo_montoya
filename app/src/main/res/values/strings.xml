@@ -54,6 +54,7 @@
     <string name="searchButton_ServiceName">Search by Service</string>
     <string name="providerSearchButton">Search by Service Provider</string>
     <string name="userlistTitle">List of Users</string>
+    <string name="submit">Submit</string>
 
     <string-array name="times_array">
         <item>-----</item>
