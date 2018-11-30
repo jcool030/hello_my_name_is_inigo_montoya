@@ -29,6 +29,7 @@
         <activity android:name="com.seg2105app.activities.admin.ServiceEditorActivity" />
         <activity android:name="com.seg2105app.activities.serviceprovider.EditAvailabilitiesActivity" />
         <activity android:name="com.seg2105app.activities.homeowner.ServiceSearch" />
+        <activity android:name="com.seg2105app.activities.serviceprovider.AddServicesActivity" />
         <activity android:name="com.seg2105app.activities.homeowner.RateServiceActivity" />
     </application>
 
