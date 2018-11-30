@@ -30,15 +30,15 @@ import java.util.ArrayList;
 
 public class ServiceSearch extends AppCompatActivity {
 
-    DatabaseHandler sdbHandler;
-    ListView listView;
-    ServiceList manager;
-    ServiceArrayAdapter adapter, adapter2;
-    EditText serviceSearch;
+    private DatabaseHandler sdbHandler;
+    private ListView listView;
+    private ServiceList manager;
+    private ServiceArrayAdapter adapter, adapter2;
+    private EditText serviceSearch;
 
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_search_services);
@@ -46,12 +46,9 @@ public class ServiceSearch extends AppCompatActivity {
 
         listView = findViewById(R.id.serviceList);
         serviceSearch = findViewById(R.id.search);
+
         manager = ServiceList.getInstance();//creates instance of serviceManager if not already exists
-
         manager.populateServiceList(sdbHandler);
-
-
-
 
         adapter = new ServiceArrayAdapter(this, manager.getServiceList());
         listView.setAdapter(adapter);

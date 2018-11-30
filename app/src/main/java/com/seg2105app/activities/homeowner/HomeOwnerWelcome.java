@@ -25,7 +25,6 @@ public class HomeOwnerWelcome extends AppCompatActivity {
         setContentView(R.layout.activity_home_owner_welcome);
         signoutButton = findViewById(R.id.signoutButton);
         Bundle bundle = getIntent().getExtras();
-        //String userKey = bundle.getString("key");
         TextView textView = (TextView) findViewById(R.id.textView);
         textView.setText("Welcome, " + homeOwner.getUsername() + " you are logged in as a Home Owner.");
 
