@@ -13,10 +13,11 @@ import com.seg2105app.activities.R;
 import com.seg2105app.users.HomeOwner;
 import com.seg2105app.users.UserList;
 
-public class HomeOwnerWelcome extends AppCompatActivity implements View.OnClickListener {
-    HomeOwner homeOwner;
+public class HomeOwnerWelcome extends AppCompatActivity {
 
+    HomeOwner homeOwner;
     Button signoutButton;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +29,16 @@ public class HomeOwnerWelcome extends AppCompatActivity implements View.OnClickL
         TextView textView = (TextView) findViewById(R.id.textView);
         textView.setText("Welcome, " + homeOwner.getUsername() + " you are logged in as a Home Owner.");
 
-        signoutButton.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View v) {
+    public void logoutClick(View v) {
         Intent signoutIntent = new Intent(this, OpeningScreenActivity.class);
         startActivity(signoutIntent);
+        finish();
     }
+    public void searchForProviderClick(View v) {
+        Intent searchServicesIntent = new Intent(this, ServiceSearch.class);
+        startActivity(searchServicesIntent);
+    }
+
 }

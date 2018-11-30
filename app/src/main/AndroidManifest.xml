@@ -28,6 +28,7 @@
         <activity android:name="com.seg2105app.activities.admin.ManageServiceActivity" />
         <activity android:name="com.seg2105app.activities.admin.ServiceEditorActivity" />
         <activity android:name="com.seg2105app.activities.serviceprovider.EditAvailabilitiesActivity" />
+        <activity android:name="com.seg2105app.activities.homeowner.ServiceSearch" />
     </application>
 
 </manifest>

@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.seg2105app.activities.ServiceArrayAdapter;
 import com.seg2105app.activities.R;
 import com.seg2105app.database.DatabaseHandler;
 import com.seg2105app.services.ServiceList;
+
+import java.util.List;
 
 public class ManageServiceActivity extends AppCompatActivity {
     private ListView listView;

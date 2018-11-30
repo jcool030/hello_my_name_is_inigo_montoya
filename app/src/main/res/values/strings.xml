@@ -110,5 +110,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="providerSearchBtn">Search for Service Provider</string>
+    <string name="textSearch" />
+    <string name="searchBtn">Search</string>
 
 </resources>
