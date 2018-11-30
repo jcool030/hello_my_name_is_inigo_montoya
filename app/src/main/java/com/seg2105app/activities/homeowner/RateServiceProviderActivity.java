@@ -9,12 +9,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.seg2105app.activities.R;
+import com.seg2105app.users.ServiceProvider;
 
 public class RateServiceProviderActivity extends AppCompatActivity {
-    //possibly an irrelevant class
+
     TextView textView;
     EditText ratingBox, commentBox;
     Button submitBtn;
+    ServiceProvider contractor;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState){
@@ -23,6 +25,7 @@ public class RateServiceProviderActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         String serviceName = bundle.getString("serviceName"); //change to service provider
+        //contractor = ; //get service provider from bundle
         ratingBox = findViewById(R.id.ratingBox);
         commentBox = findViewById(R.id.commentBox);
         textView = findViewById(R.id.textView);
@@ -31,11 +34,11 @@ public class RateServiceProviderActivity extends AppCompatActivity {
     }
 
     public void onSubmitClick(){
-        int rating = 0;
-        String comment;
+        double rating = 0;
+        String comment = null;
 
         try {
-            rating = Integer.parseInt(ratingBox.getText().toString());
+            rating = Double.parseDouble(ratingBox.getText().toString());
             comment = commentBox.getText().toString();
         } catch (NumberFormatException e){
             Toast invalidRating = Toast.makeText(getApplicationContext(), "Invalid rating", Toast.LENGTH_LONG);
@@ -50,6 +53,8 @@ public class RateServiceProviderActivity extends AppCompatActivity {
             invalidRating.show();
         } else{
             //get service provider from bundle and add the comment and rating using appropriate methods in ServiceProvider
+            contractor.addRating(rating);
+            contractor.addComment(comment);
         }
 
     }
