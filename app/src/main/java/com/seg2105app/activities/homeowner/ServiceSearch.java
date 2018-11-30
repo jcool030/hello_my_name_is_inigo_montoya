@@ -1,6 +1,5 @@
 package com.seg2105app.activities.homeowner;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.Toast;
 
 import com.seg2105app.activities.ServiceArrayAdapter;
 import com.seg2105app.activities.R;
-import com.seg2105app.activities.admin.ServiceEditorActivity;
 import com.seg2105app.database.DatabaseHandler;
 import com.seg2105app.services.Service;
 import com.seg2105app.services.ServiceList;
@@ -72,11 +70,19 @@ public class ServiceSearch extends AppCompatActivity {
 
             }
         }
-//        for (User u : userManager.getUserList()) {
-//            if (u.getType().equals("ServiceProvider") && {
-//
-//            }
-//        }
+        for (User u : userManager.getUserList()) {
+            if (u.getType().equals("ServiceProvider")) {
+                ServiceProvider serviceProvider = (ServiceProvider)u;
+                if (serviceProvider.getRating() == Double.parseDouble(search) || serviceProvider.getFirstName().equals(search)) {
+                    //for (Service s : serviceProvider.getServiceListings()){
+                    //arrayList.add(serviceProvider.get)
+                    //}
+
+
+                }
+            }
+        }
+
         if (arrayList.size() == 0){
             Toast noResults = Toast.makeText(ServiceSearch.this, "No Results found", Toast.LENGTH_SHORT);
             noResults.show();
