@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.seg2105app.activities.R;
 
 public class RateServiceProviderActivity extends AppCompatActivity {
-
+    //possibly an irrelevant class
     TextView textView;
     EditText ratingBox, commentBox;
     Button submitBtn;
