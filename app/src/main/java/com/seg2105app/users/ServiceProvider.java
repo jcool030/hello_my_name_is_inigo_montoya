@@ -12,7 +12,7 @@ public class ServiceProvider extends User {
     private String companyName;
     private boolean licensed;
     private String description;
-    serviceProviderRating associatedRating;
+    private serviceProviderRating associatedRating;
 
     public ServiceProvider(String username, String password, String firstName, String lastName, String type){
         super(username, password, firstName, lastName, type);

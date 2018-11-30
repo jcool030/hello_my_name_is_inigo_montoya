@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -39,7 +40,31 @@ public class AdminWelcome extends AppCompatActivity {
         TextView welcomeText = findViewById(R.id.welcomeText);
         welcomeText.setText("Welcome, " + admin.getUsername() + "! You are logged in as: Admin.");
 
-    }//end of onCreate
+
+        listView = findViewById(R.id.userList);
+        userList = UserList.getInstance();
+
+        userList.populateUserList(udbHandler);
+        adapter = new UserArrayAdapter(getApplicationContext(), userList.getUserList());
+        listView.setAdapter(adapter);
+
+        Button serviceRefreshButton = findViewById(R.id.refreshButton);
+        serviceRefreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listView = findViewById(R.id.userList);
+                adapter = new UserArrayAdapter(getApplicationContext(), userList.getUserList());
+                listView.setAdapter(adapter);
+            }
+        });
+    }//end of on create
+
+        public void logoutClick(View v) {
+            Intent signoutIntent = new Intent(this, OpeningScreenActivity.class);
+            CurrentUser.logOut();
+            startActivity(signoutIntent);
+            finish();
+        }
 
     public void createServiceClick(View v){
         Intent createServiceIntent = new Intent(this, CreateServiceActivity.class);
@@ -52,24 +77,6 @@ public class AdminWelcome extends AppCompatActivity {
         manageServiceIntent.putExtra("key", userKey);
         startActivity(manageServiceIntent);
     }
-
-    public void viewUserListBtn(View v){
-        Intent manageServiceIntent = new Intent(this, ManageServiceActivity.class);
-        startActivity(manageServiceIntent);
-    }
-
-    public void changeCredentialsBtn(View v) {
-        Intent manageServiceIntent = new Intent(this, ManageServiceActivity.class);
-        startActivity(manageServiceIntent);
-    }
-
-    public void logoutClick(View v) {
-        Intent signoutIntent = new Intent(this, OpeningScreenActivity.class);
-        CurrentUser.logOut();
-        startActivity(signoutIntent);
-        finish();
-    }
-
 }
 
 

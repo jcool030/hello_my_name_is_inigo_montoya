@@ -76,28 +76,46 @@
         <LinearLayout
             android:id="@+id/bottomGroup"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
             android:orientation="vertical"
             tools:layout_editor_absoluteY="511dp">
 
-            <Button
-                android:id="@+id/viewUserListButton"
-                style="@android:style/Widget.DeviceDefault.Button.Inset"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="viewUserListBtn"
-                android:text="@string/viewUserListButton" />
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/changeInfoButton"
-                style="@android:style/Widget.DeviceDefault.Light.Button.Inset"
+                <TextView
+                    android:id="@+id/userTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+                    android:paddingLeft="65dp"
+                    android:paddingTop="10dp"
+                    android:text="@string/userlistTitle"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    tools:text="@string/userlistTitle" />
+
+                <Button
+                    android:id="@+id/refreshButton"
+                    style="@android:style/Widget.DeviceDefault.Button.Inset"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.2"
+                    android:text="@string/refreshButton" />
+
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/userList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="changeCredentialsBtn"
-                android:text="@string/changePersonalInfoBtn" />
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+            </ListView>
 
         </LinearLayout>
 
