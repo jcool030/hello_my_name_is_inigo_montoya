@@ -61,6 +61,15 @@ public class AdminWelcome extends AppCompatActivity {
         startActivity(manageServiceIntent);
     }
 
+    public void viewUserListBtn(View v){
+        Intent manageServiceIntent = new Intent(this, ManageServiceActivity.class);
+        startActivity(manageServiceIntent);
+    }
+
+    public void changeCredentialsBtn(View v) {
+        Intent manageServiceIntent = new Intent(this, ManageServiceActivity.class);
+        startActivity(manageServiceIntent);
+    }
     public void refreshClick(View v) {
         listView = findViewById(R.id.userList);
         adapter = new UserArrayAdapter(this, userList.getUserList());
