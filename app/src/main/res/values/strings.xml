@@ -114,5 +114,9 @@
     <string name="textSearch" />
     <string name="searchBtn">Search</string>
     <string name="searchText">Search by Name, Rating, or Service</string>
+    <string name="viewUserListButton">Click to view List of current Users</string>
+    <string name="changePersonalInfoBtn">Click to change your Personal Information</string>
+    <string name="title_of_sProvider_list">List of Service Providers</string>
+    <string name="title_of_user_list">List of Home owner Accounts</string>
 
 </resources>
