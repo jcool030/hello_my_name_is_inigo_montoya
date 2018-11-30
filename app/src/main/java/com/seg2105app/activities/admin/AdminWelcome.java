@@ -39,15 +39,6 @@ public class AdminWelcome extends AppCompatActivity {
         TextView welcomeText = findViewById(R.id.welcomeText);
         welcomeText.setText("Welcome, " + admin.getUsername() + "! You are logged in as: Admin.");
 
-        //////Start of user list code
-
-        listView = findViewById(R.id.userList);
-        userList = UserList.getInstance();
-
-        userList.populateUserList(udbHandler);
-        adapter = new UserArrayAdapter(this, userList.getUserList());
-        listView.setAdapter(adapter);
-
     }//end of onCreate
 
     public void createServiceClick(View v){
@@ -70,11 +61,6 @@ public class AdminWelcome extends AppCompatActivity {
     public void changeCredentialsBtn(View v) {
         Intent manageServiceIntent = new Intent(this, ManageServiceActivity.class);
         startActivity(manageServiceIntent);
-    }
-    public void refreshClick(View v) {
-        listView = findViewById(R.id.userList);
-        adapter = new UserArrayAdapter(this, userList.getUserList());
-        listView.setAdapter(adapter);
     }
 
     public void logoutClick(View v) {

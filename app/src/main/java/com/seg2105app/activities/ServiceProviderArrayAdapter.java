@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.seg2105app.users.ServiceProvider;
-import com.seg2105app.users.User;
 
 import java.util.ArrayList;
 
@@ -19,7 +18,7 @@ public class ServiceProviderArrayAdapter extends ArrayAdapter<ServiceProvider> {
     private final ArrayList<ServiceProvider> serviceProviders;
 
     public ServiceProviderArrayAdapter(Context context, ArrayList<ServiceProvider> values) {
-        super(context, R.layout.serviceProvider_layout, values);
+        super(context, R.layout.service_provider_layout, values);
         this.context = context;
         this.serviceProviders = values;
     }
