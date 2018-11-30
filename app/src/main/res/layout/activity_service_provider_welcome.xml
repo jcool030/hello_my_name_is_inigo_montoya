@@ -10,14 +10,12 @@
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,15 +96,6 @@
                 android:inputType="text|textShortMessage|textLongMessage" />
         </android.support.design.widget.TextInputLayout>
 
-        <Button
-            android:id="@+id/updateInfoBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="updateInfo"
-            android:text="@string/updateInfoBtn"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="240dp" />
-
         <TextView
             android:id="@+id/availList"
             android:layout_width="match_parent"
@@ -114,30 +103,26 @@
 
 
         <Button
-            android:id="@+id/editAvailBtn"
+            android:id="@+id/updateInfoBtn"
+            style="@android:style/Widget.DeviceDefault.Button.Inset"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
+            android:onClick="updateInfo"
+            android:text="@string/updateInfoBtn"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="240dp" />
+
+        <Button
+            android:id="@+id/editAvailBtn"
+            style="@android:style/Widget.DeviceDefault.Button.Inset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:onClick="onEditAvailClick"
             android:text="@string/edit_avail_title" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
         <Button
             android:id="@+id/pickServices"
+            style="@android:style/Widget.DeviceDefault.Button.Inset"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="pickUpServicesClick"
@@ -145,9 +130,12 @@
 
         <Button
             android:id="@+id/signoutButton"
+            style="@android:style/Widget.DeviceDefault.Button.Inset"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="signOut"
             android:text="@string/signoutButton" />
+
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
