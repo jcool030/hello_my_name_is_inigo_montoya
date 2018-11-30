@@ -8,6 +8,7 @@ public abstract class User {
     private String firstName;
     private String lastName;
     private String type;
+    private volatile CurrentUser currentUser;
 
     public User(){
         username = "";
@@ -48,6 +49,14 @@ public abstract class User {
     public String getLastName() {
 
         return lastName;
+    }
+
+    public void attachAsCurrentUser(){
+        currentUser = new CurrentUser();
+    }
+
+    public void notifyCurrentUser(Context context){
+        currentUser.notified(context);
     }
 
     public String toString(){

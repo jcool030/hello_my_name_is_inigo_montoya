@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.seg2105app.services.Service;
+import com.seg2105app.users.ServiceProvider;
 import com.seg2105app.users.User;
 
 
@@ -40,6 +41,14 @@ public final class DatabaseHandler{
         public static final String COLUMN_SERVICE_RATE = "rate";
     }
 
+    public static class ServiceProviderEntry implements BaseColumns{
+        public static final String COLUMN_PHONE_NUM = "phonenumber";
+        public static final String COLUMN_ADDRESS = "address";
+        public static final String COLUMN_COMPANY = "company";
+        public static final String COLUMN_LICENSED = "licenced";
+        public static final String COLUMN_DESCRIPTION = "description";
+    }
+
     ////////DEFAULT CONSTRUCTOR///////////////////////////////////
     public DatabaseHandler(Context context){
         FirebaseApp.initializeApp(context);
@@ -52,6 +61,23 @@ public final class DatabaseHandler{
         String uid = mRef.push().getKey();
         firebaseDatabase.getReference(UserEntry.TABLE_USERS).child(uid).setValue(user);
     }
+
+    public void updateServiceProvider(ServiceProvider user, String key){
+        updateServiceProviderStringFields(user.getAddress(), key, ServiceProviderEntry.COLUMN_ADDRESS);
+        updateServiceProviderStringFields(user.getCompanyName(), key, ServiceProviderEntry.COLUMN_COMPANY);
+        updateServiceProviderStringFields(user.getDescription(), key, ServiceProviderEntry.COLUMN_DESCRIPTION);
+        updateServiceProviderStringFields(user.getPhoneNumber(), key, ServiceProviderEntry.COLUMN_PHONE_NUM);
+        updateServiceProviderBooleanFields(user.isLicensed(), key, ServiceProviderEntry.COLUMN_LICENSED);
+    }
+
+    private void updateServiceProviderStringFields(String field, String key, String fieldKey){
+        firebaseDatabase.getReference(UserEntry.TABLE_USERS).child(key).child(fieldKey).setValue(field);
+    }
+
+    private void updateServiceProviderBooleanFields(boolean field, String key, String fieldKey){
+        firebaseDatabase.getReference(UserEntry.TABLE_USERS).child(key).child(fieldKey).setValue(field);
+    }
+
 
     public void createService(Service service){
         String uid = mRef.push().getKey();

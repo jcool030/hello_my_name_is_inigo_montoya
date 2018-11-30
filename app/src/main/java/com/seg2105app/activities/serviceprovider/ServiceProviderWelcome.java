@@ -13,9 +13,10 @@ import android.widget.RadioGroup;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.seg2105app.activities.R;
 import com.seg2105app.activities.OpeningScreenActivity;
 import com.seg2105app.activities.serviceprovider.EditAvailabilitiesActivity;
-import com.seg2105app.activities.R;
+
 import com.seg2105app.users.CurrentUser;
 import com.seg2105app.users.ServiceProvider;
 import com.seg2105app.users.UserList;
@@ -30,6 +31,7 @@ public class ServiceProviderWelcome extends AppCompatActivity {
     TextInputEditText textInput;
     RadioGroup radioGroup;
     RadioButton licenseTrue;
+    RadioButton licenseFalse;
     String user;
 
     @Override
@@ -51,11 +53,32 @@ public class ServiceProviderWelcome extends AppCompatActivity {
         radioGroup = findViewById(R.id.licenseBoolean);
 
         licenseTrue = findViewById(R.id.Yes);
+        licenseFalse = findViewById(R.id.No);
+
+//        radioGroup.addView(licenseTrue,0);
+//        radioGroup.addView(licenseFalse,1);
 
         Bundle bundle = getIntent().getExtras();
         String userKey = bundle.getString("key");
         usernameText.setText("Welcome, " + contractor.getUsername() + " you are logged in as a Service Provider.");
 
+        if(contractor.getPhoneNumber() != null){
+            phoneNum.setText(contractor.getPhoneNumber());
+        }
+        if(contractor.getAddress() != null){
+            address.setText(contractor.getAddress());
+        }
+        if(contractor.getCompanyName()!=null){
+            companyName.setText(contractor.getCompanyName());
+        }
+        if(contractor.getDescription()!= null){
+            textInput.setText(contractor.getDescription());
+        }
+        if(contractor.isLicensed()){
+            licenseTrue.toggle();
+        }else{
+            licenseFalse.toggle();
+        }
         String monStart = bundle.getString("monStartTime");
         String monEnd = bundle.getString("monEndTime");
         String tuesStart = bundle.getString("tuesStartTime");
@@ -82,6 +105,7 @@ public class ServiceProviderWelcome extends AppCompatActivity {
     }
 
     public void signOut(View v) {
+        CurrentUser.logOut();
         Intent signoutIntent = new Intent(this, OpeningScreenActivity.class);
         startActivity(signoutIntent);
         finish();
@@ -101,7 +125,7 @@ public class ServiceProviderWelcome extends AppCompatActivity {
             Toast toast = Toast.makeText(getApplicationContext(), "Please Check a Radio Button", Toast.LENGTH_LONG);
             toast.show();
         } else {
-            license = licenseTrue.isSelected();
+            license = (licenseFalse.isActivated() && !licenseTrue.isActivated());
         }
 
         if (getPhoneNum.equals("") || !(getPhoneNum.length() == 10)) {
@@ -121,16 +145,15 @@ public class ServiceProviderWelcome extends AppCompatActivity {
             toast.show();
         }
         else {
-
-            bundle.putString("company", getCompanyName);
-            bundle.putString("description", description);
-            bundle.putString("address", getAddress);
-            bundle.putString("phone", getPhoneNum);
-            bundle.putBoolean("license", license);
+            contractor.setPhoneNumber(getPhoneNum);
+            contractor.setAddress(getAddress);
+            contractor.setCompanyName(getCompanyName);
+            contractor.setLicensed(license);
+            contractor.setDescription(description);
+            contractor.notifyCurrentUser(getApplicationContext());
 
             Toast toast = Toast.makeText(getApplicationContext(), "Info Updated Successfully", Toast.LENGTH_LONG);
             toast.show();
-
         }
 
     }
