@@ -74,13 +74,13 @@ public class ServiceSearch extends AppCompatActivity {
         for (User u : userManager.getUserList()) {
             if (u.getType().equals("ServiceProvider")) {
                 ServiceProvider serviceProvider = (ServiceProvider)u;
-                if (serviceProvider.getRating() == Double.parseDouble(search) || serviceProvider.getFirstName().equals(search)) {
-                    //for (Service s : serviceProvider.getServiceListings()){
-                    //arrayList.add(serviceProvider.get)
-                    //}
-
-
-                }
+//                if (serviceProvider.getRating() == Double.parseDouble(search) || serviceProvider.getFirstName().equals(search)) {
+//                    //for (Service s : serviceProvider.getServiceListings()){
+//                    //arrayList.add(serviceProvider.get)
+//                    //}
+//
+//
+//                }
             }
         }
 

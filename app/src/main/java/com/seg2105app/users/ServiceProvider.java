@@ -94,13 +94,6 @@ public class ServiceProvider extends User {
         return description;
     }
 
-    //public double getRating() { return rating; }
-
-//    public void updateRating(int newRating){
-//        numOfRatings++;
-//        rating = (rating + newRating)/numOfRatings;
-//    }
-//
     public ArrayList<String> getComments(){ return comments; }
 
     public void addComment(String newComment){
