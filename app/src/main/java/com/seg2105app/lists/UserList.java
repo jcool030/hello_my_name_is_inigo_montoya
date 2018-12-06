@@ -1,4 +1,4 @@
-package com.seg2105app.users;
+package com.seg2105app.lists;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,6 +8,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.seg2105app.database.DatabaseHandler;
+import com.seg2105app.users.User;
+import com.seg2105app.users.UserFactory;
 
 import java.io.Serializable;
 import java.util.ArrayList;

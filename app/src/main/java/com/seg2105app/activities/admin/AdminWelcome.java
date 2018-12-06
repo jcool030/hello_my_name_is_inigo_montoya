@@ -16,7 +16,7 @@ import com.seg2105app.database.DatabaseHandler;
 import com.seg2105app.activities.R;
 import com.seg2105app.users.Administrator;
 import com.seg2105app.users.CurrentUser;
-import com.seg2105app.users.UserList;
+import com.seg2105app.lists.UserList;
 
 //A copy of the homeowner welcome screen class
 public class AdminWelcome extends AppCompatActivity {

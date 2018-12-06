@@ -1,17 +1,17 @@
-package com.seg2105app.activities;
+package com.seg2105app.users;
 
 import android.support.v7.app.AppCompatActivity;
 import com.seg2105app.users.ServiceProvider;
 
 import java.util.ArrayList;
 
-public class serviceProviderRating {
+public class Rating {
 
     private double rating = 0.0; //default
     private ArrayList<Double> listOfRatings;
     private ServiceProvider associatedProvider;
 
-    public serviceProviderRating(ServiceProvider associatedProvider)
+    public Rating(ServiceProvider associatedProvider)
     {
         this.associatedProvider = associatedProvider;
         listOfRatings = new ArrayList<>();

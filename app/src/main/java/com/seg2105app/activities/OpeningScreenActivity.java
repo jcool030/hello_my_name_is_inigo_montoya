@@ -14,24 +14,24 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.seg2105app.Callback;
 import com.seg2105app.database.DatabaseHandler;
 
-import com.seg2105app.activities.R;
-import com.seg2105app.services.ServiceListingList;
+import com.seg2105app.lists.ServiceListingList;
 import com.seg2105app.users.CurrentUser;
 import com.seg2105app.users.ServiceProvider;
 import com.seg2105app.users.User;
 import com.seg2105app.users.UserFactory;
-import com.seg2105app.users.UserList;
+import com.seg2105app.lists.UserList;
 
 public class OpeningScreenActivity extends AppCompatActivity{
     EditText username;
     EditText password;
 
     //DatabaseReference userDB = FirebaseDatabase.getInstance().getReference();
-    UserList users = UserList.getInstance();
+    UserList users = UserList.getInstance(this);
     DatabaseHandler udbHandler = new DatabaseHandler(this);
-    ServiceListingList listings = ServiceListingList.getInstance();
+    ServiceListingList listings = ServiceListingList.getInstance(this);
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -42,7 +42,7 @@ public class OpeningScreenActivity extends AppCompatActivity{
         username =  findViewById(R.id.username_textfield);
         password = findViewById(R.id.password_textfield);
 
-        listings.populateServiceListingList(udbHandler);
+
     }
 
     public void onLoginClick(View view){
@@ -50,8 +50,10 @@ public class OpeningScreenActivity extends AppCompatActivity{
         boolean hasPassword = !TextUtils.isEmpty(password.getText());
 
         if(!hasUsername){
+
             Toast toast = Toast.makeText(getApplicationContext(), "Please enter a username.", Toast.LENGTH_SHORT);
             toast.show();
+            username.setText(String.valueOf(listings.size()));
         }
         else if(!hasPassword){
             Toast toast = Toast.makeText(getApplicationContext(), "Please enter a password.", Toast.LENGTH_SHORT);

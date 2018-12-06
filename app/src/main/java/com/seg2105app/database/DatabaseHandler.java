@@ -101,6 +101,37 @@ public final class DatabaseHandler{
         firebaseDatabase.getReference(ServiceEntry.TABLE_SERVICES).child(key).setValue(service);
     }
 
+    public void getService(String key, @NonNull final Callback<Service> finishedCallback){
+        firebaseDatabase.getReference(ServiceEntry.TABLE_SERVICES).child(key).addListenerForSingleValueEvent(new ValueEventListener(){
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Service service = dataSnapshot.getValue(Service.class);
+                finishedCallback.callback(service);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+    public void getUser(String key, @NonNull final Callback<User> finishedCallback){
+        firebaseDatabase.getReference(UserEntry.TABLE_USERS).child(key).addListenerForSingleValueEvent(new ValueEventListener(){
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                finishedCallback.callback(user);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     public void createListing(String serviceKey, String providerKey){
         String uid = mRef.push().getKey();
         firebaseDatabase.getReference(ServiceListingEntry.TABLE_SERVICE_LISTINGS).child(uid).child(ServiceListingEntry.COLUMN_SERVICE).setValue(serviceKey);

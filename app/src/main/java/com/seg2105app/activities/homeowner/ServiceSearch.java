@@ -12,9 +12,9 @@ import com.seg2105app.activities.ServiceArrayAdapter;
 import com.seg2105app.activities.R;
 import com.seg2105app.database.DatabaseHandler;
 import com.seg2105app.services.Service;
-import com.seg2105app.services.ServiceList;
+import com.seg2105app.lists.ServiceList;
 import com.seg2105app.users.User;
-import com.seg2105app.users.UserList;
+import com.seg2105app.lists.UserList;
 import com.seg2105app.users.ServiceProvider;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.seg2105app.services;
+package com.seg2105app.lists;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,8 +7,8 @@ import android.util.Log;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
-import com.seg2105app.activities.OpeningScreenActivity;
 import com.seg2105app.database.DatabaseHandler;
+import com.seg2105app.services.Service;
 
 import java.util.ArrayList;
 import java.util.ListIterator;

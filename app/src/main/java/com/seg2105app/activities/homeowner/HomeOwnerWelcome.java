@@ -13,7 +13,6 @@ import com.seg2105app.activities.OpeningScreenActivity;
 import com.seg2105app.activities.R;
 import com.seg2105app.users.CurrentUser;
 import com.seg2105app.users.HomeOwner;
-import com.seg2105app.users.UserList;
 
 public class HomeOwnerWelcome extends AppCompatActivity {
 

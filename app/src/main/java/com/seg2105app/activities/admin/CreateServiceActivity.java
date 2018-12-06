@@ -17,7 +17,6 @@ import com.seg2105app.database.DatabaseHandler;
 import com.seg2105app.services.Service;
 import com.seg2105app.users.Administrator;
 import com.seg2105app.users.CurrentUser;
-import com.seg2105app.users.UserList;
 
 public class CreateServiceActivity extends AppCompatActivity implements View.OnClickListener {
     Administrator admin;

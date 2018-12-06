@@ -10,6 +10,10 @@ public class ServiceListing {
         this.service = service;
         this.provider = provider;
     }
+    public ServiceListing(){
+        this.service = null;
+        this.provider = null;
+    }
 
     public Service getService(){
         return service;
@@ -18,5 +22,11 @@ public class ServiceListing {
         return provider;
     }
 
+    public void setService(Service service) {
+        this.service = service;
+    }
 
+    public void setProvider(ServiceProvider provider) {
+        this.provider = provider;
+    }
 }

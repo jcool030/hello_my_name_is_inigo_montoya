@@ -1,4 +1,4 @@
-package com.seg2105app.services;
+package com.seg2105app.lists;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,9 +7,12 @@ import android.util.Log;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.seg2105app.Callback;
 import com.seg2105app.database.DatabaseHandler;
+import com.seg2105app.services.Service;
+import com.seg2105app.services.ServiceListing;
+import com.seg2105app.users.CurrentUser;
 import com.seg2105app.users.ServiceProvider;
-import com.seg2105app.users.UserList;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
@@ -23,18 +26,37 @@ public class ServiceListingList extends ArrayList<ServiceListingList.ServiceList
 
     public class ServiceListingElement{
         private String key;
+        private String providerKey;
+        private String serviceKey;
         private ServiceListing listing;
 
-        ServiceListingElement(String key, ServiceListing listing){
+
+        ServiceListingElement(String key, String providerKey, String serviceKey){
             this.key = key;
-            this.listing = listing;
+            this.providerKey = providerKey;
+            this.serviceKey = serviceKey;
+            this.listing = new ServiceListing();
+            this.setListing();
         }
 
         public String getKey(){
             return key;
         }
 
+        public void setListing(){
+            DatabaseHandler db = new DatabaseHandler(context);
+            db.getService(serviceKey, new Callback<Service>() {
+                @Override
+                public void callback(Service data) {
+                    listing.setService(data);
+                }
+            });
+            listing.setProvider((ServiceProvider)CurrentUser.getCurrentUser());
+        }
+
         public ServiceListing getServiceListing(){
+
+
             return listing;
         }
     }
@@ -79,19 +101,14 @@ public class ServiceListingList extends ArrayList<ServiceListingList.ServiceList
         return list;
     }
 
-    public void populateServiceListingList(final DatabaseHandler db) {
+    public void populateServiceListingList(DatabaseHandler db) {
         instance.clear();
-        final ArrayList<String> listingKeys = new ArrayList<String>();
-        final ArrayList<String> serviceKeys = new ArrayList<String>();
-        final ArrayList<String> providerKeys = new ArrayList<String>();
 
         db.getReferenceToServiceListingTable().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    listingKeys.add(ds.getKey());
-                    serviceKeys.add(ds.child(DatabaseHandler.ServiceListingEntry.COLUMN_SERVICE).getValue(String.class));
-                    providerKeys.add(ds.child(DatabaseHandler.ServiceListingEntry.COLUMN_PROVIDER).getValue(String.class));
+                    instance.add(new ServiceListingElement(ds.getKey(), ds.child("service").getValue(String.class), ds.child("serviceProvider").getValue(String.class)));
                 }
 
             }
@@ -101,20 +118,6 @@ public class ServiceListingList extends ArrayList<ServiceListingList.ServiceList
 
             }
         });
-
-        ServiceList services = ServiceList.getInstance(context);
-        UserList users = UserList.getInstance(context);
-
-        for (int i = 0; i < serviceKeys.size(); i++){
-            String key = listingKeys.get(i);
-           Service service = services.getService(serviceKeys.get(i));
-           ServiceProvider serviceProvider = (ServiceProvider)users.getUser(serviceKeys.get(i));
-
-           instance.add(new ServiceListingElement(key, new ServiceListing(service, serviceProvider)));
-        }
-
-
-
     }
 
     public ArrayList<ServiceListing> getServiceListingsOfProvider(String providerName){

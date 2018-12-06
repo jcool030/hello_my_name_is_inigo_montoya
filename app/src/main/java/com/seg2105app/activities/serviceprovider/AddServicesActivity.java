@@ -1,8 +1,8 @@
 package com.seg2105app.activities.serviceprovider;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -12,15 +12,15 @@ import com.seg2105app.activities.ServiceArrayAdapter;
 import com.seg2105app.activities.R;
 import com.seg2105app.activities.ServiceListingArrayAdapter;
 import com.seg2105app.database.DatabaseHandler;
-import com.seg2105app.services.Service;
-import com.seg2105app.services.ServiceList;
+import com.seg2105app.lists.ServiceList;
 import com.seg2105app.services.ServiceListing;
-import com.seg2105app.services.ServiceListingList;
+import com.seg2105app.lists.ServiceListingList;
 import com.seg2105app.users.CurrentUser;
 import com.seg2105app.users.ServiceProvider;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 public class AddServicesActivity extends AppCompatActivity {
     ServiceProvider contractor = (ServiceProvider)CurrentUser.getCurrentUser();
@@ -34,9 +34,13 @@ public class AddServicesActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_provider_manage_service);
         listingsManager = ServiceListingList.getInstance(this);
+
+
 
         currentList = listingsManager.getServiceListingsOfProvider(contractor.getUsername());
         sdbHandler = new DatabaseHandler(this);
@@ -59,7 +63,7 @@ public class AddServicesActivity extends AppCompatActivity {
                     duplicate.show();
                 }else {
 
-                    currentList.add(new ServiceListing(service.getService(), contractor));
+                    currentList.addAll(listingsManager.getServiceListingList());
                     contractor.addListing(service.getService());
                     sdbHandler.createListing(service.getKey(), CurrentUser.getCurrentKey());
                 }
