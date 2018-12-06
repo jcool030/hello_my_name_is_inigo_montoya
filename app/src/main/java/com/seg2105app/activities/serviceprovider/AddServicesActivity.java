@@ -10,30 +10,41 @@ import android.widget.Toast;
 
 import com.seg2105app.activities.ServiceArrayAdapter;
 import com.seg2105app.activities.R;
+import com.seg2105app.activities.ServiceListingArrayAdapter;
 import com.seg2105app.database.DatabaseHandler;
 import com.seg2105app.services.Service;
 import com.seg2105app.services.ServiceList;
+import com.seg2105app.services.ServiceListing;
+import com.seg2105app.services.ServiceListingList;
+import com.seg2105app.users.CurrentUser;
+import com.seg2105app.users.ServiceProvider;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AddServicesActivity extends AppCompatActivity {
+    ServiceProvider contractor = (ServiceProvider)CurrentUser.getCurrentUser();
     private ListView listViewCurrent, listViewAvail;
     private ServiceList manager;
+    private ServiceListingList listingsManager;
     private DatabaseHandler sdbHandler;
-    private ServiceArrayAdapter adapter, adapter2;
-    private ArrayList<Service> currentList;
+    private ServiceArrayAdapter adapter;
+    private ServiceListingArrayAdapter adapter2;
+    private ArrayList<ServiceListing> currentList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_provider_manage_service);
+        listingsManager = ServiceListingList.getInstance(this);
+
+        currentList = listingsManager.getServiceListingsOfProvider(contractor.getUsername());
         sdbHandler = new DatabaseHandler(this);
 
         listViewAvail = findViewById(R.id.listViewAvail);
         listViewCurrent = findViewById(R.id.listViewCurrent);
 
-        manager = ServiceList.getInstance();//creates instance of serviceManager if not already exists
+        manager = ServiceList.getInstance(this);//creates instance of serviceManager if not already exists
         manager.populateServiceList(sdbHandler);
 
         adapter = new ServiceArrayAdapter(this, manager.getServiceList());
@@ -42,20 +53,24 @@ public class AddServicesActivity extends AppCompatActivity {
         listViewAvail.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick (AdapterView < ? > parent,final View view, int position, long id){
-                if (currentList.contains(manager.getServiceList().get(position))){
-                    Toast duplicate = Toast.makeText(AddServicesActivity.this, "Service Already Added", Toast.LENGTH_SHORT);
+                ServiceList.ServiceElement service = manager.get(position);
+                if (contractor.hasListing(service.getService())){
+                    Toast duplicate = Toast.makeText(AddServicesActivity.this, "Service Listing Already Exists", Toast.LENGTH_SHORT);
                     duplicate.show();
                 }else {
-                    currentList.add(manager.getServiceList().get(position));
-                }
 
+                    currentList.add(new ServiceListing(service.getService(), contractor));
+                    contractor.addListing(service.getService());
+                    sdbHandler.createListing(service.getKey(), CurrentUser.getCurrentKey());
+                }
             }
         });
 
         currentList = new ArrayList<>();
 
-        adapter2 = new ServiceArrayAdapter(this, currentList);
+        adapter2 = new ServiceListingArrayAdapter(this, currentList);
         listViewCurrent.setAdapter(adapter2);
+
         listViewCurrent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick (AdapterView < ? > parent,final View view, int position, long id){
@@ -74,19 +89,21 @@ public class AddServicesActivity extends AppCompatActivity {
         listViewAvail.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
-                if (currentList.contains(manager.getServiceList().get(position))){
-                    Toast duplicate = Toast.makeText(AddServicesActivity.this, "Service Already Added", Toast.LENGTH_SHORT);
+                ServiceList.ServiceElement service = manager.get(position);
+                if (contractor.hasListing(service.getService())){
+                    Toast duplicate = Toast.makeText(AddServicesActivity.this, "Service Listing Already Exists", Toast.LENGTH_SHORT);
                     duplicate.show();
-
                 }else {
-                    currentList.add(manager.getServiceList().get(position));
+                    currentList.add(new ServiceListing(service.getService(), contractor));
+                    contractor.addListing(service.getService());
+                    sdbHandler.createListing(service.getKey(), CurrentUser.getCurrentKey());
                 }
             }
         });
     }
     public void refreshClick2(View v) {
         listViewCurrent = findViewById(R.id.listViewCurrent);
-        adapter2 = new ServiceArrayAdapter(this, currentList);
+        adapter2 = new ServiceListingArrayAdapter(this, currentList);
         listViewCurrent.setAdapter(adapter2);
 
         listViewCurrent.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -1,5 +1,6 @@
 package com.seg2105app.users;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -16,10 +17,15 @@ import static android.content.ContentValues.TAG;
 
 public class UserList extends ArrayList<UserList.UserElement> implements Serializable {
     private static UserList instance = null;
-    private DatabaseHandler udbHandler;
+    private Context context;
 
     private UserList(){
         super();
+    }
+    private UserList(Context context){
+
+        super();
+        this.context = context;
     }
 
     public class UserElement{
@@ -35,12 +41,26 @@ public class UserList extends ArrayList<UserList.UserElement> implements Seriali
     public static UserList getInstance(){
         if (instance == null){
             instance = new UserList();
+            if (instance.context != null){
+               instance.populateUserList(new DatabaseHandler(instance.context));
+            }
         }
 
         return instance;
     }
 
-    public static User getUser(String key){
+    public static UserList getInstance(Context context){
+        if (instance == null){
+            instance = new UserList(context);
+        }
+        if (instance.context != null){
+            instance.populateUserList(new DatabaseHandler(instance.context));
+        }
+
+        return instance;
+    }
+
+    public User getUser(String key){
         if (instance == null){
             return null;
         } else {

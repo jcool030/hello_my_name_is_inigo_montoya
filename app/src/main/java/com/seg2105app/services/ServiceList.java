@@ -1,11 +1,13 @@
 package com.seg2105app.services;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.seg2105app.activities.OpeningScreenActivity;
 import com.seg2105app.database.DatabaseHandler;
 
 import java.util.ArrayList;
@@ -16,14 +18,23 @@ import static android.content.ContentValues.TAG;
 public class ServiceList extends ArrayList<ServiceList.ServiceElement> {
 
     private static ServiceList instance = null;
+    private Context context;
 
-    protected class ServiceElement{
+    public class ServiceElement{
         private String key;
         private Service service;
 
         ServiceElement(String key, Service service){
             this.key = key;
             this.service = service;
+        }
+
+        public String getKey(){
+            return key;
+        }
+
+        public Service getService(){
+            return service;
         }
     }
 
@@ -33,10 +44,30 @@ public class ServiceList extends ArrayList<ServiceList.ServiceElement> {
         super();
     }
 
+    private ServiceList(Context context){
+        super();
+        this.context = context;
+    }
+
     //This will be called to check if a list already exists
     public static ServiceList getInstance() {
         if (instance == null) {
             instance = new ServiceList();
+        }
+
+        if (instance.context != null) {
+            instance.populateServiceList(new DatabaseHandler(instance.context));
+        }
+        return instance;
+    }
+
+    public static ServiceList getInstance(Context context) {
+        if (instance == null) {
+            instance = new ServiceList(context);
+        }
+
+        if (instance.context != null) {
+            instance.populateServiceList(new DatabaseHandler(instance.context));
         }
         return instance;
     }
@@ -76,6 +107,20 @@ public class ServiceList extends ArrayList<ServiceList.ServiceElement> {
 
             }
         });
+    }
+
+    public Service getService(String key){
+        if (instance == null){
+            return null;
+        } else {
+            for (ListIterator<ServiceElement> iter = instance.listIterator(); iter.hasNext(); ) {
+                ServiceElement serviceE = iter.next();
+                if (serviceE.key.equals(key)) {
+                    return serviceE.service;
+                }
+            }
+            return null;
+        }
     }
 
     public Service getServiceAt(int index){

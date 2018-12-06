@@ -3,17 +3,24 @@ package com.seg2105app.database;
 
 import android.content.Context;
 import android.provider.BaseColumns;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.seg2105app.Callback;
 import com.seg2105app.services.Service;
+import com.seg2105app.services.ServiceListing;
 import com.seg2105app.users.ServiceProvider;
 import com.seg2105app.users.User;
 
+
+import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
@@ -47,6 +54,12 @@ public final class DatabaseHandler{
         public static final String COLUMN_COMPANY = "company";
         public static final String COLUMN_LICENSED = "licenced";
         public static final String COLUMN_DESCRIPTION = "description";
+    }
+
+    public static class ServiceListingEntry implements BaseColumns {
+        public static final String TABLE_SERVICE_LISTINGS = "listings";
+        public static final String COLUMN_PROVIDER = "serviceProvider";
+        public static final String COLUMN_SERVICE = "service";
     }
 
     ////////DEFAULT CONSTRUCTOR///////////////////////////////////
@@ -88,6 +101,16 @@ public final class DatabaseHandler{
         firebaseDatabase.getReference(ServiceEntry.TABLE_SERVICES).child(key).setValue(service);
     }
 
+    public void createListing(String serviceKey, String providerKey){
+        String uid = mRef.push().getKey();
+        firebaseDatabase.getReference(ServiceListingEntry.TABLE_SERVICE_LISTINGS).child(uid).child(ServiceListingEntry.COLUMN_SERVICE).setValue(serviceKey);
+        firebaseDatabase.getReference(ServiceListingEntry.TABLE_SERVICE_LISTINGS).child(uid).child(ServiceListingEntry.COLUMN_PROVIDER).setValue(providerKey);
+    }
+
+    public void deleteListing(String key){
+        firebaseDatabase.getReference(ServiceListingEntry.TABLE_SERVICE_LISTINGS).child(key).removeValue();
+    }
+
     public void deleteService(String key){
         firebaseDatabase.getReference(ServiceEntry.TABLE_SERVICES).child(key).removeValue();
     }
@@ -99,6 +122,11 @@ public final class DatabaseHandler{
     public Query getReferenceToServiceTable (){
         return firebaseDatabase.getReference(ServiceEntry.TABLE_SERVICES).orderByChild(ServiceEntry.COLUMN_SERVICE_NAME);
     }
+
+    public Query getReferenceToServiceListingTable (){
+        return firebaseDatabase.getReference(ServiceListingEntry.TABLE_SERVICE_LISTINGS);
+    }
+
     public Query getReferenceToServiceTable(String orderPath){
         return firebaseDatabase.getReference(ServiceEntry.TABLE_SERVICES).orderByChild(orderPath);
     }

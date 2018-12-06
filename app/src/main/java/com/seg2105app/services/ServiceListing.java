@@ -6,9 +6,17 @@ public class ServiceListing {
     private Service service;
     private ServiceProvider provider;
 
-    public void attachServiceToProvider(Service service, ServiceProvider provider){
+    public ServiceListing(Service service, ServiceProvider provider){
         this.service = service;
         this.provider = provider;
     }
+
+    public Service getService(){
+        return service;
+    }
+    public ServiceProvider getServiceProvider(){
+        return provider;
+    }
+
 
 }

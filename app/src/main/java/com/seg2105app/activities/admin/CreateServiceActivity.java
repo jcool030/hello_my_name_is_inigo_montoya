@@ -16,6 +16,7 @@ import com.seg2105app.activities.R;
 import com.seg2105app.database.DatabaseHandler;
 import com.seg2105app.services.Service;
 import com.seg2105app.users.Administrator;
+import com.seg2105app.users.CurrentUser;
 import com.seg2105app.users.UserList;
 
 public class CreateServiceActivity extends AppCompatActivity implements View.OnClickListener {
@@ -33,7 +34,7 @@ public class CreateServiceActivity extends AppCompatActivity implements View.OnC
 
         Bundle bundle = getIntent().getExtras();
         String key = bundle.getString("key");
-        admin = (Administrator) UserList.getUser(key);
+        admin = (Administrator) CurrentUser.getCurrentUser();
     }
 
     public void onClick(View view) {

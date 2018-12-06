@@ -17,6 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.seg2105app.database.DatabaseHandler;
 
 import com.seg2105app.activities.R;
+import com.seg2105app.services.ServiceListingList;
 import com.seg2105app.users.CurrentUser;
 import com.seg2105app.users.ServiceProvider;
 import com.seg2105app.users.User;
@@ -30,6 +31,7 @@ public class OpeningScreenActivity extends AppCompatActivity{
     //DatabaseReference userDB = FirebaseDatabase.getInstance().getReference();
     UserList users = UserList.getInstance();
     DatabaseHandler udbHandler = new DatabaseHandler(this);
+    ServiceListingList listings = ServiceListingList.getInstance();
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -39,6 +41,8 @@ public class OpeningScreenActivity extends AppCompatActivity{
 
         username =  findViewById(R.id.username_textfield);
         password = findViewById(R.id.password_textfield);
+
+        listings.populateServiceListingList(udbHandler);
     }
 
     public void onLoginClick(View view){

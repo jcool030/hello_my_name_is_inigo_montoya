@@ -2,9 +2,18 @@ package com.seg2105app.users;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.seg2105app.activities.serviceProviderRating;
 import com.seg2105app.activities.OpeningScreenActivity;
 import com.seg2105app.activities.serviceprovider.ServiceProviderWelcome;
+import com.seg2105app.database.DatabaseHandler;
+import com.seg2105app.services.Service;
+import com.seg2105app.services.ServiceListing;
+import com.seg2105app.services.ServiceListingList;
 
 import java.util.ArrayList;
 
@@ -20,6 +29,7 @@ public class ServiceProvider extends User {
     //private double rating;
     //private int numOfRatings;
     private ArrayList<String> comments;
+    private ArrayList<ServiceListing> listings;
     serviceProviderRating associatedRating;
 
     public ServiceProvider(String username, String password, String firstName, String lastName, String type){
@@ -29,6 +39,7 @@ public class ServiceProvider extends User {
         //numOfRatings = 0;
         comments = null;
         associatedRating = new serviceProviderRating(this);
+        listings = new ArrayList<ServiceListing>();
     }
 
     @Override
@@ -106,5 +117,26 @@ public class ServiceProvider extends User {
 
     public String getAvailability(int day, int startOrEnd){
         return availabilities[day][startOrEnd];
+    }
+
+    public void addListing(Service service){
+       listings.add(new ServiceListing(service, this));
+    }
+
+    public ArrayList<ServiceListing> getListings(){
+        return listings;
+    }
+
+    public void setListings(){
+
+    }
+
+    public boolean hasListing(Service service){
+        for (ServiceListing listing : listings){
+            if (listing.getService().equals(service)){
+                return true;
+            }
+        }
+        return false;
     }
 }
