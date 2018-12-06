@@ -21,17 +21,17 @@ public class ServiceProvider extends User {
     //for rating
     //private double rating;
     //private int numOfRatings;
-    private ArrayList<String> comments;
+    //private ArrayList<String> comments;
     private ArrayList<ServiceListing> listings;
-    Rating associatedRating;
+    //Rating associatedRating;
 
     public ServiceProvider(String username, String password, String firstName, String lastName, String type){
         super(username, password, firstName, lastName, type);
         availabilities = new String[7][2];
         //rating = 0;
         //numOfRatings = 0;
-        comments = null;
-        associatedRating = new Rating(this);
+        //comments = null;
+        //associatedRating = new Rating(this);
         listings = new ArrayList<ServiceListing>();
     }
 
@@ -52,15 +52,15 @@ public class ServiceProvider extends User {
         this.phoneNumber = phoneNumber;
     }
 
-    public double getRating()
-    {
-        return associatedRating.getRating();
-    }
-
-    public void addRating(double newAddition)
-    {
-        associatedRating.addAndCalculateRating(newAddition);
-    }
+//    public double getRating()
+//    {
+//        return associatedRating.getRating();
+//    }
+//
+//    public void addRating(double newAddition)
+//    {
+//        associatedRating.addAndCalculateRating(newAddition);
+//    }
 
     public void setAddress(String address){
         this.address = address;
@@ -98,11 +98,11 @@ public class ServiceProvider extends User {
         return description;
     }
 
-    public ArrayList<String> getComments(){ return comments; }
-
-    public void addComment(String newComment){
-        comments.add(newComment);
-    }
+//    public ArrayList<String> getComments(){ return comments; }
+//
+//    public void addComment(String newComment){
+//        comments.add(newComment);
+//    }
 
     public void setAvailabilities(int day, int startOrEnd, String time){
         availabilities[day][startOrEnd] = time;

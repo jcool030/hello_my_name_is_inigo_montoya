@@ -1,5 +1,6 @@
 package com.seg2105app.activities.homeowner;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -28,7 +29,7 @@ public class ServiceSearch extends AppCompatActivity {
     private EditText serviceSearch;
     private ArrayList<Service> arrayList;
     private UserList userManager;
-
+    private static Service selectedService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -52,8 +53,9 @@ public class ServiceSearch extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick (AdapterView < ? > parent, final View view, int position, long id){
-
-
+                selectedService = (Service) listView.getItemAtPosition(position);
+                Intent editService = new Intent(ServiceSearch.this, RateServiceActivity.class);
+                startActivity(editService);
             }
         });
         listView = findViewById(R.id.serviceList);
@@ -100,5 +102,7 @@ public class ServiceSearch extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
-
+    public static Service getSelectedService(){
+        return selectedService;
+    }
 }

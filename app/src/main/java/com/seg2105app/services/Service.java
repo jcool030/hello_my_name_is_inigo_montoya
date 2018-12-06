@@ -1,4 +1,7 @@
 package com.seg2105app.services;
+import android.os.Parcelable;
+
+import com.seg2105app.users.Rating;
 import com.seg2105app.users.ServiceProvider;
 
 import java.util.ArrayList;
@@ -10,15 +13,21 @@ public class Service {
     private double rate = 0.0;
     private ArrayList<ServiceListing> listings;
     private List<Service> subservices;
+    private ArrayList<String> comments;
+    private Rating associatedRating;
 
     public Service(){
         name = "name not yet defined";
         rate = 0.0;
+        associatedRating = new Rating(this);
+        comments = new ArrayList<String>();
     }
 
     public Service(String serviceName, double hourlyRate){
         this.name = serviceName;
         this.rate = hourlyRate;
+        associatedRating = new Rating(this);
+        comments = new ArrayList<String>();
     }
 
     //Getters
@@ -38,6 +47,21 @@ public class Service {
         this.rate = newRate;
     }
 
+    public double getRating()
+    {
+        return associatedRating.getRating();
+    }
+
+    public void addRating(double newAddition)
+    {
+        associatedRating.addAndCalculateRating(newAddition);
+    }
+
+    public ArrayList<String> getComments(){ return comments; }
+
+    public void addComment(String newComment){
+        comments.add(newComment);
+    }
 
     public boolean equals(Service service){
         if (service.name.equals(this.name)){

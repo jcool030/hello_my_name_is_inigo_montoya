@@ -1,6 +1,8 @@
 package com.seg2105app.users;
 
 import android.support.v7.app.AppCompatActivity;
+
+import com.seg2105app.services.Service;
 import com.seg2105app.users.ServiceProvider;
 
 import java.util.ArrayList;
@@ -9,13 +11,13 @@ public class Rating {
 
     private double rating = 0.0; //default
     private ArrayList<Double> listOfRatings;
-    private ServiceProvider associatedProvider;
+    private Service associatedService;
 
-    public Rating(ServiceProvider associatedProvider)
+    public Rating(Service associatedService)
     {
-        this.associatedProvider = associatedProvider;
+        this.associatedService = associatedService;
         listOfRatings = new ArrayList<>();
-        listOfRatings.add(0.0);//so that it doesnt divide by 0 when calculating size of array
+        listOfRatings.add(0.0);//so that it doesn't divide by 0 when calculating size of array
     }
 
     public double getRating()
@@ -24,9 +26,9 @@ public class Rating {
     }
 
 
-    public ServiceProvider getProvider()
+    public Service getService()
     {
-        return this.associatedProvider;
+        return this.associatedService;
     }
 
     //takes a new addition, adds it to the existing list, then calculates the new average among
@@ -37,7 +39,7 @@ public class Rating {
 
         //to calc
         double newRating = 0;
-        for(int i=0; i<= listOfRatings.size(); i++)
+        for(int i=0; i< listOfRatings.size(); i++)
         {
             newRating = newRating + listOfRatings.get(i);
         }
