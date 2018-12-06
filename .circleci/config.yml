@@ -23,12 +23,12 @@ jobs:
       - run:
           name: Run UserTest
           command: ./gradlew test
-      - run:
-          name: Run HomeOwnerTest
-          command: ./gradlew test
-       - run:
-           name: Run ServiceTest
-          ommand: ./gradlew test
+#      - run:
+#          name: Run HomeOwnerTest
+#          command: ./gradlew test
+#       - run:
+#           name: Run ServiceTest
+#          ommand: ./gradlew test
       - store_artifacts:
           path: app/build/outputs/apk/debug/
           destination: apks/
